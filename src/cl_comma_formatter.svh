@@ -39,14 +39,14 @@
 //   T - (OPTIONAL) The type of an object to be converted. The default is *int*.
 //------------------------------------------------------------------------------
 
-class comma_formatter #( type T = int ) extends formatter#( T );
+class comma_formatter #( type T = int ) extends formatter #( T );
 
    //---------------------------------------------------------------------------
    // Typedef: this_type
    //   The shorthand of <comma_formatter> *#(T)*.
    //---------------------------------------------------------------------------
 
-   typedef comma_formatter#(T) this_type;
+   typedef comma_formatter #(T) this_type;
 
    local static this_type inst = null;
 

@@ -39,14 +39,14 @@ typedef class tuple;
 //       *tuple* (with its default parameters).
 //------------------------------------------------------------------------------
 
-class tuple_comparator#( type T = tuple ) extends comparator#(T);
+class tuple_comparator #( type T = tuple ) extends comparator#(T);
 
    //---------------------------------------------------------------------------
    // Typedef: this_type
    //   The shorthand of <pair_comparator> *#(T)*.
    //---------------------------------------------------------------------------
 
-   typedef tuple_comparator#(T) this_type;
+   typedef tuple_comparator #(T) this_type;
 
    local static this_type inst = null; // needs to place after the typedef above
 

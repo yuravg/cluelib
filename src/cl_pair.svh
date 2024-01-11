@@ -39,23 +39,23 @@
 //        same type as *T1*.
 //------------------------------------------------------------------------------
 
-class pair#( type T1 = int, type T2 = T1 );
+class pair #( type T1 = int, type T2 = T1 );
 
    //---------------------------------------------------------------------------
    // Typedef: this_type
-   //   The shorthand of *pair#(T1,T2)*.
+   //   The shorthand of *pair #(T1,T2)*.
    //---------------------------------------------------------------------------
 
-   typedef pair#(T1,T2) this_type;
+   typedef pair #(T1,T2) this_type;
 
-   local comparator#(this_type) cmp;
+   local comparator #(this_type) cmp;
 
    //---------------------------------------------------------------------------
    // Property: first
    //   The first value inside the pair.
    //
    // Example:
-   // | pair#(int, string) p = new( 1, "apple" );
+   // | pair #(int, string) p = new( 1, "apple" );
    // | assert( p.first == 1 );
    //---------------------------------------------------------------------------
 
@@ -66,7 +66,7 @@ class pair#( type T1 = int, type T2 = T1 );
    //   The second value inside the pair.
    //
    // Example:
-   // | pair#(int, string) p = new( 1, "apple" );
+   // | pair #(int, string) p = new( 1, "apple" );
    // | assert( p.second == "apple" );
    //---------------------------------------------------------------------------
 
@@ -87,14 +87,14 @@ class pair#( type T1 = int, type T2 = T1 );
    //   None.
    //
    // Example:
-   // | pair#(int, string) p = new( 1, "apple" );
+   // | pair #(int, string) p = new( 1, "apple" );
    //---------------------------------------------------------------------------
 
-   function new( T1 first, T2 second, comparator#(this_type) cmp = null );
+   function new( T1 first, T2 second, comparator #(this_type) cmp = null );
       this.first  = first;
       this.second = second;
       if ( cmp ) this.cmp = cmp;
-      else       this.cmp = pair_comparator#(this_type)::get_instance();
+      else       this.cmp = pair_comparator #(this_type)::get_instance();
    endfunction : new
 
    //---------------------------------------------------------------------------
@@ -109,8 +109,8 @@ class pair#( type T1 = int, type T2 = T1 );
    //   If this object is equal to *p*, then returns 1. Otherwise, returns 0.
    //
    // Example:
-   // | pair#(int, string) p = new( 1, "apple" );
-   // | pair#(int, string) q = new( 1, "apple" );
+   // | pair #(int, string) p = new( 1, "apple" );
+   // | pair #(int, string) q = new( 1, "apple" );
    // | assert( p.eq( q ) == 1 ); // 1 == 1 && "apple" == "apple"
    //---------------------------------------------------------------------------
 
@@ -135,8 +135,8 @@ class pair#( type T1 = int, type T2 = T1 );
    //   0.
    //
    // Example:
-   // | pair#(int, string) p = new( 1, "apple" );
-   // | pair#(int, string) q = new( 1, "orange" );
+   // | pair #(int, string) p = new( 1, "apple" );
+   // | pair #(int, string) q = new( 1, "orange" );
    // | assert( p.ne( q ) == 1 ); // "apple" != "orange"
    //---------------------------------------------------------------------------
 
@@ -156,8 +156,8 @@ class pair#( type T1 = int, type T2 = T1 );
    //   If this object is less than *p*, then returns 1. Otherwise, returns 0.
    //
    // Example:
-   // | pair#(int, string) p = new( 1, "apple" );
-   // | pair#(int, string) q = new( 2, "apple" );
+   // | pair #(int, string) p = new( 1, "apple" );
+   // | pair #(int, string) q = new( 2, "apple" );
    // | assert( p.lt( q ) == 1 ); // 1 < 2
    //---------------------------------------------------------------------------
 
@@ -179,8 +179,8 @@ class pair#( type T1 = int, type T2 = T1 );
    //   0.
    //
    // Example:
-   // | pair#(int, string) p = new( 1, "orange" );
-   // | pair#(int, string) q = new( 1, "apple" );
+   // | pair #(int, string) p = new( 1, "orange" );
+   // | pair #(int, string) q = new( 1, "apple" );
    // | assert( p.gt( q ) == 1 ); // "orange" > "apple" by the lexicographical order
    //---------------------------------------------------------------------------
 
@@ -202,8 +202,8 @@ class pair#( type T1 = int, type T2 = T1 );
    //   returns 0.
    //
    // Example:
-   // | pair#(int, string) p = new( 1, "apple" );
-   // | pair#(int, string) q = new( 1, "orange" );
+   // | pair #(int, string) p = new( 1, "apple" );
+   // | pair #(int, string) q = new( 1, "orange" );
    // | assert( p.le( q ) == 1 ); // "apple" < "orange" by the lexicographical order
    //---------------------------------------------------------------------------
 
@@ -225,8 +225,8 @@ class pair#( type T1 = int, type T2 = T1 );
    //   1. Otherwise, returns 0.
    //
    // Example:
-   // | pair#(int, string) p = new( 2, "apple" );
-   // | pair#(int, string) q = new( 1, "orange" );
+   // | pair #(int, string) p = new( 2, "apple" );
+   // | pair #(int, string) q = new( 1, "orange" );
    // | assert( p.ge( q ) == 1 ); // 2 > 1
    //---------------------------------------------------------------------------
 
@@ -242,8 +242,8 @@ class pair#( type T1 = int, type T2 = T1 );
    //   A cloned pair.
    //
    // Example:
-   // | pair#(int, string) p = new( 1, "apple" );
-   // | pair#(int, string) q = p.clone();
+   // | pair #(int, string) p = new( 1, "apple" );
+   // | pair #(int, string) q = p.clone();
    // | assert( p.eq( q ) == 1 );
    //---------------------------------------------------------------------------
 
@@ -259,8 +259,8 @@ class pair#( type T1 = int, type T2 = T1 );
    //   p - A pair to swap the contents.
    //
    // Example:
-   // | pair#(int, string) p = new( 1, "apple" );
-   // | pair#(int, string) q = new( 2, "orange" );
+   // | pair #(int, string) p = new( 1, "apple" );
+   // | pair #(int, string) q = new( 2, "orange" );
    // | p.swap( q );
    // | assert( p.first == 2 );
    // | assert( q.first == 1 );

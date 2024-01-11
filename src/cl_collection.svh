@@ -37,7 +37,7 @@
 //   T - (OPTIONAL) The type of collected data. The default is *int*.
 //------------------------------------------------------------------------------
 
-virtual class collection#( type T = int );
+virtual class collection #( type T = int );
 
    //---------------------------------------------------------------------------
    // Typedef: da_type
@@ -51,7 +51,7 @@ virtual class collection#( type T = int );
    //   (PROTECTED) A comparator to compare the elements of type *T*.
    //---------------------------------------------------------------------------
 
-   protected comparator#( T ) cmp = null;
+   protected comparator #( T ) cmp = null;
 
    //---------------------------------------------------------------------------
    // Property: fmtr
@@ -59,7 +59,7 @@ virtual class collection#( type T = int );
    //   type *T* to a string.
    //---------------------------------------------------------------------------
 
-   protected formatter#( T ) fmtr = null;
+   protected formatter #( T ) fmtr = null;
 
    //---------------------------------------------------------------------------
    // Function: add
@@ -98,8 +98,8 @@ virtual class collection#( type T = int );
    //   Otherwise, 0 is returned.
    //---------------------------------------------------------------------------
 
-   virtual function bit add_all( collection#( T ) c );
-      iterator#( T ) it = c.get_iterator();
+   virtual function bit add_all( collection #( T ) c );
+      iterator #( T ) it = c.get_iterator();
       bit  result = 0;
 
       while ( it.has_next() ) result |= this.add( it.next() );
@@ -115,7 +115,7 @@ virtual class collection#( type T = int );
    //---------------------------------------------------------------------------
 
    virtual function void clear();
-      iterator#( T ) it = this.get_iterator();
+      iterator #( T ) it = this.get_iterator();
       T item;
 
       while ( it.has_next() ) begin
@@ -137,7 +137,7 @@ virtual class collection#( type T = int );
    //---------------------------------------------------------------------------
 
    virtual function bit contains( T e );
-      iterator#( T ) it = this.get_iterator();
+      iterator #( T ) it = this.get_iterator();
       while ( it.has_next() ) begin
          T item = it.next();
 
@@ -159,7 +159,7 @@ virtual class collection#( type T = int );
    //   collection, returns 1. Otherwise, returns 0.
    //---------------------------------------------------------------------------
 
-   virtual function bit contains_all( collection#( T ) c );
+   virtual function bit contains_all( collection #( T ) c );
       iterator #( T ) it = c.get_iterator();
       while ( it.has_next() ) begin
          if ( this.contains( it.next() ) == 0 ) return 0;
@@ -189,7 +189,7 @@ virtual class collection#( type T = int );
    //   An iterator over the elements contained in this collection.
    //---------------------------------------------------------------------------
 
-   pure virtual function iterator#( T ) get_iterator();
+   pure virtual function iterator #( T ) get_iterator();
 
    //---------------------------------------------------------------------------
    // Function: remove
@@ -204,7 +204,7 @@ virtual class collection#( type T = int );
    //---------------------------------------------------------------------------
 
    virtual function bit remove( T e );
-      iterator#( T ) it = this.get_iterator();
+      iterator #( T ) it = this.get_iterator();
       while ( it.has_next() ) begin
          T item = it.next();
          if ( cmp.eq( e, item ) ) begin
@@ -228,7 +228,7 @@ virtual class collection#( type T = int );
    //   Otherwise, 0 is returned.
    //---------------------------------------------------------------------------
 
-   virtual function bit remove_all( collection#( T ) c );
+   virtual function bit remove_all( collection #( T ) c );
       iterator #( T ) it = this.get_iterator();
       bit  result = 0;
 
@@ -254,7 +254,7 @@ virtual class collection#( type T = int );
    //   Otherwise, 0 is returned.
    //---------------------------------------------------------------------------
 
-   virtual function bit retain_all( collection#( T ) c );
+   virtual function bit retain_all( collection #( T ) c );
       iterator #( T ) it = this.get_iterator();
       bit  result = 0;
 
@@ -296,7 +296,7 @@ virtual class collection#( type T = int );
    //---------------------------------------------------------------------------
 
    virtual function da_type to_dynamic_array();
-      iterator#( T ) it = this.get_iterator();
+      iterator #( T ) it = this.get_iterator();
       int  i = 0;
       da_type da = new[ this.size() ];
 

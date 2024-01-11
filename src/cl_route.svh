@@ -37,21 +37,21 @@
 //   T - (OPTIONAL) The type of data collected in a route. The default is *int*.
 //------------------------------------------------------------------------------
 
-class route #( type T = int ) extends collection#( T );
+class route #( type T = int ) extends collection #( T );
 
    //---------------------------------------------------------------------------
    // Typedef: route_node_type
    //   The shorthand of the <route_node> type specialized with type *T*.
    //---------------------------------------------------------------------------
 
-   typedef route_node#(T) route_node_type;
+   typedef route_node #(T) route_node_type;
 
    //--------------------------------------------------------------------------
    // Typedef: route_type
    //   The shorthand of the <route> type specialized with type *T*.
    //--------------------------------------------------------------------------
 
-   typedef route#(T) route_type;
+   typedef route #(T) route_type;
 
  `ifdef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
  `else  // !`ifdef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
@@ -79,15 +79,15 @@ class route #( type T = int ) extends collection#( T );
    //          <hex_formatter> *#(T)* is used. The default is *null*.
    //
    // Example:
-   // | route#(int) int_route = new();
+   // | route #(int) int_route = new();
    //---------------------------------------------------------------------------
 
-   function new( collection#(T)   c = null,
-                 comparator#(T) cmp = null,
-                 formatter#(T) fmtr = null );
-      if ( cmp == null ) this.cmp = comparator#(T)::get_instance();
+   function new( collection #(T)   c = null,
+                 comparator #(T) cmp = null,
+                 formatter #(T) fmtr = null );
+      if ( cmp == null ) this.cmp = comparator #(T)::get_instance();
       else               this.cmp = cmp;
-      if ( fmtr == null ) this.fmtr = hex_formatter#(T)::get_instance();
+      if ( fmtr == null ) this.fmtr = hex_formatter #(T)::get_instance();
       else                this.fmtr = fmtr;
       if ( c ) void'( this.add_all( c ) );
    endfunction : new
@@ -106,7 +106,7 @@ class route #( type T = int ) extends collection#( T );
    //   Otherwise, 0 is returned.
    //
    // Example:
-   // | route#(int) int_route = new();
+   // | route #(int) int_route = new();
    // |
    // | assert( int_route.add( 123 ) );
    // | // (123)
@@ -141,10 +141,10 @@ class route #( type T = int ) extends collection#( T );
    //   Newly added <route_node>.
    //
    // Example:
-   // | route#(int)      int_route = new();
-   // | route_node#(int) rn_123;
-   // | route_node#(int) rn_234;
-   // | route_node#(int) rn_345;
+   // | route #(int)      int_route = new();
+   // | route_node #(int) rn_123;
+   // | route_node #(int) rn_234;
+   // | route_node #(int) rn_345;
    // |
    // | rn_123 = int_route.add_to_node( 123 );
    // | // (123)
@@ -180,12 +180,12 @@ class route #( type T = int ) extends collection#( T );
    //   A route node connected to (*to_node*).
    //
    // Example:
-   // | route#(int)      int_route = new();
-   // | route_node#(int) rn;
-   // | route_node#(int) rn_123;
-   // | route_node#(int) rn_234;
-   // | route_node#(int) rn_345;
-   // | route_node#(int) rn_456;
+   // | route #(int)      int_route = new();
+   // | route_node #(int) rn;
+   // | route_node #(int) rn_123;
+   // | route_node #(int) rn_234;
+   // | route_node #(int) rn_345;
+   // | route_node #(int) rn_456;
    // |
    // | rn_123 = int_route.add_to_node( 123 );
    // | rn_234 = int_route.add_to_node( 234, .node( rn_123 ) );
@@ -215,7 +215,7 @@ class route #( type T = int ) extends collection#( T );
    //   None.
    //
    // Example:
-   // | route#(int) int_route = new();
+   // | route #(int) int_route = new();
    // |
    // | assert( int_route.add( 123 ) );
    // | assert( int_route.add( 234 ) );
@@ -237,8 +237,8 @@ class route #( type T = int ) extends collection#( T );
    //   A copy of this route.
    //
    // Example:
-   // | route#(int) int_route = new();
-   // | collection#(int) cloned;
+   // | route #(int) int_route = new();
+   // | collection #(int) cloned;
    // |
    // | assert( int_route.add( 123 ) );
    // | assert( int_route.add( 234 ) );
@@ -246,7 +246,7 @@ class route #( type T = int ) extends collection#( T );
    // | assert( cloned.size() == 2 );
    //---------------------------------------------------------------------------
 
-   virtual function collection#( T ) clone();
+   virtual function collection #( T ) clone();
       route_type t = new();
       t.start = start;
       return t;
@@ -260,7 +260,7 @@ class route #( type T = int ) extends collection#( T );
    //   If this route contains no elements, returns 1. Otherwise, returns 0.
    //
    // Example:
-   // | route#(int) int_route = new();
+   // | route #(int) int_route = new();
    // |
    // | assert( int_route.add( 123 ) );
    // | assert( int_route.add( 234 ) );
@@ -280,12 +280,12 @@ class route #( type T = int ) extends collection#( T );
    //   An iterator.
    //
    // Example:
-   // | route#(int)      int_route = new();
-   // | route_node#(int) rn_123;
-   // | route_node#(int) rn_234;
-   // | route_node#(int) rn_345;
-   // | route_node#(int) rn_456;
-   // | iterator#(int)  it;
+   // | route #(int)      int_route = new();
+   // | route_node #(int) rn_123;
+   // | route_node #(int) rn_234;
+   // | route_node #(int) rn_345;
+   // | route_node #(int) rn_456;
+   // | iterator #(int)  it;
    // | string s;
    // |
    // | rn_123 = int_route.add_to_node( 123 );
@@ -301,7 +301,7 @@ class route #( type T = int ) extends collection#( T );
    // | assert( s == "123 234 345 456 " );
    //---------------------------------------------------------------------------
 
-   virtual function iterator#( T ) get_iterator();
+   virtual function iterator #( T ) get_iterator();
       return get_breadth_first_iterator();
    endfunction : iterator
 
@@ -314,12 +314,12 @@ class route #( type T = int ) extends collection#( T );
    //   An iterator.
    //
    // Example:
-   // | route#(int)      int_route = new();
-   // | route_node#(int) rn_123;
-   // | route_node#(int) rn_234;
-   // | route_node#(int) rn_345;
-   // | route_node#(int) rn_456;
-   // | iterator#(int)  it;
+   // | route #(int)      int_route = new();
+   // | route_node #(int) rn_123;
+   // | route_node #(int) rn_234;
+   // | route_node #(int) rn_345;
+   // | route_node #(int) rn_456;
+   // | iterator #(int)  it;
    // | string s;
    // |
    // | rn_123 = int_route.add_to_node( 123 );
@@ -335,12 +335,12 @@ class route #( type T = int ) extends collection#( T );
    // | assert( s == "123 234 345 456 " );
    //---------------------------------------------------------------------------
 
-   virtual function iterator#( T ) get_breadth_first_iterator();
+   virtual function iterator #( T ) get_breadth_first_iterator();
 
  `ifdef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
-      route_breadth_first_iterator#( T ) it = new();
+      route_breadth_first_iterator #( T ) it = new();
  `else
-      route_breadth_first_iterator#( T ) it = new( this );
+      route_breadth_first_iterator #( T ) it = new( this );
  `endif
 
       return it;
@@ -354,7 +354,7 @@ class route #( type T = int ) extends collection#( T );
    //   The last node. If the last route node does not exist, return *null*.
    //
    // Example:
-   // | route#(int) int_route = new();
+   // | route #(int) int_route = new();
    // | assert( int_route.add( 123 ) );
    // | assert( int_route.add( 234 ) );
    // |
@@ -363,7 +363,7 @@ class route #( type T = int ) extends collection#( T );
 
    virtual function route_node_type get_last_node();
       route_node_type rn;
-      route_breadth_first_iterator#(T) it = route_breadth_first_iterator'( get_breadth_first_iterator() );
+      route_breadth_first_iterator #(T) it = route_breadth_first_iterator'( get_breadth_first_iterator() );
 
       while ( it.has_next() ) rn = it.next_node();
       return rn;

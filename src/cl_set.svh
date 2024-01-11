@@ -37,12 +37,12 @@
 //   T - (OPTIONAL) The type of data collected in a set. The default is *int*.
 //-----------------------------------------------------------------------------
 
-class set #( type T = int ) extends set_base#( T );
+class set #( type T = int ) extends set_base #( T );
 
  `ifdef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
    local bit aa[ T ];
 
-   class set_iterator #( T ) extends iterator#( T );
+   class set_iterator #( T ) extends iterator #( T );
       local int cnt;
       local int aa_size;
       local T cur_key;
@@ -91,15 +91,15 @@ class set #( type T = int ) extends set_base#( T );
    //          <hex_formatter> *#(T)* is used. The default is *null*.
    //
    // Example:
-   // | set#(int) int_set = new();
+   // | set #(int) int_set = new();
    //--------------------------------------------------------------------------
 
-   function new( collection#(T) c = null,
-                 comparator#(T) cmp = null,
-                 formatter#(T) fmtr = null );
-      if ( cmp == null ) this.cmp = comparator#(T)::get_instance();
+   function new( collection #(T) c = null,
+                 comparator #(T) cmp = null,
+                 formatter #(T) fmtr = null );
+      if ( cmp == null ) this.cmp = comparator #(T)::get_instance();
       else               this.cmp = cmp;
-      if ( fmtr == null ) this.fmtr = hex_formatter#(T)::get_instance();
+      if ( fmtr == null ) this.fmtr = hex_formatter #(T)::get_instance();
       else                this.fmtr = fmtr;
       if ( c ) void'( this.add_all( c ) );
    endfunction : new
@@ -117,7 +117,7 @@ class set #( type T = int ) extends set_base#( T );
    //   returns 0.
    //
    // Example:
-   // | set#(int) int_set = new();
+   // | set #(int) int_set = new();
    // |
    // | assert( int_set.add( 123 ) == 1 );
    // | assert( int_set.add( 123 ) == 0 ); // 123 is already in the set
@@ -137,7 +137,7 @@ class set #( type T = int ) extends set_base#( T );
    //   (VIRTUAL) Removes all of the elements from this set.
    //
    // Example:
-   // | set#(int) int_set = new();
+   // | set #(int) int_set = new();
    // |
    // | int_set.clear();
    //--------------------------------------------------------------------------
@@ -155,14 +155,14 @@ class set #( type T = int ) extends set_base#( T );
    //   A copy of this set.
    //
    // Example:
-   // | set#(int) int_set = new();
-   // | collection#(int) cloned;
+   // | set #(int) int_set = new();
+   // | collection #(int) cloned;
    // |
    // | cloned = int_set.clone();
    //--------------------------------------------------------------------------
 
-   virtual function collection#( T ) clone();
-      set#( T ) set = new();
+   virtual function collection #( T ) clone();
+      set #( T ) set = new();
       set.aa   = aa; // the elements themselves are not cloned
       set.fmtr = fmtr;
       return set;
@@ -179,7 +179,7 @@ class set #( type T = int ) extends set_base#( T );
    //   If this set contains *e*, returns 1. Otherwise, returns 0.
    //
    // Example:
-   // | set#(int) int_set = new();
+   // | set #(int) int_set = new();
    // |
    // | void'( int_set.add( 123 ) );
    // | assert( int_set.contains( 123 ) == 1 );
@@ -198,7 +198,7 @@ class set #( type T = int ) extends set_base#( T );
    //   If this set is empty, returns 1. Otherwise, returns 0.
    //
    // Example:
-   // | set#(int) int_set = new();
+   // | set #(int) int_set = new();
    // |
    // | assert( int_set.is_empty() == 1 );
    // | void'( int_set.add( 123 ) );
@@ -217,8 +217,8 @@ class set #( type T = int ) extends set_base#( T );
    //   An iterator.
    //
    // Example:
-   // | set#(int) int_set = new();
-   // | iterator#(int) it;
+   // | set #(int) int_set = new();
+   // | iterator #(int) it;
    // | string s;
    // |
    // | void'( int_set.add( 123 ) );
@@ -228,12 +228,12 @@ class set #( type T = int ) extends set_base#( T );
    // | assert( s == "123 456 " );
    //--------------------------------------------------------------------------
 
-   virtual function iterator#( T ) get_iterator();
+   virtual function iterator #( T ) get_iterator();
 
  `ifdef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
-      set_iterator#( T ) it = new();
+      set_iterator #( T ) it = new();
  `else
-      set_iterator#( T ) it = new( this );
+      set_iterator #( T ) it = new( this );
  `endif
 
       return it;
@@ -250,7 +250,7 @@ class set #( type T = int ) extends set_base#( T );
    //   If *e* is removed, returns 1. Otherwise, returns 0.
    //
    // Example:
-   // | set#(int) int_set = new();
+   // | set #(int) int_set = new();
    // |
    // | void'( int_set.add( 123 ) );
    // | assert( int_set.remove( 123 ) == 1 );
@@ -274,7 +274,7 @@ class set #( type T = int ) extends set_base#( T );
    //   The number of elements in this set.
    //
    // Example:
-   // | set#(int) int_set = new();
+   // | set #(int) int_set = new();
    // |
    // | void'( int_set.add( 123 ) );
    // | assert( int_set.size() == 1 );

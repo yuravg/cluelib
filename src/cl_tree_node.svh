@@ -47,7 +47,7 @@ class tree_node #( type T = int );
    //   The shorthand of the tree node type specialized with type *T*.
    //---------------------------------------------------------------------------
 
-   typedef tree_node#(T) tree_node_type;
+   typedef tree_node #(T) tree_node_type;
 
    // Group: Properties
 
@@ -128,7 +128,7 @@ class tree_node #( type T = int );
    //
    // Example:
    // | int i = 123;
-   // | tree_node#(int) tn = new( i );
+   // | tree_node #(int) tn = new( i );
    //---------------------------------------------------------------------------
 
    function new( T elem );
@@ -148,8 +148,8 @@ class tree_node #( type T = int );
    //   Newly added tree node.
    //
    // Example:
-   // | tree_node#(int) tn;
-   // | tree_node#(int) tn_123 = new( 123 );
+   // | tree_node #(int) tn;
+   // | tree_node #(int) tn_123 = new( 123 );
    // |
    // | tn = tn_123.add( 234 );
    // | // (123) ---- (234) <~~ tn
@@ -183,11 +183,11 @@ class tree_node #( type T = int );
    //   A tree node to be grafted (*tn*).
    //
    // Example:
-   // | tree_node#(int) tn_123;
-   // | tree_node#(int) tn_234;
-   // | tree_node#(int) tn_345;
-   // | tree_node#(int) tn_456;
-   // | tree_node#(int) tn;
+   // | tree_node #(int) tn_123;
+   // | tree_node #(int) tn_234;
+   // | tree_node #(int) tn_345;
+   // | tree_node #(int) tn_456;
+   // | tree_node #(int) tn;
    // |
    // | tn_123 = new( 123 );
    // | tn_234 = tn_123.add( 234 );
@@ -223,8 +223,8 @@ class tree_node #( type T = int );
    //   This tree node.
    //
    // Example:
-   // | tree_node#(int) tn;
-   // | tree_node#(int) tn_123 = new( 123 );
+   // | tree_node #(int) tn;
+   // | tree_node #(int) tn_123 = new( 123 );
    // |
    // | tn = tn_123.add( 234 );
    // | tn = tn_123.add( 456 ).add( 567 );
@@ -257,8 +257,8 @@ class tree_node #( type T = int );
    //   The number of children.
    //
    // Example:
-   // | tree_node#(int) tn;
-   // | tree_node#(int) tn_123 = new( 123 );
+   // | tree_node #(int) tn;
+   // | tree_node #(int) tn_123 = new( 123 );
    // |
    // | tn = tn_123.add( 234 );
    // | tn = tn_123.add( 345 );
@@ -285,8 +285,8 @@ class tree_node #( type T = int );
    //   returns 0.
    //
    // Example:
-   // | tree_node#(int) tn;
-   // | tree_node#(int) tn_123 = new( 123 );
+   // | tree_node #(int) tn;
+   // | tree_node #(int) tn_123 = new( 123 );
    // |
    // | tn = tn_123.add( 234 );
    // | tn = tn_123.add( 345 );

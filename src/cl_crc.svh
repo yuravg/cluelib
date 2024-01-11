@@ -75,7 +75,7 @@ virtual class crc #( type T = bit );
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0, 1'b0 } );
-   // | assert( crc#(bit)::crc( bs, crc16_ccitt_tap, .degree( 16 ) ) == 16'hFEC5 );
+   // | assert( crc #(bit)::crc( bs, crc16_ccitt_tap, .degree( 16 ) ) == 16'hFEC5 );
    //---------------------------------------------------------------------------
 
    static function T[63:0] crc( bs_type bs,
@@ -117,7 +117,7 @@ virtual class crc #( type T = bit );
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0, 1'b0 } );
-   // | assert( crc#(bit)::crc1( bs ) == 1'h1 );
+   // | assert( crc #(bit)::crc1( bs ) == 1'h1 );
    //-----------------------------------------------------------------------
 
    static function T crc1( bs_type bs );
@@ -152,7 +152,7 @@ virtual class crc #( type T = bit );
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0, 1'b0 } );
-   // | assert( crc#(bit)::crc4_itu( bs ) == 4'h7 );
+   // | assert( crc #(bit)::crc4_itu( bs ) == 4'h7 );
    //-----------------------------------------------------------------------
 
    static function T[3:0] crc4_itu( bs_type bs );
@@ -187,7 +187,7 @@ virtual class crc #( type T = bit );
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0, 1'b0 } );
-   // | assert( crc#(bit)::crc5_epc( bs ) == 5'h0 );
+   // | assert( crc #(bit)::crc5_epc( bs ) == 5'h0 );
    //-----------------------------------------------------------------------
 
    static function T[4:0] crc5_epc( bs_type bs );
@@ -222,7 +222,7 @@ virtual class crc #( type T = bit );
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0, 1'b0 } );
-   // | assert( crc#(bit)::crc5_itu( bs ) == 5'hE );
+   // | assert( crc #(bit)::crc5_itu( bs ) == 5'hE );
    //-----------------------------------------------------------------------
 
    static function T[4:0] crc5_itu( bs_type bs );
@@ -257,7 +257,7 @@ virtual class crc #( type T = bit );
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0, 1'b0 } );
-   // | assert( crc#(bit)::crc5_usb( bs ) == 5'hF );
+   // | assert( crc #(bit)::crc5_usb( bs ) == 5'hF );
    //-----------------------------------------------------------------------
 
    static function T[4:0] crc5_usb( bs_type bs );
@@ -292,7 +292,7 @@ virtual class crc #( type T = bit );
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0, 1'b0 } );
-   // | assert( crc#(bit)::crc6_cdma2000_a( bs ) == 6'h24 );
+   // | assert( crc #(bit)::crc6_cdma2000_a( bs ) == 6'h24 );
    //-----------------------------------------------------------------------
 
    static function T[5:0] crc6_cdma2000_a( bs_type bs );
@@ -327,7 +327,7 @@ virtual class crc #( type T = bit );
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0, 1'b0 } );
-   // | assert( crc#(bit)::crc6_cdma2000_b( bs ) == 6'h20 );
+   // | assert( crc #(bit)::crc6_cdma2000_b( bs ) == 6'h20 );
    //-----------------------------------------------------------------------
 
    static function T[5:0] crc6_cdma2000_b( bs_type bs );
@@ -362,7 +362,7 @@ virtual class crc #( type T = bit );
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0, 1'b0 } );
-   // | assert( crc#(bit)::crc6_itu( bs ) == 6'h9 );
+   // | assert( crc #(bit)::crc6_itu( bs ) == 6'h9 );
    //-----------------------------------------------------------------------
 
    static function T[5:0] crc6_itu( bs_type bs );
@@ -397,7 +397,7 @@ virtual class crc #( type T = bit );
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0, 1'b0 } );
-   // | assert( crc#(bit)::crc7( bs ) == 7'h3F );
+   // | assert( crc #(bit)::crc7( bs ) == 7'h3F );
    //-----------------------------------------------------------------------
 
    static function T[6:0] crc7( bs_type bs );
@@ -432,7 +432,7 @@ virtual class crc #( type T = bit );
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0, 1'b0 } );
-   // | assert( crc#(bit)::crc7_mvb( bs ) == 7'h4C );
+   // | assert( crc #(bit)::crc7_mvb( bs ) == 7'h4C );
    //-----------------------------------------------------------------------
 
    static function T[6:0] crc7_mvb( bs_type bs );
@@ -467,7 +467,7 @@ virtual class crc #( type T = bit );
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0, 1'b0 } );
-   // | assert( crc#(bit)::crc8( bs ) == 8'hC7 );
+   // | assert( crc #(bit)::crc8( bs ) == 8'hC7 );
    //-----------------------------------------------------------------------
 
    static function T[7:0] crc8( bs_type bs );
@@ -502,7 +502,7 @@ virtual class crc #( type T = bit );
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0, 1'b0 } );
-   // | assert( crc#(bit)::crc8_ccitt( bs ) == 8'hF8 );
+   // | assert( crc #(bit)::crc8_ccitt( bs ) == 8'hF8 );
    //-----------------------------------------------------------------------
 
    static function T[7:0] crc8_ccitt( bs_type bs );
@@ -537,7 +537,7 @@ virtual class crc #( type T = bit );
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0, 1'b0 } );
-   // | assert( crc#(bit)::crc8_dallas_maxim( bs ) == 8'h85 );
+   // | assert( crc #(bit)::crc8_dallas_maxim( bs ) == 8'h85 );
    //-----------------------------------------------------------------------
 
    static function T[7:0] crc8_dallas_maxim( bs_type bs );
@@ -572,7 +572,7 @@ virtual class crc #( type T = bit );
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0, 1'b0 } );
-   // | assert( crc#(bit)::crc8_sae_j1850( bs ) == 8'h7F );
+   // | assert( crc #(bit)::crc8_sae_j1850( bs ) == 8'h7F );
    //-----------------------------------------------------------------------
 
    static function T[7:0] crc8_sae_j1850( bs_type bs );
@@ -607,7 +607,7 @@ virtual class crc #( type T = bit );
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0, 1'b0 } );
-   // | assert( crc#(bit)::crc8_wcdma( bs ) == 8'hF7 );
+   // | assert( crc #(bit)::crc8_wcdma( bs ) == 8'hF7 );
    //-----------------------------------------------------------------------
 
    static function T[7:0] crc8_wcdma( bs_type bs );
@@ -642,7 +642,7 @@ virtual class crc #( type T = bit );
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0, 1'b0 } );
-   // | assert( crc#(bit)::crc10( bs ) == 10'hB3 );
+   // | assert( crc #(bit)::crc10( bs ) == 10'hB3 );
    //-----------------------------------------------------------------------
 
    static function T[9:0] crc10( bs_type bs );
@@ -677,7 +677,7 @@ virtual class crc #( type T = bit );
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0, 1'b0 } );
-   // | assert( crc#(bit)::crc10_cdma2000( bs ) == 10'h2A );
+   // | assert( crc #(bit)::crc10_cdma2000( bs ) == 10'h2A );
    //-----------------------------------------------------------------------
 
    static function T[9:0] crc10_cdma2000( bs_type bs );
@@ -712,7 +712,7 @@ virtual class crc #( type T = bit );
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0, 1'b0 } );
-   // | assert( crc#(bit)::crc11( bs ) == 11'h43A );
+   // | assert( crc #(bit)::crc11( bs ) == 11'h43A );
    //-----------------------------------------------------------------------
 
    static function T[10:0] crc11( bs_type bs );
@@ -747,7 +747,7 @@ virtual class crc #( type T = bit );
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0, 1'b0 } );
-   // | assert( crc#(bit)::crc12( bs ) == 12'hBF9 );
+   // | assert( crc #(bit)::crc12( bs ) == 12'hBF9 );
    //-----------------------------------------------------------------------
 
    static function T[11:0] crc12( bs_type bs );
@@ -782,7 +782,7 @@ virtual class crc #( type T = bit );
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0, 1'b0 } );
-   // | assert( crc#(bit)::crc12_cdma2000( bs ) == 12'h7C3 );
+   // | assert( crc #(bit)::crc12_cdma2000( bs ) == 12'h7C3 );
    //-----------------------------------------------------------------------
 
    static function T[11:0] crc12_cdma2000( bs_type bs );
@@ -817,7 +817,7 @@ virtual class crc #( type T = bit );
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0, 1'b0 } );
-   // | assert( crc#(bit)::crc13_bbc( bs ) == 13'hAEA );
+   // | assert( crc #(bit)::crc13_bbc( bs ) == 13'hAEA );
    //-----------------------------------------------------------------------
 
    static function T[12:0] crc13_bbc( bs_type bs );
@@ -852,7 +852,7 @@ virtual class crc #( type T = bit );
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0, 1'b0 } );
-   // | assert( crc#(bit)::crc15_can( bs ) == 15'h6DDE );
+   // | assert( crc #(bit)::crc15_can( bs ) == 15'h6DDE );
    //-----------------------------------------------------------------------
 
    static function T[14:0] crc15_can( bs_type bs );
@@ -887,7 +887,7 @@ virtual class crc #( type T = bit );
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0, 1'b0 } );
-   // | assert( crc#(bit)::crc15_mpt1327( bs ) == 15'h7E4E );
+   // | assert( crc #(bit)::crc15_mpt1327( bs ) == 15'h7E4E );
    //-----------------------------------------------------------------------
 
    static function T[14:0] crc15_mpt1327( bs_type bs );
@@ -922,7 +922,7 @@ virtual class crc #( type T = bit );
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0, 1'b0 } );
-   // | assert( crc#(bit)::crc16_arinc( bs ) == 16'h18FB );
+   // | assert( crc #(bit)::crc16_arinc( bs ) == 16'h18FB );
    //-----------------------------------------------------------------------
 
    static function T[15:0] crc16_arinc( bs_type bs );
@@ -957,7 +957,7 @@ virtual class crc #( type T = bit );
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0, 1'b0 } );
-   // | assert( crc#(bit)::crc16_ccitt( bs ) == 16'hFEC5 );
+   // | assert( crc #(bit)::crc16_ccitt( bs ) == 16'hFEC5 );
    //-----------------------------------------------------------------------
 
    static function T[15:0] crc16_ccitt( bs_type bs );
@@ -992,7 +992,7 @@ virtual class crc #( type T = bit );
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0, 1'b0 } );
-   // | assert( crc#(bit)::crc16_cdma2000( bs ) == 16'hCEEA );
+   // | assert( crc #(bit)::crc16_cdma2000( bs ) == 16'hCEEA );
    //-----------------------------------------------------------------------
 
    static function T[15:0] crc16_cdma2000( bs_type bs );
@@ -1027,7 +1027,7 @@ virtual class crc #( type T = bit );
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0, 1'b0 } );
-   // | assert( crc#(bit)::crc16_dect( bs ) == 16'h7511 );
+   // | assert( crc #(bit)::crc16_dect( bs ) == 16'h7511 );
    //-----------------------------------------------------------------------
 
    static function T[15:0] crc16_dect( bs_type bs );
@@ -1062,7 +1062,7 @@ virtual class crc #( type T = bit );
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0, 1'b0 } );
-   // | assert( crc#(bit)::crc16_t10_dif( bs ) == 16'h5213 );
+   // | assert( crc #(bit)::crc16_t10_dif( bs ) == 16'h5213 );
    //-----------------------------------------------------------------------
 
    static function T[15:0] crc16_t10_dif( bs_type bs );
@@ -1097,7 +1097,7 @@ virtual class crc #( type T = bit );
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0, 1'b0 } );
-   // | assert( crc#(bit)::crc16_dnp( bs ) == 16'hF0AD );
+   // | assert( crc #(bit)::crc16_dnp( bs ) == 16'hF0AD );
    //-----------------------------------------------------------------------
 
    static function T[15:0] crc16_dnp( bs_type bs );
@@ -1132,7 +1132,7 @@ virtual class crc #( type T = bit );
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0, 1'b0 } );
-   // | assert( crc#(bit)::crc16_ibm( bs ) == 16'hB17F );
+   // | assert( crc #(bit)::crc16_ibm( bs ) == 16'hB17F );
    //-----------------------------------------------------------------------
 
    static function T[15:0] crc16_ibm( bs_type bs );
@@ -1167,7 +1167,7 @@ virtual class crc #( type T = bit );
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0, 1'b0 } );
-   // | assert( crc#(bit)::crc17_can( bs ) == 17'h42B0 );
+   // | assert( crc #(bit)::crc17_can( bs ) == 17'h42B0 );
    //-----------------------------------------------------------------------
 
    static function T[16:0] crc17_can( bs_type bs );
@@ -1202,7 +1202,7 @@ virtual class crc #( type T = bit );
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0, 1'b0 } );
-   // | assert( crc#(bit)::crc21_can( bs ) == 21'h1A3C3F );
+   // | assert( crc #(bit)::crc21_can( bs ) == 21'h1A3C3F );
    //-----------------------------------------------------------------------
 
    static function T[20:0] crc21_can( bs_type bs );
@@ -1238,7 +1238,7 @@ virtual class crc #( type T = bit );
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0, 1'b0 } );
-   // | assert( crc#(bit)::crc24( bs ) == 24'h4FAC88 );
+   // | assert( crc #(bit)::crc24( bs ) == 24'h4FAC88 );
    //-----------------------------------------------------------------------
 
    static function T[23:0] crc24( bs_type bs );
@@ -1275,7 +1275,7 @@ virtual class crc #( type T = bit );
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0, 1'b0 } );
-   // | assert( crc#(bit)::crc24_radix_64( bs ) == 24'h5EFC5F );
+   // | assert( crc #(bit)::crc24_radix_64( bs ) == 24'h5EFC5F );
    //-----------------------------------------------------------------------
 
    static function T[23:0] crc24_radix_64( bs_type bs );
@@ -1312,7 +1312,7 @@ virtual class crc #( type T = bit );
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0, 1'b0 } );
-   // | assert( crc#(bit)::crc30( bs ) == 30'h3FA4F577 );
+   // | assert( crc #(bit)::crc30( bs ) == 30'h3FA4F577 );
    //-----------------------------------------------------------------------
 
    static function T[29:0] crc30( bs_type bs );
@@ -1349,7 +1349,7 @@ virtual class crc #( type T = bit );
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0, 1'b0 } );
-   // | assert( crc#(bit)::crc32( bs ) == 32'h257491D0 );
+   // | assert( crc #(bit)::crc32( bs ) == 32'h257491D0 );
    //-----------------------------------------------------------------------
 
    static function T[31:0] crc32( bs_type bs );
@@ -1386,7 +1386,7 @@ virtual class crc #( type T = bit );
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0, 1'b0 } );
-   // | assert( crc#(bit)::crc32c( bs ) == 32'hC68BEAB1 );
+   // | assert( crc #(bit)::crc32c( bs ) == 32'hC68BEAB1 );
    //-----------------------------------------------------------------------
 
    static function T[31:0] crc32c( bs_type bs );
@@ -1423,7 +1423,7 @@ virtual class crc #( type T = bit );
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0, 1'b0 } );
-   // | assert( crc#(bit)::crc32k( bs ) == 32'hE9D7E7E8 );
+   // | assert( crc #(bit)::crc32k( bs ) == 32'hE9D7E7E8 );
    //-----------------------------------------------------------------------
 
    static function T[31:0] crc32k( bs_type bs );
@@ -1460,7 +1460,7 @@ virtual class crc #( type T = bit );
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0, 1'b0 } );
-   // | assert( crc#(bit)::crc32q( bs ) == 32'hC604B994 );
+   // | assert( crc #(bit)::crc32q( bs ) == 32'hC604B994 );
    //-----------------------------------------------------------------------
 
    static function T[31:0] crc32q( bs_type bs );
@@ -1497,7 +1497,7 @@ virtual class crc #( type T = bit );
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0, 1'b0 } );
-   // | assert( crc#(bit)::crc40_gsm( bs ) == 40'hAF3E6E680C );
+   // | assert( crc #(bit)::crc40_gsm( bs ) == 40'hAF3E6E680C );
    //-----------------------------------------------------------------------
 
    static function T[39:0] crc40_gsm( bs_type bs );
@@ -1534,7 +1534,7 @@ virtual class crc #( type T = bit );
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0, 1'b0 } );
-   // | assert( crc#(bit)::crc64_ecma( bs ) == 64'h1AD51F768A8B4D1D );
+   // | assert( crc #(bit)::crc64_ecma( bs ) == 64'h1AD51F768A8B4D1D );
    //-----------------------------------------------------------------------
 
    static function T[63:0] crc64_ecma( bs_type bs );
@@ -1575,7 +1575,7 @@ virtual class crc #( type T = bit );
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0,
    // |                  1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0, 1'b0 } );
-   // | assert( crc#(bit)::crc64_iso( bs ) == 64'h41982B4D80015DEB );
+   // | assert( crc #(bit)::crc64_iso( bs ) == 64'h41982B4D80015DEB );
    //-----------------------------------------------------------------------
 
    static function T[63:0] crc64_iso( bs_type bs );

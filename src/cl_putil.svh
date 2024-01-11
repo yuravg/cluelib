@@ -53,7 +53,7 @@ virtual class putil #( type T = int );
    // Example:
    // | int x = 0;
    // | int y = 1;
-   // | putil#(int)::swap( x, y );
+   // | putil #(int)::swap( x, y );
    // | assert( x == 1 );
    // | assert( y == 0 );
    //---------------------------------------------------------------------------

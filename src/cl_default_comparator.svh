@@ -36,7 +36,7 @@
 //   T - (OPTIONAL) The type of an object to be compared. The default is *int*.
 //------------------------------------------------------------------------------
 
-class default_comparator#( type T = int ) extends comparator#(T);
+class default_comparator #( type T = int ) extends comparator#(T);
 
    //---------------------------------------------------------------------------
    // Function: lt

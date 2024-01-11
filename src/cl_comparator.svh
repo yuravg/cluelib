@@ -36,14 +36,14 @@
 //   T - (OPTIONAL) The type of an object to be compared. The default is *int*.
 //------------------------------------------------------------------------------
 
-class comparator#( type T = int );
+class comparator #( type T = int );
 
    //---------------------------------------------------------------------------
    // Typedef: this_type
    //   The shorthand of <comparator> *#(T)*.
    //---------------------------------------------------------------------------
 
-   typedef comparator#(T) this_type;
+   typedef comparator #(T) this_type;
 
    local static this_type inst = null; // needs to place after the typedef above
 

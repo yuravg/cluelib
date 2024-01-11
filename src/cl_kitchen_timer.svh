@@ -130,7 +130,7 @@ class kitchen_timer;
       if ( delay1 == delay2 ) begin
          delay = delay1;
       end else begin
-         if ( delay1 > delay2 ) putil#(time)::swap( delay1, delay2 );
+         if ( delay1 > delay2 ) putil #(time)::swap( delay1, delay2 );
          delay = ( { $urandom, $urandom } ) % ( delay2 - delay1 ) + delay1;
       end
       reset();

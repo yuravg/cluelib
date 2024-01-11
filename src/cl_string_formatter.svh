@@ -35,7 +35,7 @@
 //   into a string.
 //------------------------------------------------------------------------------
 
-class string_formatter extends formatter#( string );
+class string_formatter extends formatter #( string );
 
    local static string_formatter inst = null;
 

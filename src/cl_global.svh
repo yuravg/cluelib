@@ -28,8 +28,8 @@
 `ifndef CL_GLOBAL_SVH
  `define CL_GLOBAL_SVH
 
-decimal_formatter#(int)   int_fmtr = decimal_formatter#(int)::get_instance();
-comma_formatter#(longint) com_fmtr = comma_formatter#(longint)::get_instance();
+decimal_formatter #(int)   int_fmtr = decimal_formatter#(int)::get_instance();
+comma_formatter #(longint) com_fmtr = comma_formatter#(longint)::get_instance();
 string_formatter          str_fmtr = string_formatter::get_instance();
 
 `endif

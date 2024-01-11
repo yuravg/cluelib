@@ -56,7 +56,7 @@
 //         *int*.
 //------------------------------------------------------------------------------
 
-class tuple#( type T1 = int,
+class tuple #( type T1 = int,
               type T2 = int,
               type T3 = int,
               type T4 = int,
@@ -73,19 +73,19 @@ class tuple#( type T1 = int,
 
    //---------------------------------------------------------------------------
    // Typedef: this_type
-   //   The shorthand of *tuple#(T1,T2,T3,T4,T5,T6,T7,T8,T9,T10)*
+   //   The shorthand of *tuple #(T1,T2,T3,T4,T5,T6,T7,T8,T9,T10)*
    //---------------------------------------------------------------------------
 
-   typedef tuple#(T1,T2,T3,T4,T5,T6,T7,T8,T9,T10) this_type;
+   typedef tuple #(T1,T2,T3,T4,T5,T6,T7,T8,T9,T10) this_type;
 
-   local comparator#(this_type) cmp;
+   local comparator #(this_type) cmp;
 
    //---------------------------------------------------------------------------
    // Property: first
    //   The first value inside the tuple.
    //
    // Example:
-   // | tuple#(int,string,bit[7:0]) t = new( 1, "apple", 8'hFF );
+   // | tuple #(int,string,bit[7:0]) t = new( 1, "apple", 8'hFF );
    // | assert( t.first == 1 );
    //---------------------------------------------------------------------------
 
@@ -96,7 +96,7 @@ class tuple#( type T1 = int,
    //   The second value inside the tuple.
    //
    // Example:
-   // | tuple#(int,string,bit[7:0]) t = new( 1, "apple", 8'hFF );
+   // | tuple #(int,string,bit[7:0]) t = new( 1, "apple", 8'hFF );
    // | assert( t.second == "apple" );
    //---------------------------------------------------------------------------
 
@@ -107,7 +107,7 @@ class tuple#( type T1 = int,
    //   The third value inside the tuple.
    //
    // Example:
-   // | tuple#(int,string,bit[7:0]) t = new( 1, "apple", 8'hFF );
+   // | tuple #(int,string,bit[7:0]) t = new( 1, "apple", 8'hFF );
    // | assert( t.third == 8'hFF );
    //---------------------------------------------------------------------------
 
@@ -118,7 +118,7 @@ class tuple#( type T1 = int,
    //   The fourth value inside the tuple.
    //
    // Example:
-   // | tuple#() t = new( 1, 2, 3, 4 );
+   // | tuple #() t = new( 1, 2, 3, 4 );
    // | assert( t.fourth == 4 );
    //---------------------------------------------------------------------------
 
@@ -129,7 +129,7 @@ class tuple#( type T1 = int,
    //   The fifth value inside the tuple.
    //
    // Example:
-   // | tuple#() t = new( 1, 2, 3, 4, 5 );
+   // | tuple #() t = new( 1, 2, 3, 4, 5 );
    // | assert( t.fifth == 5 );
    //---------------------------------------------------------------------------
 
@@ -140,7 +140,7 @@ class tuple#( type T1 = int,
    //   The sixth value inside the tuple.
    //
    // Example:
-   // | tuple#() t = new( 1, 2, 3, 4, 5, 6 );
+   // | tuple #() t = new( 1, 2, 3, 4, 5, 6 );
    // | assert( t.sixth == 6 );
    //---------------------------------------------------------------------------
 
@@ -151,7 +151,7 @@ class tuple#( type T1 = int,
    //   The seventh value inside the tuple.
    //
    // Example:
-   // | tuple#() t = new( 1, 2, 3, 4, 5, 6, 7 );
+   // | tuple #() t = new( 1, 2, 3, 4, 5, 6, 7 );
    // | assert( t.seventh == 7 );
    //---------------------------------------------------------------------------
 
@@ -162,7 +162,7 @@ class tuple#( type T1 = int,
    //   The eighth value inside the tuple.
    //
    // Example:
-   // | tuple#() t = new( 1, 2, 3, 4, 5, 6, 7, 8 );
+   // | tuple #() t = new( 1, 2, 3, 4, 5, 6, 7, 8 );
    // | assert( t.eighth == 8 );
    //---------------------------------------------------------------------------
 
@@ -173,7 +173,7 @@ class tuple#( type T1 = int,
    //   The ninth value inside the tuple.
    //
    // Example:
-   // | tuple#() t = new( 1, 2, 3, 4, 5, 6, 7, 8, 9 );
+   // | tuple #() t = new( 1, 2, 3, 4, 5, 6, 7, 8, 9 );
    // | assert( t.ninth == 9 );
    //---------------------------------------------------------------------------
 
@@ -184,7 +184,7 @@ class tuple#( type T1 = int,
    //   The tenth value inside the tuple.
    //
    // Example:
-   // | tuple#() t = new( 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 );
+   // | tuple #() t = new( 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 );
    // | assert( t.tenth == 10 );
    //---------------------------------------------------------------------------
 
@@ -214,7 +214,7 @@ class tuple#( type T1 = int,
    //   None.
    //
    // Example:
-   // | tuple#(int, string, bit[7:0]) t = new( 1, "apple", 8'hFF );
+   // | tuple #(int, string, bit[7:0]) t = new( 1, "apple", 8'hFF );
    //---------------------------------------------------------------------------
 
    function new( T1 first,
@@ -227,7 +227,7 @@ class tuple#( type T1 = int,
                  T8 eighth  = 0,
                  T9 ninth   = 0,
                  T10 tenth  = 0,
-                 comparator#(this_type) cmp = null );
+                 comparator #(this_type) cmp = null );
       this.first   = first;
       this.second  = second;
       this.third   = third;
@@ -239,7 +239,7 @@ class tuple#( type T1 = int,
       this.ninth   = ninth;
       this.tenth   = tenth;
       if ( cmp ) this.cmp = cmp;
-      else       this.cmp = tuple_comparator#(this_type)::get_instance();
+      else       this.cmp = tuple_comparator #(this_type)::get_instance();
    endfunction : new
 
    //---------------------------------------------------------------------------
@@ -254,8 +254,8 @@ class tuple#( type T1 = int,
    //   If this object is equal to *t*, then returns 1. Otherwise, returns 0.
    //
    // Example:
-   // | tuple#(int, string, bit[7:0]) t = new( 1, "apple", 8'hFF );
-   // | tuple#(int, string, bit[7:0]) u = new( 1, "apple", 8'hFF );
+   // | tuple #(int, string, bit[7:0]) t = new( 1, "apple", 8'hFF );
+   // | tuple #(int, string, bit[7:0]) u = new( 1, "apple", 8'hFF );
    // | assert( t.eq( u ) == 1 ); // 1 == 1 && "apple" == "apple" && 8'hFF == 8'hFF
    //---------------------------------------------------------------------------
 
@@ -280,8 +280,8 @@ class tuple#( type T1 = int,
    //   0.
    //
    // Example:
-   // | tuple#(int, string, bit[7:0]) t = new( 1, "apple",  8'hFF );
-   // | tuple#(int, string, bit[7:0]) u = new( 1, "orange", 8'hFF );
+   // | tuple #(int, string, bit[7:0]) t = new( 1, "apple",  8'hFF );
+   // | tuple #(int, string, bit[7:0]) u = new( 1, "orange", 8'hFF );
    // | assert( t.ne( u ) == 1 ); // "apple" != "orange"
    //---------------------------------------------------------------------------
 
@@ -302,8 +302,8 @@ class tuple#( type T1 = int,
    //   If this object is less than *t*, then returns 1. Otherwise, returns 0.
    //
    // Example:
-   // | tuple#(int, string, bit[7:0]) t = new( 1, "apple", 8'hFF );
-   // | tuple#(int, string, bit[7:0]) u = new( 2, "apple", 8'hFF );
+   // | tuple #(int, string, bit[7:0]) t = new( 1, "apple", 8'hFF );
+   // | tuple #(int, string, bit[7:0]) u = new( 2, "apple", 8'hFF );
    // | assert( t.lt( u ) == 1 ); // 1 < 2
    //---------------------------------------------------------------------------
 
@@ -325,8 +325,8 @@ class tuple#( type T1 = int,
    //   0.
    //
    // Example:
-   // | tuple#(int, string, bit[7:0]) t = new( 1, "orange", 8'hFF );
-   // | tuple#(int, string, bit[7:0]) u = new( 1, "apple",  8'hFF );
+   // | tuple #(int, string, bit[7:0]) t = new( 1, "orange", 8'hFF );
+   // | tuple #(int, string, bit[7:0]) u = new( 1, "apple",  8'hFF );
    // | assert( t.gt( u ) == 1 ); // "orange" > "apple" by the lexicographical order
    //---------------------------------------------------------------------------
 
@@ -348,8 +348,8 @@ class tuple#( type T1 = int,
    //   returns 0.
    //
    // Example:
-   // | tuple#(int, string, bit[7:0]) t = new( 1, "apple",  8'hFF );
-   // | tuple#(int, string, bit[7:0]) u = new( 1, "orange", 8'hFF );
+   // | tuple #(int, string, bit[7:0]) t = new( 1, "apple",  8'hFF );
+   // | tuple #(int, string, bit[7:0]) u = new( 1, "orange", 8'hFF );
    // | assert( t.le( u ) == 1 ); // "apple" < "orange" by the lexicographical order
    //---------------------------------------------------------------------------
 
@@ -371,8 +371,8 @@ class tuple#( type T1 = int,
    //   1. Otherwise, returns 0.
    //
    // Example:
-   // | tuple#(int, string, bit[7:0]) t = new( 2, "apple",  8'hFF );
-   // | tuple#(int, string, bit[7:0]) u = new( 1, "orange", 8'hFF );
+   // | tuple #(int, string, bit[7:0]) t = new( 2, "apple",  8'hFF );
+   // | tuple #(int, string, bit[7:0]) u = new( 1, "orange", 8'hFF );
    // | assert( t.ge( u ) == 1 ); // 2 > 1
    //---------------------------------------------------------------------------
 
@@ -388,8 +388,8 @@ class tuple#( type T1 = int,
    //   A cloned tuple.
    //
    // Example:
-   // | tuple#(int, string, bit[7:0]) t = new( 1, "apple",  8'hFF );
-   // | tuple#(int, string, bit[7:0]) u = t.clone();
+   // | tuple #(int, string, bit[7:0]) t = new( 1, "apple",  8'hFF );
+   // | tuple #(int, string, bit[7:0]) u = t.clone();
    // | assert( t.eq( u ) == 1 );
    //---------------------------------------------------------------------------
 
@@ -406,8 +406,8 @@ class tuple#( type T1 = int,
    //   t - A tuple to swap the contents.
    //
    // Example:
-   // | tuple#(int, string, bit[7:0]) t = new( 1, "apple",  8'hFF );
-   // | tuple#(int, string, bit[7:0]) u = new( 2, "orange", 8'hAA );
+   // | tuple #(int, string, bit[7:0]) t = new( 1, "apple",  8'hFF );
+   // | tuple #(int, string, bit[7:0]) u = new( 2, "orange", 8'hAA );
    // | t.swap( u );
    // | assert( t.first == 2 );
    // | assert( u.first == 1 );

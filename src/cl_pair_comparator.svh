@@ -39,14 +39,14 @@ typedef class pair;
 //       *pair* (with its default parameters).
 //------------------------------------------------------------------------------
 
-class pair_comparator#( type T = pair ) extends comparator#(T);
+class pair_comparator #( type T = pair ) extends comparator#(T);
 
    //---------------------------------------------------------------------------
    // Typedef: this_type
    //   The shorthand of <pair_comparator> *#(T)*.
    //---------------------------------------------------------------------------
 
-   typedef pair_comparator#(T) this_type;
+   typedef pair_comparator #(T) this_type;
 
    local static this_type inst = null; // needs to place after the typedef above
 

@@ -42,7 +42,7 @@ typedef class route_node;
 //       *int*.
 //-----------------------------------------------------------------------------
 
-class route_breadth_first_iterator #( type T = int ) extends iterator#( T );
+class route_breadth_first_iterator #( type T = int ) extends iterator #( T );
 
    // Group: Types
 
@@ -51,14 +51,14 @@ class route_breadth_first_iterator #( type T = int ) extends iterator#( T );
    //   The shorthand of the <route_node> type specialized with type *T*.
    //---------------------------------------------------------------------------
 
-   typedef route_node#(T) route_node_type;
+   typedef route_node #(T) route_node_type;
 
    //--------------------------------------------------------------------------
    // Typedef: route_type
    //   The shorthand of the <route> type specialized with type *T*.
    //--------------------------------------------------------------------------
 
-   typedef route#( T ) route_type;
+   typedef route #( T ) route_type;
 
    local route_node_type q[$];
    local int cur_index;

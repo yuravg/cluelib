@@ -47,7 +47,7 @@ class route_node #( type T = int );
    //   The shorthand of the route node type specialized with type *T*.
    //---------------------------------------------------------------------------
 
-   typedef route_node#(T) route_node_type;
+   typedef route_node #(T) route_node_type;
 
    // Group: Properties
 
@@ -124,7 +124,7 @@ class route_node #( type T = int );
    //
    // Example:
    // | int i = 123;
-   // | route_node#(int) rn = new( i );
+   // | route_node #(int) rn = new( i );
    //---------------------------------------------------------------------------
 
    function new( T elem );
@@ -144,8 +144,8 @@ class route_node #( type T = int );
    //   Newly added route node.
    //
    // Example:
-   // | route_node#(int) rn;
-   // | route_node#(int) rn_123 = new( 123 );
+   // | route_node #(int) rn;
+   // | route_node #(int) rn_123 = new( 123 );
    // |
    // | rn = rn_123.add( 234 );
    // | // (123) ---- (234) <~~ rn
@@ -180,11 +180,11 @@ class route_node #( type T = int );
    //   A route node to be connected (*rn*).
    //
    // Example:
-   // | route_node#(int) rn_123;
-   // | route_node#(int) rn_234;
-   // | route_node#(int) rn_345;
-   // | route_node#(int) rn_456;
-   // | route_node#(int) rn;
+   // | route_node #(int) rn_123;
+   // | route_node #(int) rn_234;
+   // | route_node #(int) rn_345;
+   // | route_node #(int) rn_456;
+   // | route_node #(int) rn;
    // |
    // | rn_123 = new( 123 );
    // | rn_234 = rn_123.add( 234 );
@@ -220,8 +220,8 @@ class route_node #( type T = int );
    //   This route node.
    //
    // Example:
-   // | route_node#(int) rn;
-   // | route_node#(int) rn_123 = new( 123 );
+   // | route_node #(int) rn;
+   // | route_node #(int) rn_123 = new( 123 );
    // |
    // | rn = rn_123.add( 234 );
    // | rn = rn_123.add( 456 ).add( 567 );
@@ -254,8 +254,8 @@ class route_node #( type T = int );
    //   The number of <to_nodes>.
    //
    // Example:
-   // | route_node#(int) rn;
-   // | route_node#(int) rn_123 = new( 123 );
+   // | route_node #(int) rn;
+   // | route_node #(int) rn_123 = new( 123 );
    // |
    // | rn = rn_123.add( 234 );
    // | rn = rn_123.add( 345 );
@@ -282,8 +282,8 @@ class route_node #( type T = int );
    //   returns 0.
    //
    // Example:
-   // | route_node#(int) rn;
-   // | route_node#(int) rn_123 = new( 123 );
+   // | route_node #(int) rn;
+   // | route_node #(int) rn_123 = new( 123 );
    // |
    // | rn = rn_123.add( 234 );
    // | rn = rn_123.add( 345 );
@@ -311,12 +311,12 @@ class route_node #( type T = int );
    //   specified "from node" does not exist, returns -1.
    //
    // Example:
-   // | route_node#(int) from_node0 = new( 0 );
-   // | route_node#(int) from_node1 = new( 1 );
-   // | route_node#(int) to_node0   = new( 2 );
-   // | route_node#(int) to_node1   = new( 3 );
-   // | route_node#(int) this_node  = new( 4 );
-   // | route_node#(int) rn;
+   // | route_node #(int) from_node0 = new( 0 );
+   // | route_node #(int) from_node1 = new( 1 );
+   // | route_node #(int) to_node0   = new( 2 );
+   // | route_node #(int) to_node1   = new( 3 );
+   // | route_node #(int) this_node  = new( 4 );
+   // | route_node #(int) rn;
    // |
    // | rn = from_node0.connect( this_node );
    // | rn = from_node1.connect( to_node0  );

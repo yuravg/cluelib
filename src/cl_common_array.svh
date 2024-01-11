@@ -56,7 +56,7 @@ virtual class common_array #( type T = bit, type AT1 = bit[0:0], type AT2 = bit[
       T filler;
       integer src_size = $size( src );
       integer dst_size = $size( dst );
-      int     min_size = choice#(integer)::min( src_size, dst_size );
+      int     min_size = choice #(integer)::min( src_size, dst_size );
 
       for ( int i = 0; i < min_size; i++ ) begin
          if ( reverse ) dst[dst_size-1-i] = src[i];
@@ -117,7 +117,7 @@ virtual class common_array #( type T = bit, type AT1 = bit[0:0], type AT2 = bit[
                                 int to_index1   = -1,
                                 int from_index2 = 0,
                                 int to_index2   = -1,
-                                comparator#(T) cmp = null );
+                                comparator #(T) cmp = null );
       integer a1_size = $size( a1 );
       integer a2_size = $size( a2 );
       int j;
@@ -137,7 +137,7 @@ virtual class common_array #( type T = bit, type AT1 = bit[0:0], type AT2 = bit[
 
       if ( to_index1 - from_index1 != to_index2 - from_index2 ) return 0;
 
-      if ( cmp == null ) cmp = comparator#(T)::get_instance();
+      if ( cmp == null ) cmp = comparator #(T)::get_instance();
 
       j = from_index2;
       for ( int i = from_index1; i <= to_index1; i++ )
@@ -153,12 +153,12 @@ virtual class common_array #( type T = bit, type AT1 = bit[0:0], type AT2 = bit[
                                      input string separator = " ",
                                      int from_index = 0,
                                      int to_index = -1,
-                                     formatter#(T) fmtr = null );
+                                     formatter #(T) fmtr = null );
       string s = "";
       integer a_size = $size( a );
 
       util::normalize( a_size, from_index, to_index );
-      if ( fmtr == null ) fmtr = hex_formatter#(T)::get_instance();
+      if ( fmtr == null ) fmtr = hex_formatter #(T)::get_instance();
 
       for ( int i = from_index; i <= to_index; i++ ) begin
          s = { s, fmtr.to_string( a[i] ) };

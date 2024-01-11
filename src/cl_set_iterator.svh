@@ -40,7 +40,7 @@ typedef class set;
 //   T - (OPTIONAL) The type of data collected in a <set>. The default is *int*.
 //-----------------------------------------------------------------------------
 
-class set_iterator #( type T = int ) extends iterator#( T );
+class set_iterator #( type T = int ) extends iterator #( T );
 
    local T cur_key;
    local int cnt;
@@ -58,7 +58,7 @@ class set_iterator #( type T = int ) extends iterator#( T );
    //   The shorthand of the <set> type of type *T*.
    //--------------------------------------------------------------------------
 
-   typedef set#( T ) set_type;
+   typedef set #( T ) set_type;
 
    local set_type s; // needs to place after the typedef above
 

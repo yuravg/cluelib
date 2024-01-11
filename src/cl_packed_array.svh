@@ -86,8 +86,8 @@ virtual class packed_array #( type T = bit, int WIDTH = 1 );
    //
    // Example:
    // | bit ua[8] = '{ 0, 0, 0, 1, 1, 0, 1, 1 }; // assigned to ua[0:7]
-   // | assert( packed_array#(bit,8)::from_unpacked_array( ua                ) == 8'hD8 ); // bit[7:0]
-   // | assert( packed_array#(bit,8)::from_unpacked_array( ua, .reverse( 1 ) ) == 8'h1B );
+   // | assert( packed_array #(bit,8)::from_unpacked_array( ua                ) == 8'hD8 ); // bit[7:0]
+   // | assert( packed_array #(bit,8)::from_unpacked_array( ua, .reverse( 1 ) ) == 8'h1B );
    //
    // See Also:
    //   <ua_to_pa>
@@ -95,7 +95,7 @@ virtual class packed_array #( type T = bit, int WIDTH = 1 );
 
    static function pa_type from_unpacked_array( const ref ua_type ua,
                                                 input bit reverse = 0 );
-      common_array#( T, ua_type, pa_type )::a_to_a( ua, from_unpacked_array,
+      common_array #( T, ua_type, pa_type )::a_to_a( ua, from_unpacked_array,
                                                     reverse );
    endfunction : from_unpacked_array
 
@@ -119,8 +119,8 @@ virtual class packed_array #( type T = bit, int WIDTH = 1 );
    // | bit ua0[8] = '{ 0, 0, 0, 1, 1, 0, 1, 1 };
    // | bit ua1[8] = '{ 1, 1, 0, 1, 1, 0, 0, 0 };
    // |
-   // | assert( packed_array#(bit,8)::to_unpacked_array( pa                ) == ua0 );
-   // | assert( packed_array#(bit,8)::to_unpacked_array( pa, .reverse( 1 ) ) == ua1 );
+   // | assert( packed_array #(bit,8)::to_unpacked_array( pa                ) == ua0 );
+   // | assert( packed_array #(bit,8)::to_unpacked_array( pa, .reverse( 1 ) ) == ua1 );
    //
    // See Also:
    //   <pa_to_ua>
@@ -128,7 +128,7 @@ virtual class packed_array #( type T = bit, int WIDTH = 1 );
 
    static function ua_type to_unpacked_array( const ref pa_type pa,
                                               input bit reverse = 0 );
-      common_array#( T, pa_type, ua_type )::a_to_a( pa, to_unpacked_array,
+      common_array #( T, pa_type, ua_type )::a_to_a( pa, to_unpacked_array,
                                                     reverse );
    endfunction : to_unpacked_array
 
@@ -152,8 +152,8 @@ virtual class packed_array #( type T = bit, int WIDTH = 1 );
    //
    // Example:
    // | bit da[] = new[8]( '{ 0, 0, 0, 1, 1, 0, 1, 1 } ); // da[0] to da[7]
-   // | assert( packed_array#(bit,8)::from_dynamic_array( da                ) == 8'hD8 ); // bit[7:0]
-   // | assert( packed_array#(bit,8)::from_dynamic_array( da, .reverse( 1 ) ) == 8'h1B );
+   // | assert( packed_array #(bit,8)::from_dynamic_array( da                ) == 8'hD8 ); // bit[7:0]
+   // | assert( packed_array #(bit,8)::from_dynamic_array( da, .reverse( 1 ) ) == 8'h1B );
    //
    // See Also:
    //   <da_to_pa>
@@ -161,7 +161,7 @@ virtual class packed_array #( type T = bit, int WIDTH = 1 );
 
    static function pa_type from_dynamic_array( const ref da_type da,
                                                input bit reverse = 0 );
-      common_array#( T, da_type, pa_type )::a_to_a( da, from_dynamic_array,
+      common_array #( T, da_type, pa_type )::a_to_a( da, from_dynamic_array,
                                                     reverse );
    endfunction : from_dynamic_array
 
@@ -185,8 +185,8 @@ virtual class packed_array #( type T = bit, int WIDTH = 1 );
    // | bit da0[] = new[8]( '{ 0, 0, 0, 1, 1, 0, 1, 1 } );
    // | bit da1[] = new[8]( '{ 1, 1, 0, 1, 1, 0, 0, 0 } );
    // |
-   // | assert( packed_array#(bit,8)::to_dynamic_array( pa                ) == da0 );
-   // | assert( packed_array#(bit,8)::to_dynamic_array( pa, .reverse( 1 ) ) == da1 );
+   // | assert( packed_array #(bit,8)::to_dynamic_array( pa                ) == da0 );
+   // | assert( packed_array #(bit,8)::to_dynamic_array( pa, .reverse( 1 ) ) == da1 );
    //
    // See Also:
    //   <pa_to_da>
@@ -195,7 +195,7 @@ virtual class packed_array #( type T = bit, int WIDTH = 1 );
    static function da_type to_dynamic_array( const ref pa_type pa,
                                              input bit reverse = 0 );
       to_dynamic_array = new[WIDTH];
-      common_array#( T, pa_type, da_type )::a_to_a( pa, to_dynamic_array,
+      common_array #( T, pa_type, da_type )::a_to_a( pa, to_dynamic_array,
                                                     reverse );
    endfunction : to_dynamic_array
 
@@ -218,8 +218,8 @@ virtual class packed_array #( type T = bit, int WIDTH = 1 );
    //
    // Example:
    // | bit q[$] = { 0, 0, 0, 1, 1, 0, 1, 1 }; // q[0] to q[7]
-   // | assert( packed_array#(bit,8)::from_queue( q                ) == 8'hD8 ); // bit[7:0]
-   // | assert( packed_array#(bit,8)::from_queue( q, .reverse( 1 ) ) == 8'h1B );
+   // | assert( packed_array #(bit,8)::from_queue( q                ) == 8'hD8 ); // bit[7:0]
+   // | assert( packed_array #(bit,8)::from_queue( q, .reverse( 1 ) ) == 8'h1B );
    //
    // See Also:
    //   <q_to_pa>
@@ -227,7 +227,7 @@ virtual class packed_array #( type T = bit, int WIDTH = 1 );
 
    static function pa_type from_queue( const ref q_type q,
                                        input bit reverse = 0 );
-      common_array#( T, q_type, pa_type )::a_to_a( q, from_queue, reverse );
+      common_array #( T, q_type, pa_type )::a_to_a( q, from_queue, reverse );
    endfunction : from_queue
 
    //---------------------------------------------------------------------------
@@ -249,8 +249,8 @@ virtual class packed_array #( type T = bit, int WIDTH = 1 );
    // | bit q0[$] = { 0, 0, 0, 1, 1, 0, 1, 1 };
    // | bit q1[$] = { 1, 1, 0, 1, 1, 0, 0, 0 };
    // |
-   // | assert( packed_array#(bit,8)::to_queue( pa                ) == q0 );
-   // | assert( packed_array#(bit,8)::to_queue( pa, .reverse( 1 ) ) == q1 );
+   // | assert( packed_array #(bit,8)::to_queue( pa                ) == q0 );
+   // | assert( packed_array #(bit,8)::to_queue( pa, .reverse( 1 ) ) == q1 );
    //
    // See Also:
    //   <pa_to_q>
@@ -258,7 +258,7 @@ virtual class packed_array #( type T = bit, int WIDTH = 1 );
 
    static function q_type to_queue( const ref pa_type pa,
                                     input bit reverse = 0 );
-      common_array#( T, pa_type, q_type )::a_to_q( pa, to_queue, reverse );
+      common_array #( T, pa_type, q_type )::a_to_q( pa, to_queue, reverse );
    endfunction : to_queue
 
    //---------------------------------------------------------------------------
@@ -282,10 +282,10 @@ virtual class packed_array #( type T = bit, int WIDTH = 1 );
    // | bit ua[8] = '{ 0, 0, 0, 1, 1, 0, 1, 1 }; // assigned to ua[0:7]
    // | bit[7:0] pa;
    // |
-   // | packed_array#(bit,8)::ua_to_pa( ua, pa );
+   // | packed_array #(bit,8)::ua_to_pa( ua, pa );
    // | assert( pa == 8'hD8 ); // bit[7:0]
    // |
-   // | packed_array#(bit,8)::ua_to_pa( ua, pa, .reverse( 1 ) );
+   // | packed_array #(bit,8)::ua_to_pa( ua, pa, .reverse( 1 ) );
    // | assert( pa == 8'h1B );
    //
    // See Also:
@@ -295,7 +295,7 @@ virtual class packed_array #( type T = bit, int WIDTH = 1 );
    static function void ua_to_pa( const ref ua_type ua,
                                   ref pa_type pa,
                                   input bit reverse = 0 );
-      common_array#( T, ua_type, pa_type )::a_to_a( ua, pa, reverse );
+      common_array #( T, ua_type, pa_type )::a_to_a( ua, pa, reverse );
    endfunction : ua_to_pa
 
    //---------------------------------------------------------------------------
@@ -321,10 +321,10 @@ virtual class packed_array #( type T = bit, int WIDTH = 1 );
    // | bit ua0[8] = '{ 0, 0, 0, 1, 1, 0, 1, 1 };
    // | bit ua1[8] = '{ 1, 1, 0, 1, 1, 0, 0, 0 };
    // |
-   // | packed_array#(bit,8)::pa_to_ua( pa, ua );
+   // | packed_array #(bit,8)::pa_to_ua( pa, ua );
    // | assert( ua == ua0 );
    // |
-   // | packed_array#(bit,8)::pa_to_ua( pa, ua, .reverse( 1 ) );
+   // | packed_array #(bit,8)::pa_to_ua( pa, ua, .reverse( 1 ) );
    // | assert( ua == ua1 );
    //
    // See Also:
@@ -334,7 +334,7 @@ virtual class packed_array #( type T = bit, int WIDTH = 1 );
    static function void pa_to_ua( const ref pa_type pa,
                                   ref ua_type ua,
                                   input bit reverse = 0 );
-      common_array#( T, pa_type, ua_type )::a_to_a( pa, ua, reverse );
+      common_array #( T, pa_type, ua_type )::a_to_a( pa, ua, reverse );
    endfunction : pa_to_ua
 
    //---------------------------------------------------------------------------
@@ -361,10 +361,10 @@ virtual class packed_array #( type T = bit, int WIDTH = 1 );
    // | bit da[] = new[8]( '{ 0, 0, 0, 1, 1, 0, 1, 1 } ); // da[0] to da[7]
    // | bit[7:0] pa;
    // |
-   // | packed_array#(bit,8)::da_to_pa( da, pa );
+   // | packed_array #(bit,8)::da_to_pa( da, pa );
    // | assert( pa == 8'hD8 ); // bit[7:0]
    // |
-   // | packed_array#(bit,8)::da_to_pa( da, pa, .reverse( 1 ) );
+   // | packed_array #(bit,8)::da_to_pa( da, pa, .reverse( 1 ) );
    // | assert( pa == 8'h1B );
    //
    // See Also:
@@ -374,7 +374,7 @@ virtual class packed_array #( type T = bit, int WIDTH = 1 );
    static function void da_to_pa( const ref da_type da,
                                   ref pa_type pa,
                                   input bit reverse = 0 );
-      common_array#( T, da_type, pa_type )::a_to_a( da, pa, reverse );
+      common_array #( T, da_type, pa_type )::a_to_a( da, pa, reverse );
    endfunction : da_to_pa
 
    //---------------------------------------------------------------------------
@@ -402,10 +402,10 @@ virtual class packed_array #( type T = bit, int WIDTH = 1 );
    // | bit da0[] = new[8]( '{ 0, 0, 0, 1, 1, 0, 1, 1 } );
    // | bit da1[] = new[8]( '{ 1, 1, 0, 1, 1, 0, 0, 0 } );
    // |
-   // | packed_array#(bit,8)::pa_to_da( pa, da );
+   // | packed_array #(bit,8)::pa_to_da( pa, da );
    // | assert( da == da0 );
    // |
-   // | packed_array#(bit,8)::pa_to_da( pa, da, .reverse( 1 ) );
+   // | packed_array #(bit,8)::pa_to_da( pa, da, .reverse( 1 ) );
    // | assert( da == da1 );
    //
    // See Also:
@@ -415,7 +415,7 @@ virtual class packed_array #( type T = bit, int WIDTH = 1 );
    static function void pa_to_da( const ref pa_type pa,
                                   ref da_type da,
                                   input bit reverse = 0 );
-      common_array#( T, pa_type, da_type )::a_to_a( pa, da, reverse );
+      common_array #( T, pa_type, da_type )::a_to_a( pa, da, reverse );
    endfunction : pa_to_da
 
    //---------------------------------------------------------------------------
@@ -441,10 +441,10 @@ virtual class packed_array #( type T = bit, int WIDTH = 1 );
    // | bit q[$] = { 0, 0, 0, 1, 1, 0, 1, 1 }; // q[0] to q[7]
    // | bit[7:0] pa;
    // |
-   // | packed_array#(bit,8)::q_to_pa( q, pa );
+   // | packed_array #(bit,8)::q_to_pa( q, pa );
    // | assert( pa == 8'hD8 ); // bit[7:0]
    // |
-   // | packed_array#(bit,8)::q_to_pa( q, pa, .reverse( 1 ) );
+   // | packed_array #(bit,8)::q_to_pa( q, pa, .reverse( 1 ) );
    // | assert( pa == 8'h1B );
    //
    // See Also:
@@ -454,7 +454,7 @@ virtual class packed_array #( type T = bit, int WIDTH = 1 );
    static function void q_to_pa( const ref q_type q,
                                  ref pa_type pa,
                                  input bit reverse = 0 );
-      common_array#( T, q_type, pa_type )::a_to_a( q, pa, reverse );
+      common_array #( T, q_type, pa_type )::a_to_a( q, pa, reverse );
    endfunction : q_to_pa
 
    //---------------------------------------------------------------------------
@@ -479,11 +479,11 @@ virtual class packed_array #( type T = bit, int WIDTH = 1 );
    // | bit q0[$] = { 0, 0, 0, 1, 1, 0, 1, 1 };
    // | bit q1[$] = { 1, 1, 0, 1, 1, 0, 0, 0 };
    // |
-   // | packed_array#(bit,8)::pa_to_q( pa, q );
+   // | packed_array #(bit,8)::pa_to_q( pa, q );
    // | assert( q == q0 );
    // |
    // | q.delete();
-   // | packed_array#(bit,8)::pa_to_q( pa, q, .reverse( 1 ) );
+   // | packed_array #(bit,8)::pa_to_q( pa, q, .reverse( 1 ) );
    // | assert( q == q1 );
    //
    // See Also:
@@ -493,7 +493,7 @@ virtual class packed_array #( type T = bit, int WIDTH = 1 );
    static function void pa_to_q( const ref pa_type pa,
                                  ref q_type q,
                                  input bit reverse = 0 );
-      common_array#( T, pa_type, q_type )::a_to_q( pa, q, reverse );
+      common_array #( T, pa_type, q_type )::a_to_q( pa, q, reverse );
    endfunction : pa_to_q
 
    //---------------------------------------------------------------------------
@@ -510,12 +510,12 @@ virtual class packed_array #( type T = bit, int WIDTH = 1 );
    //
    // Example:
    // | bit[7:0] pa;
-   // | packed_array#(bit,8)::init( pa, 1'b1 );
+   // | packed_array #(bit,8)::init( pa, 1'b1 );
    // | assert( pa == 8'hFF );
    //---------------------------------------------------------------------------
 
    static function void init( ref pa_type pa, input T val );
-      common_array#( T, pa_type )::init( pa, val );
+      common_array #( T, pa_type )::init( pa, val );
    endfunction : init
 
    //---------------------------------------------------------------------------
@@ -530,12 +530,12 @@ virtual class packed_array #( type T = bit, int WIDTH = 1 );
    //
    // Example:
    // | bit[7:0] pa = 8'h0F;
-   // | packed_array#(bit,8)::reverse( pa );
+   // | packed_array #(bit,8)::reverse( pa );
    // | assert( pa == 8'hF0 );
    //---------------------------------------------------------------------------
 
    static function void reverse( ref pa_type pa );
-      common_array#( T, pa_type )::reverse( pa );
+      common_array #( T, pa_type )::reverse( pa );
    endfunction : reverse
 
    //---------------------------------------------------------------------------
@@ -551,7 +551,7 @@ virtual class packed_array #( type T = bit, int WIDTH = 1 );
    //
    // Example:
    // | bit[15:0] pa = 16'h1234; // 16'b0001_0010_0011_0100
-   // | assert( packed_array#(bit,16)::count_ones( pa ) == 5 );
+   // | assert( packed_array #(bit,16)::count_ones( pa ) == 5 );
    //---------------------------------------------------------------------------
 
    static function int count_ones( pa_type pa );
@@ -582,7 +582,7 @@ virtual class packed_array #( type T = bit, int WIDTH = 1 );
    //
    // Example:
    // | bit[15:0] pa = 16'h1234; // 16'b0001_0010_0011_0100
-   // | assert( packed_array#(bit,16)::count_zeros( pa ) == 11 );
+   // | assert( packed_array #(bit,16)::count_zeros( pa ) == 11 );
    //---------------------------------------------------------------------------
 
    static function int count_zeros( pa_type pa );
@@ -613,7 +613,7 @@ virtual class packed_array #( type T = bit, int WIDTH = 1 );
    //
    // Example:
    // | logic[15:0] pa = 16'b0000_1111_xxxx_zzzz;
-   // | assert( packed_array#(logic,16)::count_unknowns( pa ) == 4 );
+   // | assert( packed_array #(logic,16)::count_unknowns( pa ) == 4 );
    //---------------------------------------------------------------------------
 
    static function int count_unknowns( pa_type pa );
@@ -644,7 +644,7 @@ virtual class packed_array #( type T = bit, int WIDTH = 1 );
    //
    // Example:
    // | logic[15:0] pa = 16'b0000_1111_xxxx_zzzz;
-   // | assert( packed_array#(logic,16)::count_hizs( pa ) == 4 );
+   // | assert( packed_array #(logic,16)::count_hizs( pa ) == 4 );
    //---------------------------------------------------------------------------
 
    static function int count_hizs( pa_type pa );

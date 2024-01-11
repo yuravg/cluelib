@@ -100,8 +100,8 @@ virtual class dynamic_array #( type T = bit, int SIZE = 1 );
    // | bit da0[] = new[8]( '{ 0, 0, 0, 1, 1, 0, 1, 1 } );
    // | bit da1[] = new[8]( '{ 1, 1, 0, 1, 1, 0, 0, 0 } );
    // |
-   // | assert( dynamic_array#(bit,8)::from_unpacked_array( ua                ) == da0 );
-   // | assert( dynamic_array#(bit,8)::from_unpacked_array( ua, .reverse( 1 ) ) == da1 );
+   // | assert( dynamic_array #(bit,8)::from_unpacked_array( ua                ) == da0 );
+   // | assert( dynamic_array #(bit,8)::from_unpacked_array( ua, .reverse( 1 ) ) == da1 );
    //
    // See Also:
    //   <ua_to_da>
@@ -110,7 +110,7 @@ virtual class dynamic_array #( type T = bit, int SIZE = 1 );
    static function da_type from_unpacked_array( const ref ua_type ua,
                                                 input bit reverse = 0 );
       from_unpacked_array = new[ $size( ua ) ];
-      common_array#( T, ua_type, da_type )::a_to_a( ua, from_unpacked_array,
+      common_array #( T, ua_type, da_type )::a_to_a( ua, from_unpacked_array,
                                                     reverse );
    endfunction : from_unpacked_array
 
@@ -134,8 +134,8 @@ virtual class dynamic_array #( type T = bit, int SIZE = 1 );
    // | bit ua0[8] =       '{ 0, 0, 0, 1, 1, 0, 1, 1 };
    // | bit ua1[8] =       '{ 1, 1, 0, 1, 1, 0, 0, 0 };
    // |
-   // | assert( dynamic_array#(bit,8)::to_unpacked_array( da                ) == ua0 );
-   // | assert( dynamic_array#(bit,8)::to_unpacked_array( da, .reverse( 1 ) ) == ua1 );
+   // | assert( dynamic_array #(bit,8)::to_unpacked_array( da                ) == ua0 );
+   // | assert( dynamic_array #(bit,8)::to_unpacked_array( da, .reverse( 1 ) ) == ua1 );
    //
    // See Also:
    //   <da_to_ua>
@@ -143,7 +143,7 @@ virtual class dynamic_array #( type T = bit, int SIZE = 1 );
 
    static function ua_type to_unpacked_array( const ref da_type da,
                                               input bit reverse = 0 );
-      common_array#( T, da_type, ua_type )::a_to_a( da, to_unpacked_array,
+      common_array #( T, da_type, ua_type )::a_to_a( da, to_unpacked_array,
                                                     reverse );
    endfunction : to_unpacked_array
 
@@ -167,8 +167,8 @@ virtual class dynamic_array #( type T = bit, int SIZE = 1 );
    // | bit da0[] = new[8]( '{ 0, 0, 0, 1, 1, 0, 1, 1 } );
    // | bit da1[] = new[8]( '{ 1, 1, 0, 1, 1, 0, 0, 0 } );
    // |
-   // | assert( dynamic_array#(bit)::from_queue( q                ) == da0 );
-   // | assert( dynamic_array#(bit)::from_queue( q, .reverse( 1 ) ) == da1 );
+   // | assert( dynamic_array #(bit)::from_queue( q                ) == da0 );
+   // | assert( dynamic_array #(bit)::from_queue( q, .reverse( 1 ) ) == da1 );
    //
    // See Also:
    //   <q_to_da>
@@ -177,7 +177,7 @@ virtual class dynamic_array #( type T = bit, int SIZE = 1 );
    static function da_type from_queue( const ref q_type q,
                                        input bit reverse = 0 );
       from_queue = new[ q.size() ];
-      common_array#( T, q_type, da_type )::a_to_a( q, from_queue, reverse );
+      common_array #( T, q_type, da_type )::a_to_a( q, from_queue, reverse );
    endfunction : from_queue
 
    //---------------------------------------------------------------------------
@@ -199,8 +199,8 @@ virtual class dynamic_array #( type T = bit, int SIZE = 1 );
    // | bit q0[$] =          { 0, 0, 0, 1, 1, 0, 1, 1 };
    // | bit q1[$] =          { 1, 1, 0, 1, 1, 0, 0, 0 };
    // |
-   // | assert( dynamic_array#(bit)::to_queue( da                ) == q0 );
-   // | assert( dynamic_array#(bit)::to_queue( da, .reverse( 1 ) ) == q1 );
+   // | assert( dynamic_array #(bit)::to_queue( da                ) == q0 );
+   // | assert( dynamic_array #(bit)::to_queue( da, .reverse( 1 ) ) == q1 );
    //
    // See Also:
    //   <da_to_q>
@@ -208,7 +208,7 @@ virtual class dynamic_array #( type T = bit, int SIZE = 1 );
 
    static function q_type to_queue( const ref da_type da,
                                     input bit reverse = 0 );
-      common_array#( T, da_type, q_type )::a_to_q( da, to_queue, reverse );
+      common_array #( T, da_type, q_type )::a_to_q( da, to_queue, reverse );
    endfunction : to_queue
 
    //---------------------------------------------------------------------------
@@ -236,10 +236,10 @@ virtual class dynamic_array #( type T = bit, int SIZE = 1 );
    // | bit da1[] = new[8]( '{ 1, 1, 0, 1, 1, 0, 0, 0 } );
    // | bit da [] = new[8]; // set the size of da[]
    // |
-   // | dynamic_array#(bit,8)::ua_to_da( ua, da );
+   // | dynamic_array #(bit,8)::ua_to_da( ua, da );
    // | assert( da == da0 );
    // |
-   // | dynamic_array#(bit,8)::ua_to_da( ua, da, .reverse( 1 ) );
+   // | dynamic_array #(bit,8)::ua_to_da( ua, da, .reverse( 1 ) );
    // | assert( da == da1 );
    //
    // See Also:
@@ -249,7 +249,7 @@ virtual class dynamic_array #( type T = bit, int SIZE = 1 );
    static function void ua_to_da( const ref ua_type ua,
                                   ref da_type da,
                                   input bit reverse = 0 );
-      common_array#( T, ua_type, da_type )::a_to_a( ua, da, reverse );
+      common_array #( T, ua_type, da_type )::a_to_a( ua, da, reverse );
    endfunction : ua_to_da
 
    //---------------------------------------------------------------------------
@@ -278,10 +278,10 @@ virtual class dynamic_array #( type T = bit, int SIZE = 1 );
    // | bit ua1[8] =         '{ 1, 1, 0, 1, 1, 0, 0, 0 };
    // | bit ua [8];
    // |
-   // | dynamic_array#(bit,8)::da_to_ua( da, ua );
+   // | dynamic_array #(bit,8)::da_to_ua( da, ua );
    // | assert( ua == ua0 );
    // |
-   // | dynamic_array#(bit,8)::da_to_ua( da, ua, .reverse( 1 ) );
+   // | dynamic_array #(bit,8)::da_to_ua( da, ua, .reverse( 1 ) );
    // | assert( ua == ua1 );
    //
    // See Also:
@@ -291,7 +291,7 @@ virtual class dynamic_array #( type T = bit, int SIZE = 1 );
    static function void da_to_ua( const ref da_type da,
                                   ref ua_type ua,
                                   input bit reverse = 0 );
-      common_array#( T, da_type, ua_type )::a_to_a( da, ua, reverse );
+      common_array #( T, da_type, ua_type )::a_to_a( da, ua, reverse );
    endfunction : da_to_ua
 
    //---------------------------------------------------------------------------
@@ -316,10 +316,10 @@ virtual class dynamic_array #( type T = bit, int SIZE = 1 );
    // | bit da1[] = new[8]( '{ 1, 1, 0, 1, 1, 0, 0, 0 } );
    // | bit da [] = new[8]; // set the size of da[]
    // |
-   // | dynamic_array#(bit)::q_to_da( q, da );
+   // | dynamic_array #(bit)::q_to_da( q, da );
    // | assert( da == da0 );
    // |
-   // | dynamic_array#(bit)::q_to_da( q, da, .reverse( 1 ) );
+   // | dynamic_array #(bit)::q_to_da( q, da, .reverse( 1 ) );
    // | assert( da == da1 );
    //
    // See Also:
@@ -329,7 +329,7 @@ virtual class dynamic_array #( type T = bit, int SIZE = 1 );
    static function void q_to_da( const ref q_type q,
                                  ref da_type da,
                                  input bit reverse = 0 );
-      common_array#( T, q_type, da_type )::a_to_a( q, da, reverse );
+      common_array #( T, q_type, da_type )::a_to_a( q, da, reverse );
    endfunction : q_to_da
 
    //---------------------------------------------------------------------------
@@ -356,11 +356,11 @@ virtual class dynamic_array #( type T = bit, int SIZE = 1 );
    // | bit q1[$] =          { 1, 1, 0, 1, 1, 0, 0, 0 };
    // | bit q [$];
    // |
-   // | dynamic_array#(bit)::da_to_q( da, q );
+   // | dynamic_array #(bit)::da_to_q( da, q );
    // | assert( q == q0 );
    // |
    // | q.delete();
-   // | dynamic_array#(bit)::da_to_q( da, q, .reverse( 1 ) );
+   // | dynamic_array #(bit)::da_to_q( da, q, .reverse( 1 ) );
    // | assert( q == q1 );
    //
    // See Also:
@@ -370,7 +370,7 @@ virtual class dynamic_array #( type T = bit, int SIZE = 1 );
    static function void da_to_q( const ref da_type da,
                                  ref q_type q,
                                  input bit reverse = 0 );
-      common_array#( T, da_type, q_type )::a_to_q( da, q, reverse );
+      common_array #( T, da_type, q_type )::a_to_q( da, q, reverse );
    endfunction : da_to_q
 
    //---------------------------------------------------------------------------
@@ -389,12 +389,12 @@ virtual class dynamic_array #( type T = bit, int SIZE = 1 );
    // | bit da[]       = new[8];
    // | bit expected[] = new[8]( '{ 1, 1, 1, 1, 1, 1, 1, 1 } );
    // |
-   // | dynamic_array#(bit)::init( da, 1'b1 );
+   // | dynamic_array #(bit)::init( da, 1'b1 );
    // | assert( da == expected );
    //---------------------------------------------------------------------------
 
    static function void init( ref da_type da, input T val );
-      common_array#( T, da_type )::init( da, val );
+      common_array #( T, da_type )::init( da, val );
    endfunction : init
 
    //---------------------------------------------------------------------------
@@ -411,12 +411,12 @@ virtual class dynamic_array #( type T = bit, int SIZE = 1 );
    // | bit da[]       = new[8]( '{ 0, 0, 0, 0, 1, 1, 1, 1 } ); // da[0] to da[7]
    // | bit expected[] = new[8]( '{ 1, 1, 1, 1, 0, 0, 0, 0 } );
    // |
-   // | dynamic_array#(bit)::reverse( da );
+   // | dynamic_array #(bit)::reverse( da );
    // | assert( da == expected );
    //---------------------------------------------------------------------------
 
    static function void reverse( ref da_type da );
-      common_array#( T, da_type )::reverse( da );
+      common_array #( T, da_type )::reverse( da );
    endfunction : reverse
 
    //---------------------------------------------------------------------------
@@ -440,13 +440,13 @@ virtual class dynamic_array #( type T = bit, int SIZE = 1 );
    // |
    // | expected_da0 = new[4]( '{ 0, 0, 1, 1 } ); // da[0], da[2], da[4], da[6]
    // | expected_da1 = new[3]( '{ 0, 1, 0    } ); // da[1], da[3], da[5]
-   // | dynamic_array#(bit)::split( da, da0, da1 );
+   // | dynamic_array #(bit)::split( da, da0, da1 );
    // | assert( da0 == expected_da0 );
    // | assert( da1 == expected_da1 );
    // |
    // | expected_da0 = new[4]( '{ 0, 0, 1, 1 } ); // da[0], da[2], da[4], da[6]
    // | expected_da1 = new[4]( '{ 0, 1, 0, 0 } ); // the last element is padded with the default value of bit type
-   // | dynamic_array#(bit)::split( da, da0, da1, .pad( 1 ) );
+   // | dynamic_array #(bit)::split( da, da0, da1, .pad( 1 ) );
    // | assert( da0 == expected_da0 );
    // | assert( da1 == expected_da1 );
    //
@@ -499,10 +499,10 @@ virtual class dynamic_array #( type T = bit, int SIZE = 1 );
    // | int expected[];
    // |
    // | expected = new[10]( '{ 0, 1, 0, 2, 0, 3, 0, 4, 5, 6 } );
-   // | assert( dynamic_array#(int)::merge( da0, da1 ) == expected );
+   // | assert( dynamic_array #(int)::merge( da0, da1 ) == expected );
    // |
    // | expected = new[8]( '{ 0, 1, 0, 2, 0, 3, 0, 4 } );
-   // | assert( dynamic_array#(int)::merge( da0, da1, .truncate( 1 ) ) == expected );
+   // | assert( dynamic_array #(int)::merge( da0, da1, .truncate( 1 ) ) == expected );
    //
    // See Also:
    //   <concat>, <split>
@@ -573,7 +573,7 @@ virtual class dynamic_array #( type T = bit, int SIZE = 1 );
    // | int da1[]      = new[6] ( '{             1, 2, 3, 4, 5, 6 } );
    // | int expected[] = new[10]( '{ 0, 0, 0, 0, 1, 2, 3, 4, 5, 6 } );
    // |
-   // | assert( dynamic_array#(int)::concat( da0, da1 ) == expected );
+   // | assert( dynamic_array #(int)::concat( da0, da1 ) == expected );
    //
    // See Also:
    //   <merge>
@@ -609,8 +609,8 @@ virtual class dynamic_array #( type T = bit, int SIZE = 1 );
    // | int da[]       = new[10]( '{ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 } );
    // | int expected[] = new[5] ( '{          3, 4, 5, 6, 7       } );
    // |
-   // | assert( dynamic_array#(int)::extract( da, 3,  7 ) == expected );
-   // | assert( dynamic_array#(int)::extract( da, 3, -3 ) == expected );
+   // | assert( dynamic_array #(int)::extract( da, 3,  7 ) == expected );
+   // | assert( dynamic_array #(int)::extract( da, 3, -3 ) == expected );
    //---------------------------------------------------------------------------
 
    static function da_type extract( da_type da,
@@ -638,7 +638,7 @@ virtual class dynamic_array #( type T = bit, int SIZE = 1 );
    // | int original[] = new[10]( '{ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9     } );
    // | int expected[] = new[11]( '{ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 } );
    // |
-   // | assert( dynamic_array#(int)::append( da, 10 ) == expected );
+   // | assert( dynamic_array #(int)::append( da, 10 ) == expected );
    // | assert( da == original ); // da is not modified
    //---------------------------------------------------------------------------
 
@@ -665,7 +665,7 @@ virtual class dynamic_array #( type T = bit, int SIZE = 1 );
    //   to_index2 - (OPTIONAL) The last index of the *da2* to compare. See
    //                 <Common Arguments>. The default is -1.
    //   cmp - (OPTIONAL) A strategy object used to compare two dynamic
-   //         arrays. If not specified or null, *comparator#(T)* is used. The
+   //         arrays. If not specified or null, *comparator #(T)* is used. The
    //         default is null.
    //
    // Returns:
@@ -679,8 +679,8 @@ virtual class dynamic_array #( type T = bit, int SIZE = 1 );
    // | bit da2[] = new[8]( '{ 1, 1, 0, 1, 1, 0, 0, 0 } );
    // | //                           |<------>|
    // | //                           2        5
-   // | assert( dynamic_array#(bit)::compare( da1, da2 ) == 0 );
-   // | assert( dynamic_array#(bit)::compare( da1, da2,
+   // | assert( dynamic_array #(bit)::compare( da1, da2 ) == 0 );
+   // | assert( dynamic_array #(bit)::compare( da1, da2,
    // |         .from_index1( 2 ), .to_index1( 5 ),
    // |         .from_index2( 2 ), .to_index2( 5 ) ) == 1 );
    //---------------------------------------------------------------------------
@@ -691,8 +691,8 @@ virtual class dynamic_array #( type T = bit, int SIZE = 1 );
                                 int to_index1   = -1,
                                 int from_index2 = 0,
                                 int to_index2   = -1,
-                                comparator#(T) cmp = null );
-      return common_array#( T, da_type, da_type )::
+                                comparator #(T) cmp = null );
+      return common_array #( T, da_type, da_type )::
         compare( da1, da2, from_index1, to_index1, from_index2, to_index2, cmp );
    endfunction : compare
 
@@ -709,7 +709,7 @@ virtual class dynamic_array #( type T = bit, int SIZE = 1 );
    // Example:
    // | bit da[]       = new[8]( '{ 0, 0, 0, 1, 1, 0, 1, 1 } );
    // | bit expected[] = new[8]( '{ 0, 0, 0, 1, 1, 0, 1, 1 } );
-   // | assert( dynamic_array#(bit)::clone( da ) == expected );
+   // | assert( dynamic_array #(bit)::clone( da ) == expected );
    //---------------------------------------------------------------------------
 
    static function da_type clone( da_type da );
@@ -737,17 +737,17 @@ virtual class dynamic_array #( type T = bit, int SIZE = 1 );
    //
    // Example:
    // | bit da[] = new[8]( '{ 0, 0, 0, 1, 1, 0, 1, 1 } );
-   // | assert( dynamic_array#(bit,8)::to_string( da )                    == "0 0 0 1 1 0 1 1" );
-   // | assert( dynamic_array#(bit,8)::to_string( da, .separator( "-" ) ) == "0-0-0-1-1-0-1-1" );
-   // | assert( dynamic_array#(bit,8)::to_string( da, .from_index( 4 )  ) ==         "1 0 1 1" );
+   // | assert( dynamic_array #(bit,8)::to_string( da )                    == "0 0 0 1 1 0 1 1" );
+   // | assert( dynamic_array #(bit,8)::to_string( da, .separator( "-" ) ) == "0-0-0-1-1-0-1-1" );
+   // | assert( dynamic_array #(bit,8)::to_string( da, .from_index( 4 )  ) ==         "1 0 1 1" );
    //---------------------------------------------------------------------------
 
    static function string to_string( const ref da_type da,
                                      input string separator = " ",
                                      int from_index = 0,
                                      int to_index = -1,
-                                     formatter#(T) fmtr = null );
-      return common_array#(T, da_type )::
+                                     formatter #(T) fmtr = null );
+      return common_array #(T, da_type )::
         to_string( da, separator, from_index, to_index, fmtr );
    endfunction : to_string
 

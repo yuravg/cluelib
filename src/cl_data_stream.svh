@@ -87,7 +87,7 @@ virtual class data_stream #( type T = bit, int WIDTH = 1, int DEGREE = 2 )
    //   *lfsr_type* defined in the <scrambler> class.
    //---------------------------------------------------------------------------
 
-   typedef scrambler#(T,DEGREE)::lfsr_type lfsr_type;
+   typedef scrambler #(T,DEGREE)::lfsr_type lfsr_type;
 
    // Group: Functions
 
@@ -115,8 +115,8 @@ virtual class data_stream #( type T = bit, int WIDTH = 1, int DEGREE = 2 )
    // | bit bs0[] = new[16]( '{ 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0 } );
    // | bit bs1[] = new[16]( '{ 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1 } );
    // |
-   // | assert( data_stream#(bit,8)::to_bit_stream( ds                  ) == bs0 );
-   // | assert( data_stream#(bit,8)::to_bit_stream( ds, .msb_first( 0 ) ) == bs1 );
+   // | assert( data_stream #(bit,8)::to_bit_stream( ds                  ) == bs0 );
+   // | assert( data_stream #(bit,8)::to_bit_stream( ds, .msb_first( 0 ) ) == bs1 );
    //---------------------------------------------------------------------------
 
    static function bs_type to_bit_stream( ds_type ds,
@@ -158,7 +158,7 @@ virtual class data_stream #( type T = bit, int WIDTH = 1, int DEGREE = 2 )
    // | bit[7:0] ds[]       = new[4]( '{ 8'h00, 8'h01, 8'h02, 8'h03               } );
    // | bit[7:0] expected[] = new[6]( '{ 8'h00, 8'h01, 8'h02, 8'h03, 8'hFF, 8'hFF } );
    // |
-   // | assert( data_stream#(bit,8)::make_divisible( ds, .divisible_by( 3 ), .padding( 8'hFF ) ) == expected );
+   // | assert( data_stream #(bit,8)::make_divisible( ds, .divisible_by( 3 ), .padding( 8'hFF ) ) == expected );
    //---------------------------------------------------------------------------
 
    static function ds_type make_divisible( ds_type ds,
@@ -206,9 +206,9 @@ virtual class data_stream #( type T = bit, int WIDTH = 1, int DEGREE = 2 )
    // | bit[7:0] ds1[] = new[8]( '{ 8'hFE, 8'h00, 8'h02, 8'h04, 8'h06, 8'h08, 8'h0A, 8'h0C } );
    // | bit[7:0] ds2[] = new[8]( '{ 8'hFE, 8'hFD, 8'hFC, 8'hFB, 8'hFA, 8'hF9, 8'hF8, 8'hF7 } );
    // |
-   // | assert( data_stream#(bit,8)::sequential( .length( 8 ), .init_value( 8'hFE )              ) == ds0 );
-   // | assert( data_stream#(bit,8)::sequential( .length( 8 ), .init_value( 8'hFE ), .step(  2 ) ) == ds1 );
-   // | assert( data_stream#(bit,8)::sequential( .length( 8 ), .init_value( 8'hFE ), .step( -1 ) ) == ds2 );
+   // | assert( data_stream #(bit,8)::sequential( .length( 8 ), .init_value( 8'hFE )              ) == ds0 );
+   // | assert( data_stream #(bit,8)::sequential( .length( 8 ), .init_value( 8'hFE ), .step(  2 ) ) == ds1 );
+   // | assert( data_stream #(bit,8)::sequential( .length( 8 ), .init_value( 8'hFE ), .step( -1 ) ) == ds2 );
    //---------------------------------------------------------------------------
 
    static function ds_type sequential( int unsigned length,
@@ -251,7 +251,7 @@ virtual class data_stream #( type T = bit, int WIDTH = 1, int DEGREE = 2 )
    //
    // Example:
    // | bit[7:0] expected[] = new[8]( '{ 8'hAB, 8'hAB, 8'hAB, 8'hAB, 8'hAB, 8'hAB, 8'hAB, 8'hAB } );
-   // | assert( data_stream#(bit,8)::constant( .length( 8 ), .value( 8'hAB ) ) == expected );
+   // | assert( data_stream #(bit,8)::constant( .length( 8 ), .value( 8'hAB ) ) == expected );
    //---------------------------------------------------------------------------
 
    static function ds_type constant( int unsigned length,
@@ -274,8 +274,8 @@ virtual class data_stream #( type T = bit, int WIDTH = 1, int DEGREE = 2 )
    //
    // Example:
    // | bit[7:0] ds[];
-   // | ds = data_stream#(bit,8)::random( .length( 16 ) );
-   // | $display( data_stream#(bit,8)::to_string( ds, .group( 1 ) ) );
+   // | ds = data_stream #(bit,8)::random( .length( 16 ) );
+   // | $display( data_stream #(bit,8)::to_string( ds, .group( 1 ) ) );
    //---------------------------------------------------------------------------
 
    static function ds_type random( int unsigned length );
@@ -308,15 +308,15 @@ virtual class data_stream #( type T = bit, int WIDTH = 1, int DEGREE = 2 )
    // Example:
    // | bit[7:0] ds[] = new[8]( '{ 8'h00, 8'h01, 8'h02, 8'h03, 8'h04, 8'h05, 8'h06, 8'h07 } );
    // | bit[7:0] scrambled[];
-   // | scrambler_16#(bit) scrblr = new;
+   // | scrambler_16 #(bit) scrblr = new;
    // | bit[15:0] lfsr = '1;
    // |
-   // | scrambled = data_stream#(bit,8,16)::scramble( ds, scrblr, lfsr ); // DEGREE=16
-   // | $display( data_stream#(bit,8)::to_string( scrambled, .group( 1 ) ) );
+   // | scrambled = data_stream #(bit,8,16)::scramble( ds, scrblr, lfsr ); // DEGREE=16
+   // | $display( data_stream #(bit,8)::to_string( scrambled, .group( 1 ) ) );
    //---------------------------------------------------------------------------
 
    static function ds_type scramble( ds_type ds,
-                                     scrambler#(T,DEGREE) scrblr,
+                                     scrambler #(T,DEGREE) scrblr,
                                      ref lfsr_type lfsr,
                                      input bit msb_first = 1 );
       scramble = new[ ds.size() ];
@@ -325,9 +325,9 @@ virtual class data_stream #( type T = bit, int WIDTH = 1, int DEGREE = 2 )
          T bitstream[];
          T scrambled[];
 
-         bitstream = packed_array#(T,WIDTH)::to_dynamic_array( pa, msb_first );
+         bitstream = packed_array #(T,WIDTH)::to_dynamic_array( pa, msb_first );
          scrambled = scrblr.scramble( bitstream, lfsr );
-         scramble[i] = packed_array#(T,WIDTH)::from_dynamic_array( scrambled,
+         scramble[i] = packed_array #(T,WIDTH)::from_dynamic_array( scrambled,
                                                                    msb_first );
       end
    endfunction : scramble
@@ -367,23 +367,23 @@ virtual class data_stream #( type T = bit, int WIDTH = 1, int DEGREE = 2 )
    // Example:
    //
    // | bit[15:0] ds16[] = new[7]( '{ 16'h0123, 16'h4567, 16'h89ab, 16'hcdef, 16'h0000, 16'h0001, 16'h1000 } );
-   // | assert( data_stream#(bit,16)::to_string( ds16 )
+   // | assert( data_stream #(bit,16)::to_string( ds16 )
    // |   == "0123456789abcdef000000011000" );
-   // | assert( data_stream#(bit,16)::to_string( ds16, .left_to_right( 0 ) )
+   // | assert( data_stream #(bit,16)::to_string( ds16, .left_to_right( 0 ) )
    // |   == "100000010000cdef89ab45670123" );
-   // | assert( data_stream#(bit,16)::to_string( ds16, .group( 1 ) )
+   // | assert( data_stream #(bit,16)::to_string( ds16, .group( 1 ) )
    // |   == "0123 4567 89ab cdef 0000 0001 1000" );
-   // | assert( data_stream#(bit,16)::to_string( ds16, .group( 2 ) )
+   // | assert( data_stream #(bit,16)::to_string( ds16, .group( 2 ) )
    // |   == "01234567 89abcdef 00000001 1000" );
-   // | assert( data_stream#(bit,16)::to_string( ds16, .group( 1 ), .left_to_right( 0 ) )
+   // | assert( data_stream #(bit,16)::to_string( ds16, .group( 1 ), .left_to_right( 0 ) )
    // |   == "1000 0001 0000 cdef 89ab 4567 0123" );
-   // | assert( data_stream#(bit,16)::to_string( ds16, .group( 2 ), .left_to_right( 0 ) )
+   // | assert( data_stream #(bit,16)::to_string( ds16, .group( 2 ), .left_to_right( 0 ) )
    // |   == "10000001 0000cdef 89ab4567 0123" );
-   // | assert( data_stream#(bit,16)::to_string( ds16, .group( 1 ), .num_head( 2 ), .num_tail( 0 ) )
+   // | assert( data_stream #(bit,16)::to_string( ds16, .group( 1 ), .num_head( 2 ), .num_tail( 0 ) )
    // |   == "0123 4567 ... " );
-   // | assert( data_stream#(bit,16)::to_string( ds16, .group( 1 ), .num_head( 0 ), .num_tail( 2 ) )
+   // | assert( data_stream #(bit,16)::to_string( ds16, .group( 1 ), .num_head( 0 ), .num_tail( 2 ) )
    // |   == "... 0001 1000" );
-   // | assert( data_stream#(bit,16)::to_string( ds16, .group( 1 ), .num_head( 2 ), .num_tail( 2 ) )
+   // | assert( data_stream #(bit,16)::to_string( ds16, .group( 1 ), .num_head( 2 ), .num_tail( 2 ) )
    // |   == "0123 4567 ... 0001 1000" );
    //---------------------------------------------------------------------------
 
@@ -448,19 +448,19 @@ virtual class data_stream #( type T = bit, int WIDTH = 1, int DEGREE = 2 )
    // Example:
    // | bit[7:0] ds8[] = new[10]( '{ 8'h10, 8'h11, 8'h12, 8'h13, 8'h14, 8'h15, 8'h16, 8'h17, 8'h18, 8'h19 } );
    // | bit      en[]  = new[10]( '{ 1'b1,  1'b0,  1'b1,  1'b0,  1'b1,  1'b0,  1'b1,  1'b0,  1'b1,  1'b0  } );
-   // | assert( data_stream#(bit,8)::to_string_with_en( ds8, en )
+   // | assert( data_stream #(bit,8)::to_string_with_en( ds8, en )
    // |   == "10--12--14--16--18--" );
-   // | assert( data_stream#(bit,8)::to_string_with_en( ds8, en, .group(1) )
+   // | assert( data_stream #(bit,8)::to_string_with_en( ds8, en, .group(1) )
    // |   == "10 -- 12 -- 14 -- 16 -- 18 --" );
-   // | assert( data_stream#(bit,8)::to_string_with_en( ds8, en, .group(2) )
+   // | assert( data_stream #(bit,8)::to_string_with_en( ds8, en, .group(2) )
    // |   == "10-- 12-- 14-- 16-- 18--" );
-   // | assert( data_stream#(bit,8)::to_string_with_en( ds8, en, .group(8) )
+   // | assert( data_stream #(bit,8)::to_string_with_en( ds8, en, .group(8) )
    // |   == "10--12--14--16-- 18--" );
-   // | assert( data_stream#(bit,8)::to_string_with_en( ds8, en, .group(1), .group_separator("|") )
+   // | assert( data_stream #(bit,8)::to_string_with_en( ds8, en, .group(1), .group_separator("|") )
    // |   == "10|--|12|--|14|--|16|--|18|--" );
-   // | assert( data_stream#(bit,8)::to_string_with_en( ds8, en, .group(1), .num_head(2), .num_tail(2) )
+   // | assert( data_stream #(bit,8)::to_string_with_en( ds8, en, .group(1), .num_head(2), .num_tail(2) )
    // |   == "10 -- ...18 --" );
-   // | assert( data_stream#(bit,8)::to_string_with_en( ds8, en, .group(1), .disabled_char("*") )
+   // | assert( data_stream #(bit,8)::to_string_with_en( ds8, en, .group(1), .disabled_char("*") )
    // |   == "10 ** 12 ** 14 ** 16 ** 18 **" );
    //---------------------------------------------------------------------------
 

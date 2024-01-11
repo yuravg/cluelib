@@ -39,7 +39,7 @@
 
 virtual class choice #( type T = int );
 
-   local static default_comparator#(T) default_cmp = new();
+   local static default_comparator #(T) default_cmp = new();
 
    //---------------------------------------------------------------------------
    // Function: min
@@ -53,10 +53,10 @@ virtual class choice #( type T = int );
    //         *null*.
    //
    // Example:
-   // | assert( choice#(int)::min( 1, 2 ) == 1 );
+   // | assert( choice #(int)::min( 1, 2 ) == 1 );
    //---------------------------------------------------------------------------
 
-   static function T min( T x, T y, comparator#(T) cmp = null );
+   static function T min( T x, T y, comparator #(T) cmp = null );
       if ( cmp ) begin
          if ( cmp.lt( x, y ) ) return x;
          else                  return y;
@@ -78,10 +78,10 @@ virtual class choice #( type T = int );
    //         *null*.
    //
    // Example:
-   // | assert( choice#(int)::max( 1, 2 ) == 2 );
+   // | assert( choice #(int)::max( 1, 2 ) == 2 );
    //---------------------------------------------------------------------------
 
-   static function T max( T x, T y, comparator#(T) cmp = null );
+   static function T max( T x, T y, comparator #(T) cmp = null );
       if ( cmp ) begin
          if ( cmp.gt( x, y ) ) return x;
          else                  return y;

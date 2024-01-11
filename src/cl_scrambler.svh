@@ -115,7 +115,7 @@ endclass : scrambler
 //       The default is *bit*.
 //------------------------------------------------------------------------------
 
-class scrambler_2 #( type T = bit ) extends scrambler#(T, 2);
+class scrambler_2 #( type T = bit ) extends scrambler #(T, 2);
 
    //---------------------------------------------------------------------------
    // Function: new
@@ -142,7 +142,7 @@ endclass : scrambler_2
 //       The default is *bit*.
 //------------------------------------------------------------------------------
 
-class scrambler_3 #( type T = bit ) extends scrambler#(T, 3);
+class scrambler_3 #( type T = bit ) extends scrambler #(T, 3);
 
    //---------------------------------------------------------------------------
    // Function: new
@@ -169,7 +169,7 @@ endclass : scrambler_3
 //       The default is *bit*.
 //------------------------------------------------------------------------------
 
-class scrambler_4 #( type T = bit ) extends scrambler#(T, 4);
+class scrambler_4 #( type T = bit ) extends scrambler #(T, 4);
 
    //---------------------------------------------------------------------------
    // Function: new
@@ -196,7 +196,7 @@ endclass : scrambler_4
 //       The default is *bit*.
 //------------------------------------------------------------------------------
 
-class scrambler_5 #( type T = bit ) extends scrambler#(T, 5);
+class scrambler_5 #( type T = bit ) extends scrambler #(T, 5);
 
    //---------------------------------------------------------------------------
    // Function: new
@@ -223,7 +223,7 @@ endclass : scrambler_5
 //       The default is *bit*.
 //------------------------------------------------------------------------------
 
-class scrambler_6 #( type T = bit ) extends scrambler#(T, 6);
+class scrambler_6 #( type T = bit ) extends scrambler #(T, 6);
 
    //---------------------------------------------------------------------------
    // Function: new
@@ -250,7 +250,7 @@ endclass : scrambler_6
 //       The default is *bit*.
 //------------------------------------------------------------------------------
 
-class scrambler_7 #( type T = bit ) extends scrambler#(T, 7);
+class scrambler_7 #( type T = bit ) extends scrambler #(T, 7);
 
    //---------------------------------------------------------------------------
    // Function: new
@@ -277,7 +277,7 @@ endclass : scrambler_7
 //       The default is *bit*.
 //------------------------------------------------------------------------------
 
-class scrambler_8 #( type T = bit ) extends scrambler#(T, 8);
+class scrambler_8 #( type T = bit ) extends scrambler #(T, 8);
 
    //---------------------------------------------------------------------------
    // Function: new
@@ -304,7 +304,7 @@ endclass : scrambler_8
 //       The default is *bit*.
 //------------------------------------------------------------------------------
 
-class scrambler_9 #( type T = bit ) extends scrambler#(T, 9);
+class scrambler_9 #( type T = bit ) extends scrambler #(T, 9);
 
    //---------------------------------------------------------------------------
    // Function: new
@@ -331,7 +331,7 @@ endclass : scrambler_9
 //       The default is *bit*.
 //------------------------------------------------------------------------------
 
-class scrambler_10 #( type T = bit ) extends scrambler#(T, 10);
+class scrambler_10 #( type T = bit ) extends scrambler #(T, 10);
 
    //---------------------------------------------------------------------------
    // Function: new
@@ -358,7 +358,7 @@ endclass : scrambler_10
 //       The default is *bit*.
 //------------------------------------------------------------------------------
 
-class scrambler_11 #( type T = bit ) extends scrambler#(T, 11);
+class scrambler_11 #( type T = bit ) extends scrambler #(T, 11);
 
    //---------------------------------------------------------------------------
    // Function: new
@@ -385,7 +385,7 @@ endclass : scrambler_11
 //       The default is *bit*.
 //------------------------------------------------------------------------------
 
-class scrambler_12 #( type T = bit ) extends scrambler#(T, 12);
+class scrambler_12 #( type T = bit ) extends scrambler #(T, 12);
 
    //---------------------------------------------------------------------------
    // Function: new
@@ -412,7 +412,7 @@ endclass : scrambler_12
 //       The default is *bit*.
 //------------------------------------------------------------------------------
 
-class scrambler_13 #( type T = bit ) extends scrambler#(T, 13);
+class scrambler_13 #( type T = bit ) extends scrambler #(T, 13);
 
    //---------------------------------------------------------------------------
    // Function: new
@@ -439,7 +439,7 @@ endclass : scrambler_13
 //       The default is *bit*.
 //------------------------------------------------------------------------------
 
-class scrambler_14 #( type T = bit ) extends scrambler#(T, 14);
+class scrambler_14 #( type T = bit ) extends scrambler #(T, 14);
 
    //---------------------------------------------------------------------------
    // Function: new
@@ -466,7 +466,7 @@ endclass : scrambler_14
 //       The default is *bit*.
 //------------------------------------------------------------------------------
 
-class scrambler_15 #( type T = bit ) extends scrambler#(T, 15);
+class scrambler_15 #( type T = bit ) extends scrambler #(T, 15);
 
    //---------------------------------------------------------------------------
    // Function: new
@@ -493,7 +493,7 @@ endclass : scrambler_15
 //       The default is *bit*.
 //------------------------------------------------------------------------------
 
-class scrambler_16 #( type T = bit ) extends scrambler#(T, 16);
+class scrambler_16 #( type T = bit ) extends scrambler #(T, 16);
 
    //---------------------------------------------------------------------------
    // Function: new
@@ -520,7 +520,7 @@ endclass : scrambler_16
 //       The default is *bit*.
 //------------------------------------------------------------------------------
 
-class scrambler_17 #( type T = bit ) extends scrambler#(T, 17);
+class scrambler_17 #( type T = bit ) extends scrambler #(T, 17);
 
    //---------------------------------------------------------------------------
    // Function: new
@@ -547,7 +547,7 @@ endclass : scrambler_17
 //       The default is *bit*.
 //------------------------------------------------------------------------------
 
-class scrambler_18 #( type T = bit ) extends scrambler#(T, 18);
+class scrambler_18 #( type T = bit ) extends scrambler #(T, 18);
 
    //---------------------------------------------------------------------------
    // Function: new
@@ -574,7 +574,7 @@ endclass : scrambler_18
 //       The default is *bit*.
 //------------------------------------------------------------------------------
 
-class scrambler_19 #( type T = bit ) extends scrambler#(T, 19);
+class scrambler_19 #( type T = bit ) extends scrambler #(T, 19);
 
    //---------------------------------------------------------------------------
    // Function: new

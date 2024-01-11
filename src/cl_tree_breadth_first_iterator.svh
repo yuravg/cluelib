@@ -42,7 +42,7 @@ typedef class tree_node;
 //       *int*.
 //-----------------------------------------------------------------------------
 
-class tree_breadth_first_iterator #( type T = int ) extends iterator#( T );
+class tree_breadth_first_iterator #( type T = int ) extends iterator #( T );
 
    // Group: Types
 
@@ -51,14 +51,14 @@ class tree_breadth_first_iterator #( type T = int ) extends iterator#( T );
    //   The shorthand of the <tree_node> type specialized with type *T*.
    //---------------------------------------------------------------------------
 
-   typedef tree_node#(T) tree_node_type;
+   typedef tree_node #(T) tree_node_type;
 
    //--------------------------------------------------------------------------
    // Typedef: tree_type
    //   The shorthand of the <tree> type specialized with type *T*.
    //--------------------------------------------------------------------------
 
-   typedef tree#( T ) tree_type;
+   typedef tree #( T ) tree_type;
 
    local tree_node_type q[$];
    local int cur_index;

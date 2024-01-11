@@ -45,7 +45,7 @@ class formatter #( type T = int );
    //   The shorthand of <formatter> *#(T)*.
    //---------------------------------------------------------------------------
 
-   typedef formatter#(T) this_type;
+   typedef formatter #(T) this_type;
 
    local static this_type inst = null; // need to place after the typedef above
 

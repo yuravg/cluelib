@@ -65,7 +65,7 @@ virtual class bit_stream #( type T = bit ) extends data_stream #( T, 1 );
    //
    // Example:
    // | bit expected[] = new[8]( '{ 1, 0, 1, 0, 1, 0, 1, 0 } );
-   // | assert( bit_stream#(bit)::alternate( 8, .init_value( 1 ) ) == expected );
+   // | assert( bit_stream #(bit)::alternate( 8, .init_value( 1 ) ) == expected );
    //---------------------------------------------------------------------------
 
    static function bs_type alternate( int unsigned length,
@@ -87,7 +87,7 @@ virtual class bit_stream #( type T = bit ) extends data_stream #( T, 1 );
    //
    // Example:
    // | bit bs[] = new[16]( '{ 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1 } );
-   // | assert( bit_stream#(bit)::count_zeros( bs ) == 8 );
+   // | assert( bit_stream #(bit)::count_zeros( bs ) == 8 );
    //---------------------------------------------------------------------------
 
    static function int count_zeros( bs_type bs );
@@ -116,7 +116,7 @@ virtual class bit_stream #( type T = bit ) extends data_stream #( T, 1 );
    //
    // Example:
    // | bit bs[] = new[16]( '{ 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1 } );
-   // | assert( bit_stream#(bit)::count_ones( bs ) == 8 );
+   // | assert( bit_stream #(bit)::count_ones( bs ) == 8 );
    //---------------------------------------------------------------------------
 
    static function int count_ones( bs_type bs );
@@ -145,7 +145,7 @@ virtual class bit_stream #( type T = bit ) extends data_stream #( T, 1 );
    //
    // Example:
    // | logic bs[] = new[16]( '{ 0, 0, 0, 0, 1, 1, 1, 1, 'x, 'x, 'x, 'x, 'z, 'z, 'z, 'z } );
-   // | assert( bit_stream#(logic)::count_unknowns( bs ) == 4 );
+   // | assert( bit_stream #(logic)::count_unknowns( bs ) == 4 );
    //---------------------------------------------------------------------------
 
    static function int count_unknowns( bs_type bs );
@@ -174,7 +174,7 @@ virtual class bit_stream #( type T = bit ) extends data_stream #( T, 1 );
    //
    // Example:
    // | logic bs[] = new[16]( '{ 0, 0, 0, 0, 1, 1, 1, 1, 'x, 'x, 'x, 'x, 'z, 'z, 'z, 'z } );
-   // | assert( bit_stream#(logic)::count_hizs( bs ) == 4 );
+   // | assert( bit_stream #(logic)::count_hizs( bs ) == 4 );
    //---------------------------------------------------------------------------
 
    static function int count_hizs( bs_type bs );

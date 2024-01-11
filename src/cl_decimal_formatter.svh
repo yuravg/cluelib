@@ -38,14 +38,14 @@
 //   T - (OPTIONAL) The type of an object to be converted. The default is *int*.
 //------------------------------------------------------------------------------
 
-class decimal_formatter #( type T = int ) extends formatter#( T );
+class decimal_formatter #( type T = int ) extends formatter #( T );
 
    //---------------------------------------------------------------------------
    // Typedef: this_type
    //   The shorthand of <decimal_formatter> *#(T)*.
    //---------------------------------------------------------------------------
 
-   typedef decimal_formatter#(T) this_type;
+   typedef decimal_formatter #(T) this_type;
 
    local static this_type inst = null;
 

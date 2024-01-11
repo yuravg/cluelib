@@ -39,14 +39,14 @@
 //   T - (OPTIONAL) The type of an object to be converted. The default is *int*.
 //------------------------------------------------------------------------------
 
-class decimal_min_formatter #( type T = int ) extends formatter#( T );
+class decimal_min_formatter #( type T = int ) extends formatter #( T );
 
    //---------------------------------------------------------------------------
    // Typedef: this_type
    //   The shorthand of <decimal_min_formatter> *#(T)*.
    //---------------------------------------------------------------------------
 
-   typedef decimal_min_formatter#(T) this_type;
+   typedef decimal_min_formatter #(T) this_type;
 
    local static this_type inst = null;
 

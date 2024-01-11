@@ -38,14 +38,14 @@
 //   T - (OPTIONAL) The type of an object to be converted. The default is *int*.
 //------------------------------------------------------------------------------
 
-class hex_formatter #( type T = int ) extends formatter#( T );
+class hex_formatter #( type T = int ) extends formatter #( T );
 
    //---------------------------------------------------------------------------
    // Typedef: this_type
-   //   The shorthand of *hex_formatter#(T)*.
+   //   The shorthand of *hex_formatter #(T)*.
    //---------------------------------------------------------------------------
 
-   typedef hex_formatter#(T) this_type;
+   typedef hex_formatter #(T) this_type;
 
    local static this_type inst = null;
 

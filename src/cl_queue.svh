@@ -100,8 +100,8 @@ virtual class queue #( type T = bit, int SIZE = 1 );
    // | bit q0[$] =  { 0, 0, 0, 1, 1, 0, 1, 1 };
    // | bit q1[$] =  { 1, 1, 0, 1, 1, 0, 0, 0 };
    // |
-   // | assert( queue#(bit,8)::from_unpacked_array( ua                ) == q0 );
-   // | assert( queue#(bit,8)::from_unpacked_array( ua, .reverse( 1 ) ) == q1 );
+   // | assert( queue #(bit,8)::from_unpacked_array( ua                ) == q0 );
+   // | assert( queue #(bit,8)::from_unpacked_array( ua, .reverse( 1 ) ) == q1 );
    //
    // See Also:
    //   <ua_to_q>
@@ -109,7 +109,7 @@ virtual class queue #( type T = bit, int SIZE = 1 );
 
    static function q_type from_unpacked_array( const ref ua_type ua,
                                                input bit reverse = 0 );
-      common_array#( T, ua_type, q_type )::a_to_q( ua, from_unpacked_array,
+      common_array #( T, ua_type, q_type )::a_to_q( ua, from_unpacked_array,
                                                    reverse );
    endfunction : from_unpacked_array
 
@@ -133,8 +133,8 @@ virtual class queue #( type T = bit, int SIZE = 1 );
    // | bit ua0[8] = '{ 0, 0, 0, 1, 1, 0, 1, 1 };
    // | bit ua1[8] = '{ 1, 1, 0, 1, 1, 0, 0, 0 };
    // |
-   // | assert( queue#(bit,8)::to_unpacked_array( q                ) == ua0 );
-   // | assert( queue#(bit,8)::to_unpacked_array( q, .reverse( 1 ) ) == ua1 );
+   // | assert( queue #(bit,8)::to_unpacked_array( q                ) == ua0 );
+   // | assert( queue #(bit,8)::to_unpacked_array( q, .reverse( 1 ) ) == ua1 );
    //
    // See Also:
    //   <q_to_ua>
@@ -142,7 +142,7 @@ virtual class queue #( type T = bit, int SIZE = 1 );
 
    static function ua_type to_unpacked_array( const ref q_type q,
                                               input bit reverse = 0 );
-      common_array#( T, q_type, ua_type )::a_to_a( q, to_unpacked_array,
+      common_array #( T, q_type, ua_type )::a_to_a( q, to_unpacked_array,
                                                    reverse );
    endfunction : to_unpacked_array
 
@@ -165,8 +165,8 @@ virtual class queue #( type T = bit, int SIZE = 1 );
    // | bit q0[$] =          { 0, 0, 0, 1, 1, 0, 1, 1 };
    // | bit q1[$] =          { 1, 1, 0, 1, 1, 0, 0, 0 };
    // |
-   // | assert( queue#(bit)::from_dynamic_array( da                ) == q0 );
-   // | assert( queue#(bit)::from_dynamic_array( da, .reverse( 1 ) ) == q1 );
+   // | assert( queue #(bit)::from_dynamic_array( da                ) == q0 );
+   // | assert( queue #(bit)::from_dynamic_array( da, .reverse( 1 ) ) == q1 );
    //
    // See Also:
    //   <da_to_q>
@@ -174,7 +174,7 @@ virtual class queue #( type T = bit, int SIZE = 1 );
 
    static function q_type from_dynamic_array( const ref da_type da,
                                               input bit reverse = 0 );
-      common_array#( T, da_type, q_type )::a_to_q( da, from_dynamic_array,
+      common_array #( T, da_type, q_type )::a_to_q( da, from_dynamic_array,
                                                    reverse );
    endfunction : from_dynamic_array
 
@@ -198,8 +198,8 @@ virtual class queue #( type T = bit, int SIZE = 1 );
    // | bit da0[] = new[8]( '{ 0, 0, 0, 1, 1, 0, 1, 1 } );
    // | bit da1[] = new[8]( '{ 1, 1, 0, 1, 1, 0, 0, 0 } );
    // |
-   // | assert( queue#(bit)::to_dynamic_array( q                ) == da0 );
-   // | assert( queue#(bit)::to_dynamic_array( q, .reverse( 1 ) ) == da1 );
+   // | assert( queue #(bit)::to_dynamic_array( q                ) == da0 );
+   // | assert( queue #(bit)::to_dynamic_array( q, .reverse( 1 ) ) == da1 );
    //
    // See Also:
    //   <q_to_da>
@@ -208,7 +208,7 @@ virtual class queue #( type T = bit, int SIZE = 1 );
    static function da_type to_dynamic_array( const ref q_type q,
                                              input bit reverse = 0 );
       to_dynamic_array = new[ q.size() ];
-      common_array#( T, q_type, da_type )::a_to_a( q, to_dynamic_array,
+      common_array #( T, q_type, da_type )::a_to_a( q, to_dynamic_array,
                                                    reverse );
    endfunction : to_dynamic_array
 
@@ -234,11 +234,11 @@ virtual class queue #( type T = bit, int SIZE = 1 );
    // | bit q1[$] =  { 1, 1, 0, 1, 1, 0, 0, 0 };
    // | bit q[$];
    // |
-   // | queue#(bit,8)::ua_to_q( ua, q );
+   // | queue #(bit,8)::ua_to_q( ua, q );
    // | assert( q == q0 );
    // |
    // | q.delete();
-   // | queue#(bit,8)::ua_to_q( ua, q, .reverse( 1 ) );
+   // | queue #(bit,8)::ua_to_q( ua, q, .reverse( 1 ) );
    // | assert( q == q1 );
    //
    // See Also:
@@ -248,7 +248,7 @@ virtual class queue #( type T = bit, int SIZE = 1 );
    static function void ua_to_q( const ref ua_type ua,
                                  ref q_type q,
                                  input bit reverse = 0 );
-      common_array#( T, ua_type, q_type )::a_to_q( ua, q, reverse );
+      common_array #( T, ua_type, q_type )::a_to_q( ua, q, reverse );
    endfunction : ua_to_q
 
    //---------------------------------------------------------------------------
@@ -276,10 +276,10 @@ virtual class queue #( type T = bit, int SIZE = 1 );
    // | bit ua1[8] = '{ 1, 1, 0, 1, 1, 0, 0, 0 };
    // | bit ua[8];
    // |
-   // | queue#(bit,8)::q_to_ua( q, ua );
+   // | queue #(bit,8)::q_to_ua( q, ua );
    // | assert( ua == ua0 );
    // |
-   // | queue#(bit,8)::q_to_ua( q, ua, .reverse( 1 ) );
+   // | queue #(bit,8)::q_to_ua( q, ua, .reverse( 1 ) );
    // | assert( ua == ua1 );
    //
    // See Also:
@@ -289,7 +289,7 @@ virtual class queue #( type T = bit, int SIZE = 1 );
    static function void q_to_ua( const ref q_type q,
                                  ref ua_type ua,
                                  input bit reverse = 0 );
-      common_array#( T, q_type, ua_type )::a_to_a( q, ua, reverse );
+      common_array #( T, q_type, ua_type )::a_to_a( q, ua, reverse );
    endfunction : q_to_ua
 
    //---------------------------------------------------------------------------
@@ -314,11 +314,11 @@ virtual class queue #( type T = bit, int SIZE = 1 );
    // | bit q1[$] =          { 1, 1, 0, 1, 1, 0, 0, 0 };
    // | bit q[$];
    // |
-   // | queue#(bit)::da_to_q( da, q );
+   // | queue #(bit)::da_to_q( da, q );
    // | assert( q == q0 );
    // |
    // | q.delete();
-   // | queue#(bit)::da_to_q( da, q, .reverse( 1 ) );
+   // | queue #(bit)::da_to_q( da, q, .reverse( 1 ) );
    // | assert( q == q1 );
    //
    // See Also:
@@ -328,7 +328,7 @@ virtual class queue #( type T = bit, int SIZE = 1 );
    static function void da_to_q( const ref da_type da,
                                  ref q_type q,
                                  input bit reverse = 0 );
-      common_array#( T, da_type, q_type )::a_to_q( da, q, reverse );
+      common_array #( T, da_type, q_type )::a_to_q( da, q, reverse );
    endfunction : da_to_q
 
    //---------------------------------------------------------------------------
@@ -353,10 +353,10 @@ virtual class queue #( type T = bit, int SIZE = 1 );
    // | bit da1[] = new[8]( '{ 1, 1, 0, 1, 1, 0, 0, 0 } );
    // | bit da [] = new[8]; // set the size of da[]
    // |
-   // | queue#(bit)::q_to_da( q, da );
+   // | queue #(bit)::q_to_da( q, da );
    // | assert( da == da0 );
    // |
-   // | queue#(bit)::q_to_da( q, da, .reverse( 1 ) );
+   // | queue #(bit)::q_to_da( q, da, .reverse( 1 ) );
    // | assert( da == da1 );
    //
    // See Also:
@@ -366,7 +366,7 @@ virtual class queue #( type T = bit, int SIZE = 1 );
    static function void q_to_da( const ref q_type q,
                                  ref da_type da,
                                  input bit reverse = 0 );
-      common_array#( T, q_type, da_type )::a_to_a( q, da, reverse );
+      common_array #( T, q_type, da_type )::a_to_a( q, da, reverse );
    endfunction : q_to_da
 
    //---------------------------------------------------------------------------
@@ -386,12 +386,12 @@ virtual class queue #( type T = bit, int SIZE = 1 );
    // | bit q[$] = { 0, 0, 0, 0, 0, 0, 0, 0 };
    // | bit expected[$] = { 1, 1, 1, 1, 1, 1, 1, 1 };
    // |
-   // | queue#(bit)::init( q, 1'b1 );
+   // | queue #(bit)::init( q, 1'b1 );
    // | assert( q == expected );
    //---------------------------------------------------------------------------
 
    static function void init( ref q_type q, input T val );
-      common_array#( T, q_type )::init( q, val );
+      common_array #( T, q_type )::init( q, val );
    endfunction : init
 
    //---------------------------------------------------------------------------
@@ -408,12 +408,12 @@ virtual class queue #( type T = bit, int SIZE = 1 );
    // | bit q[$] = { 0, 0, 0, 0, 1, 1, 1, 1 };
    // | bit expected[$] = { 1, 1, 1, 1, 0, 0, 0, 0 };
    // |
-   // | queue#(bit)::reverse( q );
+   // | queue #(bit)::reverse( q );
    // | assert( q == expected );
    //---------------------------------------------------------------------------
 
    static function void reverse( ref q_type q );
-      common_array#( T, q_type )::reverse( q );
+      common_array #( T, q_type )::reverse( q );
    endfunction : reverse
 
    //---------------------------------------------------------------------------
@@ -435,7 +435,7 @@ virtual class queue #( type T = bit, int SIZE = 1 );
    // |
    // | expected_q0 = { 0, 0, 1, 1 }; // q[0], q[2], q[4], q[6]
    // | expected_q1 = { 0, 1, 0    }; // q[1], q[3], q[5]
-   // | queue#(bit)::split( q, q0, q1 );
+   // | queue #(bit)::split( q, q0, q1 );
    // | assert( q0 == expected_q0 );
    // | assert( q1 == expected_q1 );
    // |
@@ -443,7 +443,7 @@ virtual class queue #( type T = bit, int SIZE = 1 );
    // | q1.delete();
    // | expected_q0 = { 0, 0, 1, 1 }; // q[0], q[2], q[4], q[6]
    // | expected_q1 = { 0, 1, 0, 0 }; // q[1], q[3], q[5], 0 (padded with the default value of bit type)
-   // | queue#(bit)::split( q, q0, q1, .pad( 1 ) );
+   // | queue #(bit)::split( q, q0, q1, .pad( 1 ) );
    // | assert( q0 == expected_q0 );
    // | assert( q1 == expected_q1 );
    //
@@ -488,10 +488,10 @@ virtual class queue #( type T = bit, int SIZE = 1 );
    // | int expected[$];
    // |
    // | expected = { 0, 1, 0, 2, 0, 3, 0, 4, 5, 6 };
-   // | assert( queue#(int)::merge( q0, q1 ) == expected );
+   // | assert( queue #(int)::merge( q0, q1 ) == expected );
    // |
    // | expected = { 0, 1, 0, 2, 0, 3, 0, 4 };
-   // | assert( queue#(int)::merge( q0, q1, .truncate( 1 ) ) == expected );
+   // | assert( queue #(int)::merge( q0, q1, .truncate( 1 ) ) == expected );
    //
    // See Also:
    //   <concat>, <split>
@@ -548,7 +548,7 @@ virtual class queue #( type T = bit, int SIZE = 1 );
    // | int q1[$]       = {             1, 2, 3, 4, 5, 6 };
    // | int expected[$] = { 0, 0, 0, 0, 1, 2, 3, 4, 5, 6 };
    // |
-   // | assert( queue#(int)::concat( q0, q1 ) == expected );
+   // | assert( queue #(int)::concat( q0, q1 ) == expected );
    //
    // See Also:
    //   <merge>
@@ -579,8 +579,8 @@ virtual class queue #( type T = bit, int SIZE = 1 );
    // | int q[$]        = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
    // | int expected[$] = {          3, 4, 5, 6, 7       };
    // |
-   // | assert( queue#(int)::extract( q, 3,  7 ) == expected );
-   // | assert( queue#(int)::extract( q, 3, -3 ) == expected );
+   // | assert( queue #(int)::extract( q, 3,  7 ) == expected );
+   // | assert( queue #(int)::extract( q, 3, -3 ) == expected );
    //---------------------------------------------------------------------------
 
    static function q_type extract( q_type q,
@@ -606,7 +606,7 @@ virtual class queue #( type T = bit, int SIZE = 1 );
    // | int original[$] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9     };
    // | int expected[$] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
    // |
-   // | assert( queue#(int)::append( q, 10 ) == expected );
+   // | assert( queue #(int)::append( q, 10 ) == expected );
    // | assert( q == original ); // not modified
    //---------------------------------------------------------------------------
 
@@ -631,7 +631,7 @@ virtual class queue #( type T = bit, int SIZE = 1 );
    //   to_index2 - (OPTIONAL) The last index of the *q2* to compare. See
    //               <Common Arguments>. The default is -1.
    //   cmp - (OPTIONAL) A strategy object used to compare two queues.  If not
-   //         specified or null, *comparator#(T)* is used. The default is null.
+   //         specified or null, *comparator #(T)* is used. The default is null.
    //
    // Returns:
    //   If the numbers of elements to compare (*to_index1-from_index1+1* and
@@ -644,8 +644,8 @@ virtual class queue #( type T = bit, int SIZE = 1 );
    // | bit q2[$] = { 1, 1, 0, 1, 1, 0, 0, 0 };
    // | //                  |<------>|
    // | //                  2        5
-   // | assert( queue#(bit)::compare( q1, q2 ) == 0 );
-   // | assert( queue#(bit)::compare( q1, q2,
+   // | assert( queue #(bit)::compare( q1, q2 ) == 0 );
+   // | assert( queue #(bit)::compare( q1, q2,
    // |         .from_index1( 2 ), .to_index1( 5 ),
    // |         .from_index2( 2 ), .to_index2( 5 ) ) == 1 );
    //---------------------------------------------------------------------------
@@ -656,8 +656,8 @@ virtual class queue #( type T = bit, int SIZE = 1 );
                                 int to_index1   = -1,
                                 int from_index2 = 0,
                                 int to_index2   = -1,
-                                comparator#(T) cmp = null );
-      return common_array#( T, q_type, q_type )::
+                                comparator #(T) cmp = null );
+      return common_array #( T, q_type, q_type )::
         compare( q1, q2, from_index1, to_index1, from_index2, to_index2, cmp );
    endfunction : compare
 
@@ -674,7 +674,7 @@ virtual class queue #( type T = bit, int SIZE = 1 );
    // Example:
    // | bit q[$]        = { 0, 0, 0, 1, 1, 0, 1, 1 };
    // | bit expected[$] = { 0, 0, 0, 1, 1, 0, 1, 1 };
-   // | assert( queue#(bit)::clone( q ) == expected );
+   // | assert( queue #(bit)::clone( q ) == expected );
    //---------------------------------------------------------------------------
 
    static function q_type clone( q_type q );
@@ -702,17 +702,17 @@ virtual class queue #( type T = bit, int SIZE = 1 );
    //
    // Example:
    // | bit q[$] = { 0, 0, 0, 1, 1, 0, 1, 1 };
-   // | assert( queue#(bit,8)::to_string( q )                    == "0 0 0 1 1 0 1 1" );
-   // | assert( queue#(bit,8)::to_string( q, .separator( "-" ) ) == "0-0-0-1-1-0-1-1" );
-   // | assert( queue#(bit,8)::to_string( q, .from_index( 4 )  ) ==         "1 0 1 1" );
+   // | assert( queue #(bit,8)::to_string( q )                    == "0 0 0 1 1 0 1 1" );
+   // | assert( queue #(bit,8)::to_string( q, .separator( "-" ) ) == "0-0-0-1-1-0-1-1" );
+   // | assert( queue #(bit,8)::to_string( q, .from_index( 4 )  ) ==         "1 0 1 1" );
    //---------------------------------------------------------------------------
 
    static function string to_string( const ref q_type q,
                                      input string separator = " ",
                                      int from_index = 0,
                                      int to_index = -1,
-                                     formatter#(T) fmtr = null );
-      return common_array#(T, q_type )::
+                                     formatter #(T) fmtr = null );
+      return common_array #(T, q_type )::
         to_string( q, separator, from_index, to_index, fmtr );
    endfunction : to_string
 

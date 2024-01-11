@@ -41,7 +41,7 @@ typedef class deque;
 //       *int*.
 //-----------------------------------------------------------------------------
 
-class deque_descending_iterator #( type T = int ) extends iterator#( T );
+class deque_descending_iterator #( type T = int ) extends iterator #( T );
 
    local int cur_index;
    local int q_size;
@@ -51,7 +51,7 @@ class deque_descending_iterator #( type T = int ) extends iterator#( T );
    //   The shorthand of the <deque> type of type *T*.
    //--------------------------------------------------------------------------
 
-   typedef deque#( T ) deque_type;
+   typedef deque #( T ) deque_type;
 
    local deque_type dq; // needs to place after the typedef above
 

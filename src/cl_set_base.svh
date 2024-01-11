@@ -37,7 +37,7 @@
 //   T - (OPTIONAL) The type of data collected in a <set>. The default is *int*.
 //------------------------------------------------------------------------------
 
-virtual class set_base #( type T = int ) extends collection#( T );
+virtual class set_base #( type T = int ) extends collection #( T );
 
    //---------------------------------------------------------------------------
    // Function: equals
@@ -53,15 +53,15 @@ virtual class set_base #( type T = int ) extends collection#( T );
    //   collection, returns 1. Otherwise, returns 0.
    //
    // Example:
-   // | set#(int) int_set0 = new();
-   // | set#(int) int_set1 = new();
+   // | set #(int) int_set0 = new();
+   // | set #(int) int_set1 = new();
    // |
    // | void'( int_set0.add( 123 ) );
    // | void'( int_set1.add( 123 ) );
    // | assert( int_set0.equals( int_set1 ) == 1 );
    //---------------------------------------------------------------------------
 
-   virtual function bit equals( collection#(T) c );
+   virtual function bit equals( collection #(T) c );
       if ( this == c ) return 1;
       if ( this.size() != c.size() ) return 0;
       return this.contains_all( c );
@@ -86,8 +86,8 @@ virtual class set_base #( type T = int ) extends collection#( T );
    //   0 is returned.
    //
    // Example:
-   // | set#(int) int_set0 = new();
-   // | set#(int) int_set1 = new();
+   // | set #(int) int_set0 = new();
+   // | set #(int) int_set1 = new();
    // |
    // | void'( int_set0.add( 123 ) );
    // | void'( int_set0.add( 456 ) );
@@ -95,11 +95,11 @@ virtual class set_base #( type T = int ) extends collection#( T );
    // | assert( int_set0.remove_all( int_set1 ) == 1 );
    //---------------------------------------------------------------------------
 
-   virtual function bit remove_all( collection#(T) c );
+   virtual function bit remove_all( collection #(T) c );
       bit  result = 0;
 
       if ( this.size() < c.size() ) begin
-         iterator#( T ) it = this.get_iterator();
+         iterator #( T ) it = this.get_iterator();
          while ( it.has_next() ) begin
             if ( c.contains( it.next() ) ) begin
                it.remove();
@@ -107,7 +107,7 @@ virtual class set_base #( type T = int ) extends collection#( T );
             end
          end
       end else begin // 'c' has fewer elements
-         iterator#( T ) it = c.get_iterator();
+         iterator #( T ) it = c.get_iterator();
          while ( it.has_next() ) result |= this.remove( it.next() );
       end // else: !if( this.size() < c.size() )
       return result;

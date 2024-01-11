@@ -37,12 +37,12 @@
 //   T - (OPTIONAL) The type of data collected in a deque. The default is *int*.
 //------------------------------------------------------------------------------
 
-class deque #( type T = int ) extends collection#( T );
+class deque #( type T = int ) extends collection #( T );
 
  `ifdef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
    local T q[$];
 
-   class deque_iterator #( type T = int ) extends iterator#( T );
+   class deque_iterator #( type T = int ) extends iterator #( T );
       local int cur_index;
       local int q_size;
 
@@ -66,7 +66,7 @@ class deque #( type T = int ) extends collection#( T );
 
    endclass : deque
 
-   class deque_descending_iterator #( type T = int ) extends iterator#( T );
+   class deque_descending_iterator #( type T = int ) extends iterator #( T );
       local int cur_index;
       local int q_size;
 
@@ -109,15 +109,15 @@ class deque #( type T = int ) extends collection#( T );
    //          <hex_formatter> *#(T)* is used. The default is *null*.
    //
    // Example:
-   // | deque#(int) int_dq = new();
+   // | deque #(int) int_dq = new();
    //---------------------------------------------------------------------------
 
-   function new( collection#(T) c = null,
-                 comparator#(T) cmp = null,
-                 formatter#(T) fmtr = null );
-      if ( cmp == null ) this.cmp = comparator#(T)::get_instance();
+   function new( collection #(T) c = null,
+                 comparator #(T) cmp = null,
+                 formatter #(T) fmtr = null );
+      if ( cmp == null ) this.cmp = comparator #(T)::get_instance();
       else               this.cmp = cmp;
-      if ( fmtr == null ) this.fmtr = hex_formatter#(T)::get_instance();
+      if ( fmtr == null ) this.fmtr = hex_formatter #(T)::get_instance();
       else                this.fmtr = fmtr;
       if ( c ) void'( this.add_all( c ) );
    endfunction : new
@@ -133,7 +133,7 @@ class deque #( type T = int ) extends collection#( T );
    //   Always returns 1.
    //
    // Example:
-   // | deque#(int) int_dq = new();
+   // | deque #(int) int_dq = new();
    // |
    // | assert( int_dq.add( 123 ) == 1 );
    //---------------------------------------------------------------------------
@@ -154,7 +154,7 @@ class deque #( type T = int ) extends collection#( T );
    //   None.
    //
    // Example:
-   // | deque#(int) int_dq = new();
+   // | deque #(int) int_dq = new();
    // |
    // | int_dq.add_first( 123 );
    //---------------------------------------------------------------------------
@@ -174,7 +174,7 @@ class deque #( type T = int ) extends collection#( T );
    //   None.
    //
    // Example:
-   // | deque#(int) int_dq = new();
+   // | deque #(int) int_dq = new();
    // |
    // | int_dq.add_last( 123 );
    //---------------------------------------------------------------------------
@@ -191,7 +191,7 @@ class deque #( type T = int ) extends collection#( T );
    //   None.
    //
    // Example:
-   // | deque#(int) int_dq = new();
+   // | deque #(int) int_dq = new();
    // |
    // | int_dq.clear();
    //---------------------------------------------------------------------------
@@ -209,14 +209,14 @@ class deque #( type T = int ) extends collection#( T );
    //   A copy of this deque.
    //
    // Example:
-   // | deque#(int) int_dq = new();
-   // | collection#(int) cloned;
+   // | deque #(int) int_dq = new();
+   // | collection #(int) cloned;
    // |
    // | cloned = int_dq.clone();
    //---------------------------------------------------------------------------
 
-   virtual function collection#( T ) clone();
-      deque#( T ) dq = new();
+   virtual function collection #( T ) clone();
+      deque #( T ) dq = new();
       dq.q    = q; // the elements themselves are not cloned
       dq.cmp  = cmp;
       dq.fmtr = fmtr;
@@ -234,7 +234,7 @@ class deque #( type T = int ) extends collection#( T );
    //   If this deque contains *e*, returns 1. Otherwise, returns 0.
    //
    // Example:
-   // | deque#(int) int_dq = new();
+   // | deque #(int) int_dq = new();
    // |
    // | void'( int_dq.add( 123 ) );
    // | assert( int_dq.contains( 123 ) == 1 );
@@ -260,7 +260,7 @@ class deque #( type T = int ) extends collection#( T );
    //   If *e* is valid, returns 1. Otherwise, returns 0.
    //
    // Example:
-   // | deque#(int) int_dq = new();
+   // | deque #(int) int_dq = new();
    // | int i;
    // |
    // | void'( int_dq.add( 123 ) );
@@ -286,7 +286,7 @@ class deque #( type T = int ) extends collection#( T );
    //   If *e* is valid, returns 1. Otherwise, returns 0.
    //
    // Example:
-   // | deque#(int) int_dq = new();
+   // | deque #(int) int_dq = new();
    // | int i;
    // |
    // | void'( int_dq.add( 123 ) );
@@ -317,7 +317,7 @@ class deque #( type T = int ) extends collection#( T );
    //   If *e* is valid, returns 1. Otherwise, returns 0.
    //
    // Example:
-   // | deque#(int) int_dq = new();
+   // | deque #(int) int_dq = new();
    // | int i;
    // |
    // | void'( int_dq.add( 123 ) );
@@ -345,8 +345,8 @@ class deque #( type T = int ) extends collection#( T );
    //   An iterator.
    //
    // Example:
-   // | deque#(int) int_dq = new();
-   // | iterator#(int) it;
+   // | deque #(int) int_dq = new();
+   // | iterator #(int) it;
    // | string s;
    // |
    // | void'( int_dq.add( 123 ) );
@@ -356,12 +356,12 @@ class deque #( type T = int ) extends collection#( T );
    // | assert( s == "123 456 " );
    //---------------------------------------------------------------------------
 
-   virtual function iterator#( T ) get_iterator();
+   virtual function iterator #( T ) get_iterator();
 
  `ifdef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
-      deque_iterator#( T ) it = new();
+      deque_iterator #( T ) it = new();
  `else
-      deque_iterator#( T ) it = new( this );
+      deque_iterator #( T ) it = new( this );
  `endif
 
       return it;
@@ -376,8 +376,8 @@ class deque #( type T = int ) extends collection#( T );
    //   A descending iterator.
    //
    // Example:
-   // | deque#(int) int_dq = new();
-   // | iterator#(int) it;
+   // | deque #(int) int_dq = new();
+   // | iterator #(int) it;
    // | string s;
    // |
    // | void'( int_dq.add( 123 ) );
@@ -387,12 +387,12 @@ class deque #( type T = int ) extends collection#( T );
    // | assert( s == "456 123 " );
    //---------------------------------------------------------------------------
 
-   virtual function iterator#( T ) get_descending_iterator();
+   virtual function iterator #( T ) get_descending_iterator();
 
  `ifdef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
-      deque_descending_iterator#( T ) it = new();
+      deque_descending_iterator #( T ) it = new();
  `else
-      deque_descending_iterator#( T ) it = new( this );
+      deque_descending_iterator #( T ) it = new( this );
  `endif
 
       return it;
@@ -410,7 +410,7 @@ class deque #( type T = int ) extends collection#( T );
    //   If *e* is valid, returns 1. Otherwise, returns 0.
    //
    // Example:
-   // | deque#(int) int_dq = new();
+   // | deque #(int) int_dq = new();
    // | int i;
    // |
    // | void'( int_dq.add( 123 ) );
@@ -438,7 +438,7 @@ class deque #( type T = int ) extends collection#( T );
    //   If *e* is valid, returns 1. Otherwise, returns 0.
    //
    // Example:
-   // | deque#(int) int_dq = new();
+   // | deque #(int) int_dq = new();
    // | int i;
    // |
    // | void'( int_dq.add( 123 ) );
@@ -470,7 +470,7 @@ class deque #( type T = int ) extends collection#( T );
    //   If *e* is valid, returns 1. Otherwise, returns 0.
    //
    // Example:
-   // | deque#(int) int_dq = new();
+   // | deque #(int) int_dq = new();
    // | int i;
    // |
    // | void'( int_dq.add( 123 ) );
@@ -501,7 +501,7 @@ class deque #( type T = int ) extends collection#( T );
    //   7-1).
    //
    // Example:
-   // | deque#(int) int_dq = new();
+   // | deque #(int) int_dq = new();
    // |
    // | int_dq.push( 123 );
    // | int_dq.push( 456 );
@@ -523,7 +523,7 @@ class deque #( type T = int ) extends collection#( T );
    //   None.
    //
    // Example:
-   // | deque#(int) int_dq = new();
+   // | deque #(int) int_dq = new();
    // |
    // | int_dq.push( 123 );
    //----------------------------------------------------------------------------
@@ -545,7 +545,7 @@ class deque #( type T = int ) extends collection#( T );
    //   0 is returned.
    //
    // Example:
-   // | deque#(int) int_dq = new();
+   // | deque #(int) int_dq = new();
    // |
    // | void'( int_dq.add( 123 ) );
    // | void'( int_dq.add( 456 ) );
@@ -568,7 +568,7 @@ class deque #( type T = int ) extends collection#( T );
    //   If this deque is not empty, 1 is returned. Otherwise, 0 is returned.
    //
    // Example:
-   // | deque#(int) int_dq = new();
+   // | deque #(int) int_dq = new();
    // |
    // | void'( int_dq.add( 123 ) );
    // | assert( int_dq.remove_first() == 1 );
@@ -592,7 +592,7 @@ class deque #( type T = int ) extends collection#( T );
    //   If this deque is not empty, 1 is returned. Otherwise, 0 is returned.
    //
    // Example:
-   // | deque#(int) int_dq = new();
+   // | deque #(int) int_dq = new();
    // |
    // | void'( int_dq.add( 123 ) );
    // | assert( int_dq.remove_last() == 1 );
@@ -621,7 +621,7 @@ class deque #( type T = int ) extends collection#( T );
    //   0 is returned.
    //
    // Example:
-   // | deque#(int) int_dq = new();
+   // | deque #(int) int_dq = new();
    // |
    // | void'( int_dq.add( 123 ) );
    // | void'( int_dq.add( 456 ) );
@@ -657,7 +657,7 @@ class deque #( type T = int ) extends collection#( T );
    //   0 is returned.
    //
    // Example:
-   // | deque#(int) int_dq = new();
+   // | deque #(int) int_dq = new();
    // |
    // | void'( int_dq.add( 123 ) );
    // | void'( int_dq.add( 456 ) );
@@ -688,7 +688,7 @@ class deque #( type T = int ) extends collection#( T );
    //   The number of elements in this deque.
    //
    // Example:
-   // | deque#(int) int_dq = new();
+   // | deque #(int) int_dq = new();
    // |
    // | void'( int_dq.add( 123 ) );
    // | assert( int_dq.size() == 1 );

@@ -37,21 +37,21 @@
 //   T - (OPTIONAL) The type of data collected in a tree. The default is *int*.
 //------------------------------------------------------------------------------
 
-class tree #( type T = int ) extends collection#( T );
+class tree #( type T = int ) extends collection #( T );
 
    //---------------------------------------------------------------------------
    // Typedef: tree_node_type
    //   The shorthand of the <tree_node> type specialized with type *T*.
    //---------------------------------------------------------------------------
 
-   typedef tree_node#(T) tree_node_type;
+   typedef tree_node #(T) tree_node_type;
 
    //--------------------------------------------------------------------------
    // Typedef: tree_type
    //   The shorthand of the <tree> type specialized with type *T*.
    //--------------------------------------------------------------------------
 
-   typedef tree#(T) tree_type;
+   typedef tree #(T) tree_type;
 
  `ifdef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
  `else  // !`ifdef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
@@ -79,15 +79,15 @@ class tree #( type T = int ) extends collection#( T );
    //          <hex_formatter> *#(T)* is used. The default is *null*.
    //
    // Example:
-   // | tree#(int) int_tree = new();
+   // | tree #(int) int_tree = new();
    //---------------------------------------------------------------------------
 
-   function new( collection#(T)   c = null,
-                 comparator#(T) cmp = null,
-                 formatter#(T) fmtr = null );
-      if ( cmp == null ) this.cmp = comparator#(T)::get_instance();
+   function new( collection #(T)   c = null,
+                 comparator #(T) cmp = null,
+                 formatter #(T) fmtr = null );
+      if ( cmp == null ) this.cmp = comparator #(T)::get_instance();
       else               this.cmp = cmp;
-      if ( fmtr == null ) this.fmtr = hex_formatter#(T)::get_instance();
+      if ( fmtr == null ) this.fmtr = hex_formatter #(T)::get_instance();
       else                this.fmtr = fmtr;
       if ( c ) void'( this.add_all( c ) );
    endfunction : new
@@ -106,7 +106,7 @@ class tree #( type T = int ) extends collection#( T );
    //   Otherwise, 0 is returned.
    //
    // Example:
-   // | tree#(int) int_tree = new();
+   // | tree #(int) int_tree = new();
    // |
    // | assert( int_tree.add( 123 ) );
    // | // (123)
@@ -140,10 +140,10 @@ class tree #( type T = int ) extends collection#( T );
    //   Newly added <tree_node>.
    //
    // Example:
-   // | tree#(int)      int_tree = new();
-   // | tree_node#(int) tn_123;
-   // | tree_node#(int) tn_234;
-   // | tree_node#(int) tn_345;
+   // | tree #(int)      int_tree = new();
+   // | tree_node #(int) tn_123;
+   // | tree_node #(int) tn_234;
+   // | tree_node #(int) tn_345;
    // |
    // | tn_123 = int_tree.add_to_node( 123 );
    // | // (123)
@@ -182,12 +182,12 @@ class tree #( type T = int ) extends collection#( T );
    //   A tree node to be grafted (*tn*).
    //
    // Example:
-   // | tree#(int)      int_tree = new();
-   // | tree_node#(int) tn;
-   // | tree_node#(int) tn_123;
-   // | tree_node#(int) tn_234;
-   // | tree_node#(int) tn_345;
-   // | tree_node#(int) tn_456;
+   // | tree #(int)      int_tree = new();
+   // | tree_node #(int) tn;
+   // | tree_node #(int) tn_123;
+   // | tree_node #(int) tn_234;
+   // | tree_node #(int) tn_345;
+   // | tree_node #(int) tn_456;
    // |
    // | tn_123 = int_tree.add_to_node( 123 );
    // | tn_234 = int_tree.add_to_node( 234, .parent( tn_123 ) );
@@ -225,7 +225,7 @@ class tree #( type T = int ) extends collection#( T );
    //   None.
    //
    // Example:
-   // | tree#(int) int_tree = new();
+   // | tree #(int) int_tree = new();
    // |
    // | assert( int_tree.add( 123 ) );
    // | assert( int_tree.add( 234 ) );
@@ -247,8 +247,8 @@ class tree #( type T = int ) extends collection#( T );
    //   A copy of this tree.
    //
    // Example:
-   // | tree#(int) int_tree = new();
-   // | collection#(int) cloned;
+   // | tree #(int) int_tree = new();
+   // | collection #(int) cloned;
    // |
    // | assert( int_tree.add( 123 ) );
    // | assert( int_tree.add( 234 ) );
@@ -256,7 +256,7 @@ class tree #( type T = int ) extends collection#( T );
    // | assert( cloned.size() == 2 );
    //---------------------------------------------------------------------------
 
-   virtual function collection#( T ) clone();
+   virtual function collection #( T ) clone();
       tree_type t = new();
       t.root = root;
       return t;
@@ -270,7 +270,7 @@ class tree #( type T = int ) extends collection#( T );
    //   If this tree contains no elements, returns 1. Otherwise, returns 0.
    //
    // Example:
-   // | tree#(int) int_tree = new();
+   // | tree #(int) int_tree = new();
    // |
    // | assert( int_tree.add( 123 ) );
    // | assert( int_tree.add( 234 ) );
@@ -290,12 +290,12 @@ class tree #( type T = int ) extends collection#( T );
    //   An iterator.
    //
    // Example:
-   // | tree#(int)      int_tree = new();
-   // | tree_node#(int) tn_123;
-   // | tree_node#(int) tn_234;
-   // | tree_node#(int) tn_345;
-   // | tree_node#(int) tn_456;
-   // | iterator#(int)  it;
+   // | tree #(int)      int_tree = new();
+   // | tree_node #(int) tn_123;
+   // | tree_node #(int) tn_234;
+   // | tree_node #(int) tn_345;
+   // | tree_node #(int) tn_456;
+   // | iterator #(int)  it;
    // | string s;
    // |
    // | tn_123 = int_tree.add_to_node( 123 );
@@ -311,7 +311,7 @@ class tree #( type T = int ) extends collection#( T );
    // | assert( s == "123 234 345 456 " );
    //---------------------------------------------------------------------------
 
-   virtual function iterator#( T ) get_iterator();
+   virtual function iterator #( T ) get_iterator();
       return get_breadth_first_iterator();
    endfunction : iterator
 
@@ -324,12 +324,12 @@ class tree #( type T = int ) extends collection#( T );
    //   An iterator.
    //
    // Example:
-   // | tree#(int)      int_tree = new();
-   // | tree_node#(int) tn_123;
-   // | tree_node#(int) tn_234;
-   // | tree_node#(int) tn_345;
-   // | tree_node#(int) tn_456;
-   // | iterator#(int)  it;
+   // | tree #(int)      int_tree = new();
+   // | tree_node #(int) tn_123;
+   // | tree_node #(int) tn_234;
+   // | tree_node #(int) tn_345;
+   // | tree_node #(int) tn_456;
+   // | iterator #(int)  it;
    // | string s;
    // |
    // | tn_123 = int_tree.add_to_node( 123 );
@@ -345,12 +345,12 @@ class tree #( type T = int ) extends collection#( T );
    // | assert( s == "123 234 345 456 " );
    //---------------------------------------------------------------------------
 
-   virtual function iterator#( T ) get_breadth_first_iterator();
+   virtual function iterator #( T ) get_breadth_first_iterator();
 
  `ifdef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
-      tree_breadth_first_iterator#( T ) it = new();
+      tree_breadth_first_iterator #( T ) it = new();
  `else
-      tree_breadth_first_iterator#( T ) it = new( this );
+      tree_breadth_first_iterator #( T ) it = new( this );
  `endif
 
       return it;
@@ -364,7 +364,7 @@ class tree #( type T = int ) extends collection#( T );
    //   The last node. If the last tree node does not exist, returns *null*.
    //
    // Example:
-   // | tree#(int) int_tree = new();
+   // | tree #(int) int_tree = new();
    // | assert( int_tree.add( 123 ) );
    // | assert( int_tree.add( 234 ) );
    // |
@@ -373,7 +373,7 @@ class tree #( type T = int ) extends collection#( T );
 
    virtual function tree_node_type get_last_node();
       tree_node_type tn;
-      tree_breadth_first_iterator#(T) it = tree_breadth_first_iterator'( get_breadth_first_iterator() );
+      tree_breadth_first_iterator #(T) it = tree_breadth_first_iterator'( get_breadth_first_iterator() );
 
       while ( it.has_next() ) tn = it.next_node();
       return tn;
@@ -388,7 +388,7 @@ class tree #( type T = int ) extends collection#( T );
    //--------------------------------------------------------------------------
 
    virtual function void update_locations();
-      iterator#(T) it = get_iterator();
+      iterator #(T) it = get_iterator();
 
       while ( it.has_next() ) void'( it.next() ); // iterating updates the locations
    endfunction : update_locations
@@ -408,12 +408,12 @@ class tree #( type T = int ) extends collection#( T );
    //   The location string.
    //
    // Example:
-   // | tree#(int)      t = new();
-   // | tree_node#(int) tn_234;
-   // | tree_node#(int) tn_345;
-   // | tree_node#(int) tn_456;
-   // | tree_node#(int) tn_567;
-   // | tree_node#(int) root;
+   // | tree #(int)      t = new();
+   // | tree_node #(int) tn_234;
+   // | tree_node #(int) tn_345;
+   // | tree_node #(int) tn_456;
+   // | tree_node #(int) tn_567;
+   // | tree_node #(int) root;
    // |
    // | root = t.add_to_node( 123 );
    // | tn_234 = t.add_to_node( 234 );
@@ -434,10 +434,10 @@ class tree #( type T = int ) extends collection#( T );
    //---------------------------------------------------------------------------
 
    virtual function string get_location_name( tree_node_type tn );
-      decimal_min_formatter#(int) fmtr = decimal_min_formatter#(int)::get_instance();
+      decimal_min_formatter #(int) fmtr = decimal_min_formatter#(int)::get_instance();
 
       // update_locations(); // expensive
-      return { "[", queue#(int)::to_string( tn.location, .separator( "," ), .fmtr( fmtr ) ), "]" };
+      return { "[", queue #(int)::to_string( tn.location, .separator( "," ), .fmtr( fmtr ) ), "]" };
    endfunction : get_location_name
 
 endclass : tree
