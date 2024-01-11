@@ -12,10 +12,10 @@
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,7 +26,7 @@
 //==============================================================================
 
 `ifndef CL_DEFINE_SVH
-`define CL_DEFINE_SVH
+ `define CL_DEFINE_SVH
 
 // Title: Macro Definitions
 
@@ -95,26 +95,26 @@
 //                          supported. See Section 18 of IEEE 1800-2012.
 //------------------------------------------------------------------------------
 
-`ifdef CL_USE_INCISIVE
+ `ifdef CL_USE_INCISIVE
 //`undef CL_SUPPORT_BIT_STREAM_CASTING
- `undef CL_SUPPORT_FATAL_SEVERITY_TASK
-`endif
+  `undef CL_SUPPORT_FATAL_SEVERITY_TASK
+ `endif
 
-`ifdef CL_USE_MODELSIM
+ `ifdef CL_USE_MODELSIM
 //`define CL_SUPPORT_BIT_STREAM_CASTING
- `undef  CL_SUPPORT_COUNTBITS
- `define CL_SUPPORT_COUNTONES
- `define CL_SUPPORT_FATAL_SEVERITY_TASK
- `undef  CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
- `undef  CL_SUPPORT_POP_FROM_AN_EMPTY_QUEUE
- `undef  CL_SUPPORT_RANDOMIZE
-`endif
+  `undef  CL_SUPPORT_COUNTBITS
+  `define CL_SUPPORT_COUNTONES
+  `define CL_SUPPORT_FATAL_SEVERITY_TASK
+  `undef  CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
+  `undef  CL_SUPPORT_POP_FROM_AN_EMPTY_QUEUE
+  `undef  CL_SUPPORT_RANDOMIZE
+ `endif
 
-`ifdef CL_USE_QUESTA
-`endif
+ `ifdef CL_USE_QUESTA
+ `endif
 
-`ifdef CL_USE_VCS
-`endif
+ `ifdef CL_USE_VCS
+ `endif
 
 `endif //  `ifndef CL_DEFINE_SVH
 

@@ -27,7 +27,7 @@
 //==============================================================================
 
 `ifndef CL_UTIL_SVH
-`define CL_UTIL_SVH
+ `define CL_UTIL_SVH
 
 //------------------------------------------------------------------------------
 // Class: util
@@ -57,7 +57,7 @@ virtual class util;
 
    static function int unsigned num_oct_digits( int unsigned num_bin_digits );
       return ( num_bin_digits + 2 ) / 3;
-   endfunction: num_oct_digits
+   endfunction : num_oct_digits
 
    //---------------------------------------------------------------------------
    // Function: num_dec_digits
@@ -83,7 +83,7 @@ virtual class util;
       // value.                                             ^^^^^^^^^^
 
       return $rtoi( num_bin_digits * $log10( 2 ) ) + 1;
-   endfunction: num_dec_digits
+   endfunction : num_dec_digits
 
    //---------------------------------------------------------------------------
    // Function: num_hex_digits
@@ -103,27 +103,27 @@ virtual class util;
 
    static function int unsigned num_hex_digits( int unsigned num_bin_digits );
       return ( num_bin_digits + 3 ) / 4;
-   endfunction: num_hex_digits
+   endfunction : num_hex_digits
 
    //---------------------------------------------------------------------------
    // Function normalize
    //---------------------------------------------------------------------------
 
    static function void normalize( int len,
-				   ref int start_pos,
-				   ref int end_pos );
+                                   ref int start_pos,
+                                   ref int end_pos );
       if ( len == 0 ) begin
-	 start_pos = 0;
-	 end_pos   = 0;
-	 return;
+         start_pos = 0;
+         end_pos   = 0;
+         return;
       end
       if ( start_pos < 0 ) start_pos += len;
       if ( start_pos < 0 ) start_pos = 0;
       if ( end_pos < 0 )    end_pos += len;
       if ( end_pos >= len ) end_pos = len - 1;
-   endfunction: normalize
+   endfunction : normalize
 
-endclass: util
+endclass : util
 
 `endif //  `ifndef CL_UTIL_SVH
 

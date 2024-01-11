@@ -29,12 +29,12 @@
 // Title: Scramblers
 
 `ifndef CL_SCRAMBLER_SVH
-`define CL_SCRAMBLER_SVH
+ `define CL_SCRAMBLER_SVH
 
 //------------------------------------------------------------------------------
 // Class: scrambler
 //   Provides a function to scramble an input bit stream using Galois LFSR,
-//   which is also known as the internal LFSR. 
+//   which is also known as the internal LFSR.
 //
 // Parameters:
 //   T - (OPTIONAL) The type of a bit stream. The *T* must be *bit*, *logic*, or
@@ -71,7 +71,7 @@ class scrambler #( type T = bit, int DEGREE = 2 );
 
    function new( lfsr_type tap = 0 );
       this.tap = tap;
-   endfunction: new
+   endfunction : new
 
    //---------------------------------------------------------------------------
    // Function: scramble
@@ -87,22 +87,22 @@ class scrambler #( type T = bit, int DEGREE = 2 );
    //---------------------------------------------------------------------------
 
    virtual function bs_type scramble( bs_type bs,
-				      ref lfsr_type lfsr );
+                                      ref lfsr_type lfsr );
       T msb;
 
       scramble = new[ bs.size() ];
 
       tap[0] = 0; // force the first tap to be 0
       foreach ( bs[i] ) begin
-	 msb = lfsr[ DEGREE - 1 ];
-	 scramble[i] = bs[i] ^ msb;
-	 lfsr <<= 1;
-	 lfsr[0] = msb;
-	 if ( msb ) lfsr ^= tap;
+         msb = lfsr[ DEGREE - 1 ];
+         scramble[i] = bs[i] ^ msb;
+         lfsr <<= 1;
+         lfsr[0] = msb;
+         if ( msb ) lfsr ^= tap;
       end
-   endfunction: scramble
+   endfunction : scramble
 
-endclass: scrambler
+endclass : scrambler
 
 //------------------------------------------------------------------------------
 // Class: scrambler_2
@@ -127,9 +127,9 @@ class scrambler_2 #( type T = bit ) extends scrambler#(T, 2);
       // 111
       //  ^^
       super.new( 2'h3 );
-   endfunction: new
+   endfunction : new
 
-endclass: scrambler_2
+endclass : scrambler_2
 
 //------------------------------------------------------------------------------
 // Class: scrambler_3
@@ -154,9 +154,9 @@ class scrambler_3 #( type T = bit ) extends scrambler#(T, 3);
       // 1101
       //  ^^^
       super.new( 3'h5 );
-   endfunction: new
+   endfunction : new
 
-endclass: scrambler_3
+endclass : scrambler_3
 
 //------------------------------------------------------------------------------
 // Class: scrambler_4
@@ -181,9 +181,9 @@ class scrambler_4 #( type T = bit ) extends scrambler#(T, 4);
       // 1_1001
       //   ^^^^
       super.new( 4'h9 );
-   endfunction: new
+   endfunction : new
 
-endclass: scrambler_4
+endclass : scrambler_4
 
 //------------------------------------------------------------------------------
 // Class: scrambler_5
@@ -208,9 +208,9 @@ class scrambler_5 #( type T = bit ) extends scrambler#(T, 5);
       // 10_1001
       //  ^ ^^^^
       super.new( 5'h9 );
-   endfunction: new
+   endfunction : new
 
-endclass: scrambler_5
+endclass : scrambler_5
 
 //------------------------------------------------------------------------------
 // Class: scrambler_6
@@ -235,9 +235,9 @@ class scrambler_6 #( type T = bit ) extends scrambler#(T, 6);
       // 110_0001
       //  ^^ ^^^^
       super.new( 6'h21 );
-   endfunction: new
+   endfunction : new
 
-endclass: scrambler_6
+endclass : scrambler_6
 
 //------------------------------------------------------------------------------
 // Class: scrambler_7
@@ -262,9 +262,9 @@ class scrambler_7 #( type T = bit ) extends scrambler#(T, 7);
       // 1100_0001
       //  ^^^ ^^^^
       super.new( 7'h41 );
-   endfunction: new
+   endfunction : new
 
-endclass: scrambler_7
+endclass : scrambler_7
 
 //------------------------------------------------------------------------------
 // Class: scrambler_8
@@ -289,9 +289,9 @@ class scrambler_8 #( type T = bit ) extends scrambler#(T, 8);
       // 1_0111_0001
       //   ^^^^ ^^^^
       super.new( 8'h71 );
-   endfunction: new
+   endfunction : new
 
-endclass: scrambler_8
+endclass : scrambler_8
 
 //------------------------------------------------------------------------------
 // Class: scrambler_9
@@ -316,9 +316,9 @@ class scrambler_9 #( type T = bit ) extends scrambler#(T, 9);
       // 10_0010_0001
       //  ^ ^^^^ ^^^^
       super.new( 9'h021 );
-   endfunction: new
+   endfunction : new
 
-endclass: scrambler_9
+endclass : scrambler_9
 
 //------------------------------------------------------------------------------
 // Class: scrambler_10
@@ -343,9 +343,9 @@ class scrambler_10 #( type T = bit ) extends scrambler#(T, 10);
       // 100_1000_0001
       //  ^^ ^^^^ ^^^^
       super.new( 10'h081 );
-   endfunction: new
+   endfunction : new
 
-endclass: scrambler_10
+endclass : scrambler_10
 
 //------------------------------------------------------------------------------
 // Class: scrambler_11
@@ -370,9 +370,9 @@ class scrambler_11 #( type T = bit ) extends scrambler#(T, 11);
       // 1010_0000_0001
       //  ^^^ ^^^^ ^^^^
       super.new( 11'h201 );
-   endfunction: new
+   endfunction : new
 
-endclass: scrambler_11
+endclass : scrambler_11
 
 //------------------------------------------------------------------------------
 // Class: scrambler_12
@@ -397,9 +397,9 @@ class scrambler_12 #( type T = bit ) extends scrambler#(T, 12);
       // 1_1100_0001_0001
       //   ^^^^ ^^^^ ^^^^
       super.new( 12'hC11 );
-   endfunction: new
+   endfunction : new
 
-endclass: scrambler_12
+endclass : scrambler_12
 
 //------------------------------------------------------------------------------
 // Class: scrambler_13
@@ -424,9 +424,9 @@ class scrambler_13 #( type T = bit ) extends scrambler#(T, 13);
       // 11_1001_0000_0001
       //  ^ ^^^^ ^^^^ ^^^^
       super.new( 13'h1901 );
-   endfunction: new
+   endfunction : new
 
-endclass: scrambler_13
+endclass : scrambler_13
 
 //------------------------------------------------------------------------------
 // Class: scrambler_14
@@ -451,9 +451,9 @@ class scrambler_14 #( type T = bit ) extends scrambler#(T, 14);
       // 111_0000_0000_0101
       //  ^^ ^^^^ ^^^^ ^^^^
       super.new( 14'h3005 );
-   endfunction: new
+   endfunction : new
 
-endclass: scrambler_14
+endclass : scrambler_14
 
 //------------------------------------------------------------------------------
 // Class: scrambler_15
@@ -478,9 +478,9 @@ class scrambler_15 #( type T = bit ) extends scrambler#(T, 15);
       // 1100_0000_0000_0001
       //  ^^^ ^^^^ ^^^^ ^^^^
       super.new( 15'h4001 );
-   endfunction: new
+   endfunction : new
 
-endclass: scrambler_15
+endclass : scrambler_15
 
 //------------------------------------------------------------------------------
 // Class: scrambler_16
@@ -505,9 +505,9 @@ class scrambler_16 #( type T = bit ) extends scrambler#(T, 16);
       // 1_0110_1000_0000_0001
       //   ^^^^ ^^^^ ^^^^ ^^^^
       super.new( 16'h6801 );
-   endfunction: new
+   endfunction : new
 
-endclass: scrambler_16
+endclass : scrambler_16
 
 //------------------------------------------------------------------------------
 // Class: scrambler_17
@@ -532,9 +532,9 @@ class scrambler_17 #( type T = bit ) extends scrambler#(T, 17);
       // 10_0100_0000_0000_0001
       //  ^ ^^^^ ^^^^ ^^^^ ^^^^
       super.new( 17'h0_4001 );
-   endfunction: new
+   endfunction : new
 
-endclass: scrambler_17
+endclass : scrambler_17
 
 //------------------------------------------------------------------------------
 // Class: scrambler_18
@@ -559,9 +559,9 @@ class scrambler_18 #( type T = bit ) extends scrambler#(T, 18);
       // 100_0000_1000_0000_0001
       //  ^^ ^^^^ ^^^^ ^^^^ ^^^^
       super.new( 18'h0_0801 );
-   endfunction: new
+   endfunction : new
 
-endclass: scrambler_18
+endclass : scrambler_18
 
 //------------------------------------------------------------------------------
 // Class: scrambler_19
@@ -586,9 +586,9 @@ class scrambler_19 #( type T = bit ) extends scrambler#(T, 19);
       // 1110_0100_0000_0000_0001
       //  ^^^ ^^^^ ^^^^ ^^^^ ^^^^
       super.new( 19'h6_4001 );
-   endfunction: new
+   endfunction : new
 
-endclass: scrambler_19
+endclass : scrambler_19
 
 `endif //  `ifndef CL_SCRAMBLE_SVH
 

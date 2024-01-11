@@ -27,7 +27,7 @@
 //==============================================================================
 
 `ifndef CL_ROUTE_SVH
-`define CL_ROUTE_SVH
+ `define CL_ROUTE_SVH
 
 //------------------------------------------------------------------------------
 // Class: route
@@ -45,7 +45,7 @@ class route #( type T = int ) extends collection#( T );
    //---------------------------------------------------------------------------
 
    typedef route_node#(T) route_node_type;
-   
+
    //--------------------------------------------------------------------------
    // Typedef: route_type
    //   The shorthand of the <route> type specialized with type *T*.
@@ -53,9 +53,9 @@ class route #( type T = int ) extends collection#( T );
 
    typedef route#(T) route_type;
 
-`ifdef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
-`else  // !`ifdef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
-`endif // !`ifdef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
+ `ifdef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
+ `else  // !`ifdef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
+ `endif // !`ifdef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
 
    //---------------------------------------------------------------------------
    // Property: start
@@ -69,7 +69,7 @@ class route #( type T = int ) extends collection#( T );
    //   Creates a new route.
    //
    // Argument:
-   //   c    - (OPTIONAL) A collection whose elements are to be added to this 
+   //   c    - (OPTIONAL) A collection whose elements are to be added to this
    //          route.
    //   cmp - (OPTIONAL) A strategy object used to compare the elements of type
    //         *T*. If not specified or *null*, <comparator> *#(T)* is used. The
@@ -83,14 +83,14 @@ class route #( type T = int ) extends collection#( T );
    //---------------------------------------------------------------------------
 
    function new( collection#(T)   c = null,
-		 comparator#(T) cmp = null,
-		 formatter#(T) fmtr = null );
+                 comparator#(T) cmp = null,
+                 formatter#(T) fmtr = null );
       if ( cmp == null ) this.cmp = comparator#(T)::get_instance();
       else               this.cmp = cmp;
       if ( fmtr == null ) this.fmtr = hex_formatter#(T)::get_instance();
       else                this.fmtr = fmtr;
       if ( c ) void'( this.add_all( c ) );
-   endfunction: new
+   endfunction : new
 
    //---------------------------------------------------------------------------
    // Function: add
@@ -123,7 +123,7 @@ class route #( type T = int ) extends collection#( T );
 
    virtual function bit add( T e );
       return add_to_node( e ) != null;
-   endfunction: add
+   endfunction : add
 
    //---------------------------------------------------------------------------
    // Function: add_to_node
@@ -139,7 +139,7 @@ class route #( type T = int ) extends collection#( T );
    //
    // Returns:
    //   Newly added <route_node>.
-   //   
+   //
    // Example:
    // | route#(int)      int_route = new();
    // | route_node#(int) rn_123;
@@ -159,14 +159,14 @@ class route #( type T = int ) extends collection#( T );
 
    virtual function route_node_type add_to_node( T e, route_node_type node = null );
       if ( node ) begin
-	 return node.add( e );
+         return node.add( e );
       end else if ( start ) begin
-	 return start.add( e );
+         return start.add( e );
       end else begin
-	 start = new( e );
-	 return start;
+         start = new( e );
+         return start;
       end
-   endfunction: add_to_node
+   endfunction : add_to_node
 
    //---------------------------------------------------------------------------
    // Function: connect
@@ -202,10 +202,10 @@ class route #( type T = int ) extends collection#( T );
    // | //                         \__ rn
    //---------------------------------------------------------------------------
 
-   virtual function route_node_type connect( route_node_type from_node, 
-					     route_node_type to_node );
+   virtual function route_node_type connect( route_node_type from_node,
+                                             route_node_type to_node );
       return from_node.connect( to_node );
-   endfunction: connect
+   endfunction : connect
 
    //---------------------------------------------------------------------------
    // Function: clear
@@ -226,7 +226,7 @@ class route #( type T = int ) extends collection#( T );
 
    virtual function void clear();
       start = null;
-   endfunction: clear
+   endfunction : clear
 
    //---------------------------------------------------------------------------
    // Function: clone
@@ -250,7 +250,7 @@ class route #( type T = int ) extends collection#( T );
       route_type t = new();
       t.start = start;
       return t;
-   endfunction: clone
+   endfunction : collection
 
    //---------------------------------------------------------------------------
    // Function: is_empty
@@ -269,7 +269,7 @@ class route #( type T = int ) extends collection#( T );
 
    virtual function bit is_empty();
       return start == null;
-   endfunction: is_empty
+   endfunction : is_empty
 
    //---------------------------------------------------------------------------
    // Function: get_iterator
@@ -303,7 +303,7 @@ class route #( type T = int ) extends collection#( T );
 
    virtual function iterator#( T ) get_iterator();
       return get_breadth_first_iterator();
-   endfunction: get_iterator
+   endfunction : iterator
 
    //---------------------------------------------------------------------------
    // Function: get_breadth_first_iterator
@@ -337,14 +337,14 @@ class route #( type T = int ) extends collection#( T );
 
    virtual function iterator#( T ) get_breadth_first_iterator();
 
-`ifdef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
+ `ifdef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
       route_breadth_first_iterator#( T ) it = new();
-`else
+ `else
       route_breadth_first_iterator#( T ) it = new( this );
-`endif      
+ `endif
 
       return it;
-   endfunction: get_breadth_first_iterator
+   endfunction : iterator
 
    //---------------------------------------------------------------------------
    // Function: get_last_node
@@ -367,9 +367,9 @@ class route #( type T = int ) extends collection#( T );
 
       while ( it.has_next() ) rn = it.next_node();
       return rn;
-   endfunction: get_last_node
+   endfunction : get_last_node
 
-endclass: route
+endclass : route
 
 `endif //  `ifndef CL_ROUTE_SVH
 

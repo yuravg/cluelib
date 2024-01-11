@@ -12,10 +12,10 @@
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,7 +26,7 @@
 //==============================================================================
 
 `ifndef CL_BIT_STREAM_SVH
-`define CL_BIT_STREAM_SVH
+ `define CL_BIT_STREAM_SVH
 
 //------------------------------------------------------------------------------
 // Class: bit_stream
@@ -69,15 +69,15 @@ virtual class bit_stream #( type T = bit ) extends data_stream #( T, 1 );
    //---------------------------------------------------------------------------
 
    static function bs_type alternate( int unsigned length,
-				      T init_value = 0,
-				      bit randomize_init_value = 0 );
+                                      T init_value = 0,
+                                      bit randomize_init_value = 0 );
       return sequential( length, init_value, 1, randomize_init_value );
-   endfunction: alternate
+   endfunction : alternate
 
    //---------------------------------------------------------------------------
    // Function: count_zeros
    //    (STATIC) Counts the number of bit-stream items having value 0.
-   // 
+   //
    // Argument:
    //   bs - A bit stream.
    //
@@ -96,12 +96,12 @@ virtual class bit_stream #( type T = bit ) extends data_stream #( T, 1 );
       // not a bit-vector.
 
       if ( text::is_single_bit_type( $typename( T ) ) ) begin
-	 count_zeros = 0;
-	 foreach ( bs[i] ) if ( bs[i] === '0 ) count_zeros++;
+         count_zeros = 0;
+         foreach ( bs[i] ) if ( bs[i] === '0 ) count_zeros++;
       end else begin
-	 return -1;
+         return -1;
       end
-   endfunction: count_zeros
+   endfunction : count_zeros
 
    //---------------------------------------------------------------------------
    // Function: count_ones
@@ -125,12 +125,12 @@ virtual class bit_stream #( type T = bit ) extends data_stream #( T, 1 );
       // bit-vector.
 
       if ( text::is_single_bit_type( $typename( T ) ) ) begin
-	 count_ones = 0;
-	 foreach ( bs[i] ) if ( bs[i] === '1 ) count_ones++;
+         count_ones = 0;
+         foreach ( bs[i] ) if ( bs[i] === '1 ) count_ones++;
       end else begin
-	 return -1;
+         return -1;
       end
-   endfunction: count_ones
+   endfunction : count_ones
 
    //---------------------------------------------------------------------------
    // Function: count_unknowns
@@ -154,12 +154,12 @@ virtual class bit_stream #( type T = bit ) extends data_stream #( T, 1 );
       // bit-vector.
 
       if ( text::is_single_bit_type( $typename( T ) ) ) begin
-	 count_unknowns = 0;
-	 foreach ( bs[i] ) if ( bs[i] === 'x ) count_unknowns++;
+         count_unknowns = 0;
+         foreach ( bs[i] ) if ( bs[i] === 'x ) count_unknowns++;
       end else begin
-	 return -1;
+         return -1;
       end
-   endfunction: count_unknowns
+   endfunction : count_unknowns
 
    //---------------------------------------------------------------------------
    // Function: count_hizs
@@ -183,14 +183,14 @@ virtual class bit_stream #( type T = bit ) extends data_stream #( T, 1 );
       // bit-vector.
 
       if ( text::is_single_bit_type( $typename( T ) ) ) begin
-	 count_hizs = 0;
-	 foreach ( bs[i] ) if ( bs[i] === 'z ) count_hizs++;
+         count_hizs = 0;
+         foreach ( bs[i] ) if ( bs[i] === 'z ) count_hizs++;
       end else begin
-	 return -1;
+         return -1;
       end
-   endfunction: count_hizs
+   endfunction : count_hizs
 
-endclass: bit_stream
+endclass : bit_stream
 
 `endif //  `ifndef CL_BIT_STREAM_SVH
 

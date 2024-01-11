@@ -12,10 +12,10 @@
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,11 +26,11 @@
 //==============================================================================
 
 `ifndef CL_DYNAMIC_ARRAY_SVH
-`define CL_DYNAMIC_ARRAY_SVH
+ `define CL_DYNAMIC_ARRAY_SVH
 
 //------------------------------------------------------------------------------
 // Class: dynamic_array
-//   A parameterized class that manages a dynamic array. 
+//   A parameterized class that manages a dynamic array.
 //
 // Parameters:
 //   T - (OPTIONAL) The type of a dynamic array. The default type is *bit*.
@@ -91,7 +91,7 @@ virtual class dynamic_array #( type T = bit, int SIZE = 1 );
    //             positioned to the index 0 of the dynamic array. If 1, the
    //             elements are positioned in the reverse order. The default is
    //             0.
-   //             
+   //
    // Returns:
    //   A dynamic array converted from *ua*.
    //
@@ -108,11 +108,11 @@ virtual class dynamic_array #( type T = bit, int SIZE = 1 );
    //---------------------------------------------------------------------------
 
    static function da_type from_unpacked_array( const ref ua_type ua,
-						input bit reverse = 0 );
+                                                input bit reverse = 0 );
       from_unpacked_array = new[ $size( ua ) ];
       common_array#( T, ua_type, da_type )::a_to_a( ua, from_unpacked_array,
-						    reverse );
-   endfunction: from_unpacked_array
+                                                    reverse );
+   endfunction : from_unpacked_array
 
    //---------------------------------------------------------------------------
    // Function: to_unpacked_array
@@ -136,16 +136,16 @@ virtual class dynamic_array #( type T = bit, int SIZE = 1 );
    // |
    // | assert( dynamic_array#(bit,8)::to_unpacked_array( da                ) == ua0 );
    // | assert( dynamic_array#(bit,8)::to_unpacked_array( da, .reverse( 1 ) ) == ua1 );
-   // 
+   //
    // See Also:
    //   <da_to_ua>
    //---------------------------------------------------------------------------
 
    static function ua_type to_unpacked_array( const ref da_type da,
-					      input bit reverse = 0 );
-      common_array#( T, da_type, ua_type )::a_to_a( da, to_unpacked_array, 
-						    reverse );
-   endfunction: to_unpacked_array
+                                              input bit reverse = 0 );
+      common_array#( T, da_type, ua_type )::a_to_a( da, to_unpacked_array,
+                                                    reverse );
+   endfunction : to_unpacked_array
 
    //---------------------------------------------------------------------------
    // Function: from_queue
@@ -175,10 +175,10 @@ virtual class dynamic_array #( type T = bit, int SIZE = 1 );
    //---------------------------------------------------------------------------
 
    static function da_type from_queue( const ref q_type q,
-				       input bit reverse = 0 );
+                                       input bit reverse = 0 );
       from_queue = new[ q.size() ];
       common_array#( T, q_type, da_type )::a_to_a( q, from_queue, reverse );
-   endfunction: from_queue
+   endfunction : from_queue
 
    //---------------------------------------------------------------------------
    // Function: to_queue
@@ -207,9 +207,9 @@ virtual class dynamic_array #( type T = bit, int SIZE = 1 );
    //---------------------------------------------------------------------------
 
    static function q_type to_queue( const ref da_type da,
-				    input bit reverse = 0 );
+                                    input bit reverse = 0 );
       common_array#( T, da_type, q_type )::a_to_q( da, to_queue, reverse );
-   endfunction: to_queue
+   endfunction : to_queue
 
    //---------------------------------------------------------------------------
    // Function: ua_to_da
@@ -241,17 +241,17 @@ virtual class dynamic_array #( type T = bit, int SIZE = 1 );
    // |
    // | dynamic_array#(bit,8)::ua_to_da( ua, da, .reverse( 1 ) );
    // | assert( da == da1 );
-   // 
+   //
    // See Also:
    //   <from_unpacked_array>
    //---------------------------------------------------------------------------
 
    static function void ua_to_da( const ref ua_type ua,
-				  ref da_type da,
-				  input bit reverse = 0 );
+                                  ref da_type da,
+                                  input bit reverse = 0 );
       common_array#( T, ua_type, da_type )::a_to_a( ua, da, reverse );
-   endfunction: ua_to_da
-   
+   endfunction : ua_to_da
+
    //---------------------------------------------------------------------------
    // Function: da_to_ua
    //   (STATIC) Converts a dynamic array of type *T* to an unpacked array of
@@ -289,11 +289,11 @@ virtual class dynamic_array #( type T = bit, int SIZE = 1 );
    //---------------------------------------------------------------------------
 
    static function void da_to_ua( const ref da_type da,
-				  ref ua_type ua,
-				  input bit reverse = 0 );
+                                  ref ua_type ua,
+                                  input bit reverse = 0 );
       common_array#( T, da_type, ua_type )::a_to_a( da, ua, reverse );
-   endfunction: da_to_ua
-   
+   endfunction : da_to_ua
+
    //---------------------------------------------------------------------------
    // Function: q_to_da
    //   (STATIC) Converts a queue of type *T* to a dynamic array of the same
@@ -327,10 +327,10 @@ virtual class dynamic_array #( type T = bit, int SIZE = 1 );
    //---------------------------------------------------------------------------
 
    static function void q_to_da( const ref q_type q,
-				 ref da_type da,
-				 input bit reverse = 0 );
+                                 ref da_type da,
+                                 input bit reverse = 0 );
       common_array#( T, q_type, da_type )::a_to_a( q, da, reverse );
-   endfunction: q_to_da
+   endfunction : q_to_da
 
    //---------------------------------------------------------------------------
    // Function: da_to_q
@@ -362,17 +362,17 @@ virtual class dynamic_array #( type T = bit, int SIZE = 1 );
    // | q.delete();
    // | dynamic_array#(bit)::da_to_q( da, q, .reverse( 1 ) );
    // | assert( q == q1 );
-   // 
+   //
    // See Also:
    //   <to_queue>
    //---------------------------------------------------------------------------
 
    static function void da_to_q( const ref da_type da,
-				 ref q_type q,
-				 input bit reverse = 0 );
+                                 ref q_type q,
+                                 input bit reverse = 0 );
       common_array#( T, da_type, q_type )::a_to_q( da, q, reverse );
-   endfunction: da_to_q
-   
+   endfunction : da_to_q
+
    //---------------------------------------------------------------------------
    // Function: init
    //   (STATIC) Initializes the each element of the given dynamic array to the
@@ -395,7 +395,7 @@ virtual class dynamic_array #( type T = bit, int SIZE = 1 );
 
    static function void init( ref da_type da, input T val );
       common_array#( T, da_type )::init( da, val );
-   endfunction: init
+   endfunction : init
 
    //---------------------------------------------------------------------------
    // Function: reverse
@@ -417,7 +417,7 @@ virtual class dynamic_array #( type T = bit, int SIZE = 1 );
 
    static function void reverse( ref da_type da );
       common_array#( T, da_type )::reverse( da );
-   endfunction: reverse
+   endfunction : reverse
 
    //---------------------------------------------------------------------------
    // Function: split
@@ -455,24 +455,24 @@ virtual class dynamic_array #( type T = bit, int SIZE = 1 );
    //---------------------------------------------------------------------------
 
    static function void split( da_type da,
-			       ref da_type da0,
-			       ref da_type da1,
-			       input bit pad = 0 );
+                               ref da_type da0,
+                               ref da_type da1,
+                               input bit pad = 0 );
       int da_size = da.size();
 
       if ( da_size % 2 == 0 ) begin // even
-	 da0 = new[ da_size / 2 ];
-	 da1 = new[ da_size / 2 ];
+         da0 = new[ da_size / 2 ];
+         da1 = new[ da_size / 2 ];
       end else if ( pad ) begin
-	 da0 = new[ ( da_size + 1 ) / 2 ];
-	 da1 = new[ ( da_size + 1 ) / 2 ];
+         da0 = new[ ( da_size + 1 ) / 2 ];
+         da1 = new[ ( da_size + 1 ) / 2 ];
       end else begin
-	 da0 = new[ ( da_size + 1 ) / 2 ];
-	 da1 = new[ da_size / 2 ];
+         da0 = new[ ( da_size + 1 ) / 2 ];
+         da1 = new[ da_size / 2 ];
       end
       for ( int i = 0; i < da.size(); i += 2 ) da0[i/2] = da[i];
       for ( int i = 1; i < da.size(); i += 2 ) da1[i/2] = da[i];
-   endfunction: split      
+   endfunction : split
 
    //---------------------------------------------------------------------------
    // Function: merge
@@ -509,51 +509,51 @@ virtual class dynamic_array #( type T = bit, int SIZE = 1 );
    //---------------------------------------------------------------------------
 
    static function da_type merge( da_type da0,
-				  da_type da1,
-				  bit truncate = 0 );
+                                  da_type da1,
+                                  bit truncate = 0 );
       int da0_size = da0.size();
       int da1_size = da1.size();
 
       if ( da0_size == da1_size ) begin
-	 merge = new[ da0_size + da1_size ];
-	 for ( int i = 0; i < da0_size; i++ ) begin
-	    merge[i*2  ] = da0[i];
-	    merge[i*2+1] = da1[i];
-	 end
+         merge = new[ da0_size + da1_size ];
+         for ( int i = 0; i < da0_size; i++ ) begin
+            merge[i*2  ] = da0[i];
+            merge[i*2+1] = da1[i];
+         end
       end else if ( da0_size < da1_size ) begin
-	 if ( truncate ) begin
-	    merge = new[ da0_size * 2 ];
-	    for ( int i = 0; i < da0_size; i++ ) begin
-	       merge[i*2  ] = da0[i];
-	       merge[i*2+1] = da1[i];
-	    end
-	 end else begin
-	    merge = new[ da0_size + da1_size ];
-	    for ( int i = 0; i < da0_size; i++ ) begin
-	       merge[i*2  ] = da0[i];
-	       merge[i*2+1] = da1[i];
-	    end
-	    for ( int i = 0; i < ( da1_size - da0_size ); i++ )
-	      merge[ da0_size * 2 + i ] = da1[ da0_size + i ];
-	 end // else: !if( truncate )
+         if ( truncate ) begin
+            merge = new[ da0_size * 2 ];
+            for ( int i = 0; i < da0_size; i++ ) begin
+               merge[i*2  ] = da0[i];
+               merge[i*2+1] = da1[i];
+            end
+         end else begin
+            merge = new[ da0_size + da1_size ];
+            for ( int i = 0; i < da0_size; i++ ) begin
+               merge[i*2  ] = da0[i];
+               merge[i*2+1] = da1[i];
+            end
+            for ( int i = 0; i < ( da1_size - da0_size ); i++ )
+              merge[ da0_size * 2 + i ] = da1[ da0_size + i ];
+         end // else: !if( truncate )
       end else begin // da0_size > da1_size
-	 if ( truncate ) begin
-	    merge = new[ da1_size * 2 ];
-	    for ( int i = 0; i < da1_size; i++ ) begin
-	       merge[i*2  ] = da0[i];
-	       merge[i*2+1] = da1[i];
-	    end
-	 end else begin
-	    merge = new[ da0_size + da1_size ];
-	    for ( int i = 0; i < da1_size; i++ ) begin
-	       merge[i*2  ] = da0[i];
-	       merge[i*2+1] = da1[i];
-	    end
-	    for ( int i = 0; i < ( da0_size - da1_size ); i++ )
-	      merge[ da1_size * 2 + i ] = da1[ da1_size + i ];
-	 end // else: !if( truncate )
+         if ( truncate ) begin
+            merge = new[ da1_size * 2 ];
+            for ( int i = 0; i < da1_size; i++ ) begin
+               merge[i*2  ] = da0[i];
+               merge[i*2+1] = da1[i];
+            end
+         end else begin
+            merge = new[ da0_size + da1_size ];
+            for ( int i = 0; i < da1_size; i++ ) begin
+               merge[i*2  ] = da0[i];
+               merge[i*2+1] = da1[i];
+            end
+            for ( int i = 0; i < ( da0_size - da1_size ); i++ )
+              merge[ da1_size * 2 + i ] = da1[ da1_size + i ];
+         end // else: !if( truncate )
       end
-   endfunction: merge
+   endfunction : merge
 
    //---------------------------------------------------------------------------
    // Function: concat
@@ -580,15 +580,15 @@ virtual class dynamic_array #( type T = bit, int SIZE = 1 );
    //---------------------------------------------------------------------------
 
    static function da_type concat( da_type da0,
-				   da_type da1 );
+                                   da_type da1 );
       int da0_size = da0.size();
       int da1_size = da1.size();
       da_type da = new[ da0_size + da1_size ] ( da0 );
 
       for ( int i = 0; i < da1_size; i++ )
-	da[ da0_size + i ] = da1[i];
+        da[ da0_size + i ] = da1[i];
       return da;
-   endfunction: concat
+   endfunction : concat
 
    //---------------------------------------------------------------------------
    // Function: extract
@@ -614,13 +614,13 @@ virtual class dynamic_array #( type T = bit, int SIZE = 1 );
    //---------------------------------------------------------------------------
 
    static function da_type extract( da_type da,
-				    int from_index = 0,
-				    int to_index = -1 );
+                                    int from_index = 0,
+                                    int to_index = -1 );
       util::normalize( da.size(), from_index, to_index );
       extract = new[ to_index - from_index + 1 ];
       for ( int i = from_index; i <= to_index; i++ )
-	extract[ i - from_index ] = da[i];
-   endfunction: extract
+        extract[ i - from_index ] = da[i];
+   endfunction : extract
 
    //---------------------------------------------------------------------------
    // Function: append
@@ -644,10 +644,10 @@ virtual class dynamic_array #( type T = bit, int SIZE = 1 );
 
    static function da_type append( da_type da, T e );
       int da_size = da.size();
-      
+
       append = new[ da_size + 1 ]( da );
       append[da_size] = e;
-   endfunction: append
+   endfunction : append
 
    //---------------------------------------------------------------------------
    // Function: compare
@@ -680,21 +680,21 @@ virtual class dynamic_array #( type T = bit, int SIZE = 1 );
    // | //                           |<------>|
    // | //                           2        5
    // | assert( dynamic_array#(bit)::compare( da1, da2 ) == 0 );
-   // | assert( dynamic_array#(bit)::compare( da1, da2, 
-   // |         .from_index1( 2 ), .to_index1( 5 ), 
+   // | assert( dynamic_array#(bit)::compare( da1, da2,
+   // |         .from_index1( 2 ), .to_index1( 5 ),
    // |         .from_index2( 2 ), .to_index2( 5 ) ) == 1 );
    //---------------------------------------------------------------------------
 
    static function bit compare( const ref da_type da1,
-				const ref da_type da2,
-				input int from_index1 = 0, 
-				int to_index1   = -1,
-				int from_index2 = 0, 
-				int to_index2   = -1,
-				comparator#(T) cmp = null );
+                                const ref da_type da2,
+                                input int from_index1 = 0,
+                                int to_index1   = -1,
+                                int from_index2 = 0,
+                                int to_index2   = -1,
+                                comparator#(T) cmp = null );
       return common_array#( T, da_type, da_type )::
-	compare( da1, da2, from_index1, to_index1, from_index2, to_index2, cmp );
-   endfunction: compare
+        compare( da1, da2, from_index1, to_index1, from_index2, to_index2, cmp );
+   endfunction : compare
 
    //---------------------------------------------------------------------------
    // Function: clone
@@ -714,7 +714,7 @@ virtual class dynamic_array #( type T = bit, int SIZE = 1 );
 
    static function da_type clone( da_type da );
       clone = da; // same as new[ da.size() ]( da ); see LRM7.6
-   endfunction: clone
+   endfunction : clone
 
    //---------------------------------------------------------------------------
    // Function: to_string
@@ -743,15 +743,15 @@ virtual class dynamic_array #( type T = bit, int SIZE = 1 );
    //---------------------------------------------------------------------------
 
    static function string to_string( const ref da_type da,
-				     input string separator = " ",
-				     int from_index = 0,
-				     int to_index = -1,
-				     formatter#(T) fmtr = null );
+                                     input string separator = " ",
+                                     int from_index = 0,
+                                     int to_index = -1,
+                                     formatter#(T) fmtr = null );
       return common_array#(T, da_type )::
-	to_string( da, separator, from_index, to_index, fmtr );
-   endfunction: to_string
+        to_string( da, separator, from_index, to_index, fmtr );
+   endfunction : to_string
 
-endclass: dynamic_array
+endclass : dynamic_array
 
 `endif //  `ifndef CL_DYNAMIC_ARRAY_SVH
 

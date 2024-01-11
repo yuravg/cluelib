@@ -27,7 +27,7 @@
 //==============================================================================
 
 `ifndef CL_CHOICE_SVH
-`define CL_CHOICE_SVH
+ `define CL_CHOICE_SVH
 
 //------------------------------------------------------------------------------
 // Class: choice
@@ -58,13 +58,13 @@ virtual class choice #( type T = int );
 
    static function T min( T x, T y, comparator#(T) cmp = null );
       if ( cmp ) begin
-	 if ( cmp.lt( x, y ) ) return x;
-	 else                  return y;
+         if ( cmp.lt( x, y ) ) return x;
+         else                  return y;
       end else begin
-	 if ( default_cmp.lt( x, y ) ) return x;
-	 else                          return y;
+         if ( default_cmp.lt( x, y ) ) return x;
+         else                          return y;
       end
-   endfunction: min
+   endfunction : min
 
    //---------------------------------------------------------------------------
    // Function: max
@@ -83,15 +83,15 @@ virtual class choice #( type T = int );
 
    static function T max( T x, T y, comparator#(T) cmp = null );
       if ( cmp ) begin
-	 if ( cmp.gt( x, y ) ) return x;
-	 else                  return y;
+         if ( cmp.gt( x, y ) ) return x;
+         else                  return y;
       end else begin
-	 if ( default_cmp.gt( x, y ) ) return x;
-	 else                          return y;
+         if ( default_cmp.gt( x, y ) ) return x;
+         else                          return y;
       end
-   endfunction: max
+   endfunction : max
 
-endclass: choice
+endclass : choice
 
 `endif //  `ifndef CL_CHOICE_SVH
 

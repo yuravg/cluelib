@@ -27,7 +27,7 @@
 //==============================================================================
 
 `ifndef CL_COLLECTION_SVH
-`define CL_COLLECTION_SVH
+ `define CL_COLLECTION_SVH
 
 //------------------------------------------------------------------------------
 // Class: collection
@@ -50,7 +50,7 @@ virtual class collection#( type T = int );
    // Property: cmp
    //   (PROTECTED) A comparator to compare the elements of type *T*.
    //---------------------------------------------------------------------------
-   
+
    protected comparator#( T ) cmp = null;
 
    //---------------------------------------------------------------------------
@@ -58,7 +58,7 @@ virtual class collection#( type T = int );
    //   (PROTECTED) An object that provides a function to convert the element of
    //   type *T* to a string.
    //---------------------------------------------------------------------------
-   
+
    protected formatter#( T ) fmtr = null;
 
    //---------------------------------------------------------------------------
@@ -69,21 +69,21 @@ virtual class collection#( type T = int );
    //   e - An element to be added.
    //
    // Returns:
-   //   If this collection changed as a result of the call, 1 is returned. 
+   //   If this collection changed as a result of the call, 1 is returned.
    //   Otherwise, 0 is returned.
    //---------------------------------------------------------------------------
 
    virtual function bit add( T e );
 
-`ifdef CL_SUPPORT_FATAL_SEVERITY_TASK
+ `ifdef CL_SUPPORT_FATAL_SEVERITY_TASK
       $fatal( 2, "add() is not supported" );
-`else
+ `else
       $display( "add() is not supported" );
       $finish( 2 );
-`endif
+ `endif
 
       return 0;
-   endfunction: add
+   endfunction : add
 
    //---------------------------------------------------------------------------
    // Function: add_all
@@ -94,7 +94,7 @@ virtual class collection#( type T = int );
    //   c - A collection containing elements to be added to this collection.
    //
    // Returns:
-   //   If this collection changed as a result of the call, 1 is returned. 
+   //   If this collection changed as a result of the call, 1 is returned.
    //   Otherwise, 0 is returned.
    //---------------------------------------------------------------------------
 
@@ -104,7 +104,7 @@ virtual class collection#( type T = int );
 
       while ( it.has_next() ) result |= this.add( it.next() );
       return result;
-   endfunction: add_all
+   endfunction : add_all
 
    //---------------------------------------------------------------------------
    // Function: clear
@@ -117,12 +117,12 @@ virtual class collection#( type T = int );
    virtual function void clear();
       iterator#( T ) it = this.get_iterator();
       T item;
-      
+
       while ( it.has_next() ) begin
-	 item = it.next();
-	 it.remove();
+         item = it.next();
+         it.remove();
       end
-   endfunction: clear
+   endfunction : clear
 
    //---------------------------------------------------------------------------
    // Function: contains
@@ -135,17 +135,17 @@ virtual class collection#( type T = int );
    //   If this collection contains the specified element, returns 1. Otherwise,
    //   returns 0.
    //---------------------------------------------------------------------------
-   
+
    virtual function bit contains( T e );
       iterator#( T ) it = this.get_iterator();
       while ( it.has_next() ) begin
-	 T item = it.next();
+         T item = it.next();
 
-	 if ( cmp.eq( e, item ) ) return 1;
+         if ( cmp.eq( e, item ) ) return 1;
       end
       return 0;
-   endfunction: contains
-   
+   endfunction : contains
+
    //---------------------------------------------------------------------------
    // Function: contains_all
    //   (VIRTUAL) Returns 1 if this collection contains all of the elements in
@@ -162,11 +162,11 @@ virtual class collection#( type T = int );
    virtual function bit contains_all( collection#( T ) c );
       iterator #( T ) it = c.get_iterator();
       while ( it.has_next() ) begin
-	 if ( this.contains( it.next() ) == 0 ) return 0;
+         if ( this.contains( it.next() ) == 0 ) return 0;
       end
       return 1;
-   endfunction: contains_all
-   
+   endfunction : contains_all
+
    //---------------------------------------------------------------------------
    // Function: is_empty
    //   (VIRTUAL) Returns 1 if this collection contains no elements.
@@ -178,7 +178,7 @@ virtual class collection#( type T = int );
 
    virtual function bit is_empty();
       return this.size() == 0;
-   endfunction: is_empty
+   endfunction : is_empty
 
    //---------------------------------------------------------------------------
    // Function: get_iterator
@@ -199,21 +199,21 @@ virtual class collection#( type T = int );
    //   e - An element to be removed.
    //
    // Returns:
-   //   If this collection changed as a result of the call, 1 is returned. 
+   //   If this collection changed as a result of the call, 1 is returned.
    //   Otherwise, 0 is returned.
    //---------------------------------------------------------------------------
 
    virtual function bit remove( T e );
       iterator#( T ) it = this.get_iterator();
       while ( it.has_next() ) begin
-	 T item = it.next();
-	 if ( cmp.eq( e, item ) ) begin
-	    it.remove();
-	    return 1;
-	 end
+         T item = it.next();
+         if ( cmp.eq( e, item ) ) begin
+            it.remove();
+            return 1;
+         end
       end
       return 0;
-   endfunction: remove
+   endfunction : remove
 
    //---------------------------------------------------------------------------
    // Function: remove_all
@@ -224,22 +224,22 @@ virtual class collection#( type T = int );
    //   c - A collection containing elements to be removed from this collection.
    //
    // Returns:
-   //   If this collection changed as a result of the call, 1 is returned. 
+   //   If this collection changed as a result of the call, 1 is returned.
    //   Otherwise, 0 is returned.
    //---------------------------------------------------------------------------
 
    virtual function bit remove_all( collection#( T ) c );
       iterator #( T ) it = this.get_iterator();
       bit  result = 0;
-      
+
       while ( it.has_next() ) begin
-	 if ( c.contains( it.next() ) ) begin
-	    it.remove();
-	    result = 1;
-	 end
-      end	 
+         if ( c.contains( it.next() ) ) begin
+            it.remove();
+            result = 1;
+         end
+      end
       return result;
-   endfunction: remove_all
+   endfunction : remove_all
 
    //---------------------------------------------------------------------------
    // Function: retain_all
@@ -250,22 +250,22 @@ virtual class collection#( type T = int );
    //   c - A collection containing elements to be retained in this collection.
    //
    // Returns:
-   //   If this collection changed as a result of the call, 1 is returned. 
+   //   If this collection changed as a result of the call, 1 is returned.
    //   Otherwise, 0 is returned.
    //---------------------------------------------------------------------------
 
    virtual function bit retain_all( collection#( T ) c );
       iterator #( T ) it = this.get_iterator();
       bit  result = 0;
-      
+
       while ( it.has_next() ) begin
-	 if ( c.contains( it.next() ) == 0 ) begin
-	    it.remove();
-	    result = 1;
-	 end
-      end	 
+         if ( c.contains( it.next() ) == 0 ) begin
+            it.remove();
+            result = 1;
+         end
+      end
       return result;
-   endfunction: retain_all
+   endfunction : retain_all
 
    //---------------------------------------------------------------------------
    // Function: size
@@ -278,13 +278,13 @@ virtual class collection#( type T = int );
    virtual function int size();
       iterator #( T ) it = this.get_iterator();
       int cnt = 0;
-      
+
       while ( it.has_next() ) begin
-	 void'( it.next() );
-	 cnt++;
-      end	 
+         void'( it.next() );
+         cnt++;
+      end
       return cnt;
-   endfunction: size
+   endfunction : size
 
    //---------------------------------------------------------------------------
    // Function: to_dynamic_array
@@ -302,7 +302,7 @@ virtual class collection#( type T = int );
 
       while ( it.has_next() ) da[i++] = it.next();
       return da;
-   endfunction: to_dynamic_array
+   endfunction : to_dynamic_array
 
    //---------------------------------------------------------------------------
    // Function to_string
@@ -318,12 +318,12 @@ virtual class collection#( type T = int );
 
       s = "[ ";
       while ( it.has_next() )
-	s = { s, fmtr.to_string( it.next() ), " " };
+        s = { s, fmtr.to_string( it.next() ), " " };
       s = { s, "]" };
       return s;
-   endfunction: to_string
+   endfunction : to_string
 
-endclass: collection
+endclass : collection
 
 `endif //  `ifndef CL_COLLECTION_SVH
 

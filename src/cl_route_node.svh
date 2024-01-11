@@ -27,7 +27,7 @@
 //==============================================================================
 
 `ifndef CL_ROUTE_NODE_SVH
-`define CL_ROUTE_NODE_SVH
+ `define CL_ROUTE_NODE_SVH
 
 //------------------------------------------------------------------------------
 // Class: route_node
@@ -48,7 +48,7 @@ class route_node #( type T = int );
    //---------------------------------------------------------------------------
 
    typedef route_node#(T) route_node_type;
-   
+
    // Group: Properties
 
    //---------------------------------------------------------------------------
@@ -80,12 +80,12 @@ class route_node #( type T = int );
    //   +---------------+    |           |
    //   +---------------+    |           |
    //   | from_nodes[2] |--->|           |
-   //   +---------------+    +-----------+ 
+   //   +---------------+    +-----------+
    //   (end diagram)
    //---------------------------------------------------------------------------
 
    route_node_type from_nodes[$];
-   
+
    //---------------------------------------------------------------------------
    // Property: to_nodes
    //   The nodes this node is connected to.
@@ -99,12 +99,12 @@ class route_node #( type T = int );
    //   |           |    +-------------+
    //   |           |    +-------------+
    //   |           |--->| to_nodes[2] |
-   //   +-----------+    +-------------+           
+   //   +-----------+    +-------------+
    //   (end diagram)
    //---------------------------------------------------------------------------
 
    route_node_type to_nodes[$];
-   
+
    //---------------------------------------------------------------------------
    // Property: relatives
    //   The route nodes this route node is related to. Usage of this property is
@@ -112,7 +112,7 @@ class route_node #( type T = int );
    //---------------------------------------------------------------------------
 
    route_node_type relatives[$];
-   
+
    // Group: Functions
 
    //---------------------------------------------------------------------------
@@ -130,7 +130,7 @@ class route_node #( type T = int );
    function new( T elem );
       this.elem = elem;
       id = serial_num++;
-   endfunction: new
+   endfunction : new
 
    //---------------------------------------------------------------------------
    // Function: add
@@ -166,8 +166,8 @@ class route_node #( type T = int );
    virtual function route_node_type add( T e );
       route_node_type rn = new( e );
       return connect( rn );
-   endfunction: add
-   
+   endfunction : add
+
    //---------------------------------------------------------------------------
    // Function: connect
    //   (VIRTUAL) Connects the given route node (and its connections) as a new
@@ -205,8 +205,8 @@ class route_node #( type T = int );
       to_nodes.push_back( rn );
       rn.from_nodes.push_back( this );
       return rn;
-   endfunction: connect
-   
+   endfunction : connect
+
    //---------------------------------------------------------------------------
    // Function: disconnect
    //   (VIRTUAL) Removes the specified route node (and its connections) from
@@ -243,8 +243,8 @@ class route_node #( type T = int );
 
       to_nodes.delete( index );
       return this;
-   endfunction: disconnect
-   
+   endfunction : disconnect
+
    //---------------------------------------------------------------------------
    // Function: get_num_of_to_nodes
    //   (VIRTUAL) Returns the number of <to_nodes>.  This function _does not_
@@ -271,7 +271,7 @@ class route_node #( type T = int );
 
    virtual function int get_num_of_to_nodes();
       return to_nodes.size();
-   endfunction: get_num_of_to_nodes
+   endfunction : get_num_of_to_nodes
 
    //---------------------------------------------------------------------------
    // Function: has_to_nodes
@@ -299,7 +299,7 @@ class route_node #( type T = int );
 
    virtual function bit has_to_nodes();
       return get_num_of_to_nodes() > 0;
-   endfunction: has_to_nodes
+   endfunction : has_to_nodes
 
    //---------------------------------------------------------------------------
    // Function: get_index
@@ -322,7 +322,7 @@ class route_node #( type T = int );
    // | rn = from_node1.connect( to_node0  );
    // | rn = from_node1.connect( to_node1  );
    // | rn = from_node1.connect( this_node );
-   // | 
+   // |
    // | //  +---------------+                       +------+
    // | //  | from_nodes[0] |------to_nodes[0]----->|      |
    // | //  +---------------+                       |      |
@@ -332,7 +332,7 @@ class route_node #( type T = int );
    // | //  |               |    +-------------+    | node |
    // | //  |               |--->| to_nodes[1] |    |      |
    // | //  |               |    +-------------+    |      |
-   // | //  |               |------to_nodes[2]----->|      | 
+   // | //  |               |------to_nodes[2]----->|      |
    // | //  +---------------+                       +------+
    // |
    // | assert( this_node.get_index( .from_node_index( 0 ) ) == 0 );
@@ -341,15 +341,15 @@ class route_node #( type T = int );
 
    virtual function int get_index( int from_node_index );
       if ( from_node_index < from_nodes.size() ) begin
-	 route_node_type from_node = from_nodes[ from_node_index ];
+         route_node_type from_node = from_nodes[ from_node_index ];
 
-	 foreach ( from_node.to_nodes[i] ) 
-	   if ( from_node.to_nodes[i] == this ) return i;
+         foreach ( from_node.to_nodes[i] )
+           if ( from_node.to_nodes[i] == this ) return i;
       end
       return -1;
-   endfunction: get_index
+   endfunction : get_index
 
-endclass: route_node
+endclass : route_node
 
 `endif //  `ifndef CL_ROUTE_NODE_SVH
 

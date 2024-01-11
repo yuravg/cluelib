@@ -27,7 +27,7 @@
 //==============================================================================
 
 `ifndef CL_SET_SVH
-`define CL_SET_SVH
+ `define CL_SET_SVH
 
 //-----------------------------------------------------------------------------
 // Class: set
@@ -39,49 +39,49 @@
 
 class set #( type T = int ) extends set_base#( T );
 
-`ifdef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
+ `ifdef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
    local bit aa[ T ];
 
    class set_iterator #( T ) extends iterator#( T );
       local int cnt;
       local int aa_size;
       local T cur_key;
-      
+
       function new();
-	 aa_size = aa.size();
-	 cnt = 0;
-      endfunction: new
+         aa_size = aa.size();
+         cnt = 0;
+      endfunction : new
 
       virtual function bit has_next();
-	 return cnt < aa_size;
-      endfunction: has_next
-      
+         return cnt < aa_size;
+      endfunction : has_next
+
       virtual function T next();
-	 if ( cnt == 0 ) begin
-	    assert( aa.first( cur_key ) == 1 ); // first() returns 0, 1, or -1
-	 end else begin
-	    assert( aa.next( cur_key ) == 1 ); // next() returns 0, 1, or -1
-	 end
-	 cnt++;
-	 return cur_key;
-      endfunction: next
-      
+         if ( cnt == 0 ) begin
+            assert( aa.first( cur_key ) == 1 ); // first() returns 0, 1, or -1
+         end else begin
+            assert( aa.next( cur_key ) == 1 ); // next() returns 0, 1, or -1
+         end
+         cnt++;
+         return cur_key;
+      endfunction : next
+
       virtual function void remove();
-	 void'( aa.delete( cur_key ) );
-      endfunction: remove
+         void'( aa.delete( cur_key ) );
+      endfunction : remove
 
-   endclass: set_iterator
+   endclass : set
 
-`else // !`ifdef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
+ `else // !`ifdef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
    bit aa[ T ];
-`endif // !`ifdef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
+ `endif // !`ifdef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
 
    //--------------------------------------------------------------------------
    // Function: new
    //   Creates a new set.
    //
    // Argument:
-   //   c    - (OPTIONAL) A collection whose elements are to be added to this 
+   //   c    - (OPTIONAL) A collection whose elements are to be added to this
    //          set.
    //   cmp - (OPTIONAL) A strategy object used to compare the elements of type
    //         *T*. If not specified or *null*, <comparator> *#(T)* is used. The
@@ -95,14 +95,14 @@ class set #( type T = int ) extends set_base#( T );
    //--------------------------------------------------------------------------
 
    function new( collection#(T) c = null,
-		 comparator#(T) cmp = null,
-		 formatter#(T) fmtr = null );
+                 comparator#(T) cmp = null,
+                 formatter#(T) fmtr = null );
       if ( cmp == null ) this.cmp = comparator#(T)::get_instance();
       else               this.cmp = cmp;
       if ( fmtr == null ) this.fmtr = hex_formatter#(T)::get_instance();
       else                this.fmtr = fmtr;
       if ( c ) void'( this.add_all( c ) );
-   endfunction: new
+   endfunction : new
 
    //--------------------------------------------------------------------------
    // Function: add
@@ -125,12 +125,12 @@ class set #( type T = int ) extends set_base#( T );
 
    virtual function bit add( T e );
       if ( aa.exists( e ) ) begin
-	 return 0;
+         return 0;
       end else begin
-	 aa[ e ] = 1;
-	 return 1;
+         aa[ e ] = 1;
+         return 1;
       end
-   endfunction: add
+   endfunction : add
 
    //--------------------------------------------------------------------------
    // Function: clear
@@ -144,7 +144,7 @@ class set #( type T = int ) extends set_base#( T );
 
    virtual function void clear();
       aa.delete();
-   endfunction: clear
+   endfunction : clear
 
    //--------------------------------------------------------------------------
    // Function: clone
@@ -166,7 +166,7 @@ class set #( type T = int ) extends set_base#( T );
       set.aa   = aa; // the elements themselves are not cloned
       set.fmtr = fmtr;
       return set;
-   endfunction: clone
+   endfunction : collection
 
    //--------------------------------------------------------------------------
    // Function: contains
@@ -188,7 +188,7 @@ class set #( type T = int ) extends set_base#( T );
 
    virtual function bit contains( T e );
       return aa.exists( e );
-   endfunction: contains
+   endfunction : contains
 
    //--------------------------------------------------------------------------
    // Function: is_empty
@@ -207,7 +207,7 @@ class set #( type T = int ) extends set_base#( T );
 
    virtual function bit is_empty();
       return size() == 0;
-   endfunction: is_empty
+   endfunction : is_empty
 
    //--------------------------------------------------------------------------
    // Function: get_iterator
@@ -230,14 +230,14 @@ class set #( type T = int ) extends set_base#( T );
 
    virtual function iterator#( T ) get_iterator();
 
-`ifdef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
+ `ifdef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
       set_iterator#( T ) it = new();
-`else
+ `else
       set_iterator#( T ) it = new( this );
-`endif      
+ `endif
 
       return it;
-   endfunction: get_iterator
+   endfunction : iterator
 
    //--------------------------------------------------------------------------
    // Function: remove
@@ -259,12 +259,12 @@ class set #( type T = int ) extends set_base#( T );
 
    virtual function bit remove( T e );
       if ( contains( e ) ) begin
-	 aa.delete( e );
-	 return 1;
+         aa.delete( e );
+         return 1;
       end else begin
-	 return 0;
+         return 0;
       end
-   endfunction: remove
+   endfunction : remove
 
    //--------------------------------------------------------------------------
    // Function: size
@@ -282,7 +282,7 @@ class set #( type T = int ) extends set_base#( T );
 
    virtual function int size();
       return aa.size();
-   endfunction: size
+   endfunction : size
 
 endclass: set
 

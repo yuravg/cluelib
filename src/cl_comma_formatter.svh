@@ -27,7 +27,7 @@
 //==============================================================================
 
 `ifndef CL_COMMA_FORMATTER_SVH
-`define CL_COMMA_FORMATTER_SVH
+ `define CL_COMMA_FORMATTER_SVH
 
 //------------------------------------------------------------------------------
 // Class: comma_formatter
@@ -56,7 +56,7 @@ class comma_formatter #( type T = int ) extends formatter#( T );
    //---------------------------------------------------------------------------
 
    protected function new();
-   endfunction: new
+   endfunction : new
 
    //---------------------------------------------------------------------------
    // Function: get_instance
@@ -69,7 +69,7 @@ class comma_formatter #( type T = int ) extends formatter#( T );
    static function this_type get_instance();
       if ( inst == null ) inst = new();
       return inst;
-   endfunction: get_instance
+   endfunction : get_instance
 
    //---------------------------------------------------------------------------
    // Function: to_string
@@ -85,17 +85,17 @@ class comma_formatter #( type T = int ) extends formatter#( T );
    virtual function string to_string( T o );
       int r;
       string s = "";
-      
+
       if ( o < 0 ) return { "-", to_string( - o ) };
       while ( o >= 1000 ) begin
-	 r = o % 1000;
-	 o /= 1000;
-	 s = { $sformatf( ",%03d", r ), s };
+         r = o % 1000;
+         o /= 1000;
+         s = { $sformatf( ",%03d", r ), s };
       end
       return { $sformatf( "%0d", o ), s };
-   endfunction: to_string
+   endfunction : to_string
 
-endclass: comma_formatter
+endclass : comma_formatter
 
 `endif //  `ifndef CL_COMMA_FORMATTER_SVH
 

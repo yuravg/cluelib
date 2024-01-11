@@ -27,7 +27,7 @@
 //==============================================================================
 
 `ifndef CL_TREE_SVH
-`define CL_TREE_SVH
+ `define CL_TREE_SVH
 
 //------------------------------------------------------------------------------
 // Class: tree
@@ -45,7 +45,7 @@ class tree #( type T = int ) extends collection#( T );
    //---------------------------------------------------------------------------
 
    typedef tree_node#(T) tree_node_type;
-   
+
    //--------------------------------------------------------------------------
    // Typedef: tree_type
    //   The shorthand of the <tree> type specialized with type *T*.
@@ -53,9 +53,9 @@ class tree #( type T = int ) extends collection#( T );
 
    typedef tree#(T) tree_type;
 
-`ifdef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
-`else  // !`ifdef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
-`endif // !`ifdef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
+ `ifdef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
+ `else  // !`ifdef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
+ `endif // !`ifdef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
 
    //---------------------------------------------------------------------------
    // Property: root
@@ -69,7 +69,7 @@ class tree #( type T = int ) extends collection#( T );
    //   Creates a new tree.
    //
    // Argument:
-   //   c    - (OPTIONAL) A collection whose elements are to be added to this 
+   //   c    - (OPTIONAL) A collection whose elements are to be added to this
    //          tree.
    //   cmp - (OPTIONAL) A strategy object used to compare the elements of type
    //         *T*. If not specified or *null*, <comparator> *#(T)* is used. The
@@ -83,14 +83,14 @@ class tree #( type T = int ) extends collection#( T );
    //---------------------------------------------------------------------------
 
    function new( collection#(T)   c = null,
-		 comparator#(T) cmp = null,
-		 formatter#(T) fmtr = null );
+                 comparator#(T) cmp = null,
+                 formatter#(T) fmtr = null );
       if ( cmp == null ) this.cmp = comparator#(T)::get_instance();
       else               this.cmp = cmp;
       if ( fmtr == null ) this.fmtr = hex_formatter#(T)::get_instance();
       else                this.fmtr = fmtr;
       if ( c ) void'( this.add_all( c ) );
-   endfunction: new
+   endfunction : new
 
    //---------------------------------------------------------------------------
    // Function: add
@@ -123,7 +123,7 @@ class tree #( type T = int ) extends collection#( T );
 
    virtual function bit add( T e );
       return add_to_node( e ) != null;
-   endfunction: add
+   endfunction : add
 
    //---------------------------------------------------------------------------
    // Function: add_to_node
@@ -138,7 +138,7 @@ class tree #( type T = int ) extends collection#( T );
    //
    // Returns:
    //   Newly added <tree_node>.
-   //   
+   //
    // Example:
    // | tree#(int)      int_tree = new();
    // | tree_node#(int) tn_123;
@@ -158,14 +158,14 @@ class tree #( type T = int ) extends collection#( T );
 
    virtual function tree_node_type add_to_node( T e, tree_node_type parent = null );
       if ( parent ) begin
-	 return parent.add( e );
+         return parent.add( e );
       end else if ( root ) begin
-	 return root.add( e );
+         return root.add( e );
       end else begin
-	 root = new( e );
-	 return root;
+         root = new( e );
+         return root;
       end
-   endfunction: add_to_node
+   endfunction : add_to_node
 
    //---------------------------------------------------------------------------
    // Function: graft
@@ -204,18 +204,18 @@ class tree #( type T = int ) extends collection#( T );
    // | //                         \__ tn
    //---------------------------------------------------------------------------
 
-   virtual function tree_node_type graft( tree_node_type tn, 
-					  tree_node_type parent = null );
+   virtual function tree_node_type graft( tree_node_type tn,
+                                          tree_node_type parent = null );
       if ( parent ) begin
-	 void'( parent.graft( tn ) );
+         void'( parent.graft( tn ) );
       end else if ( root ) begin
-	 void'( root.graft( tn ) );
+         void'( root.graft( tn ) );
       end else begin
-	 root = tn;
-	 tn.parent = null;
+         root = tn;
+         tn.parent = null;
       end
       return tn;
-   endfunction: graft
+   endfunction : graft
 
    //---------------------------------------------------------------------------
    // Function: clear
@@ -236,7 +236,7 @@ class tree #( type T = int ) extends collection#( T );
 
    virtual function void clear();
       root = null;
-   endfunction: clear
+   endfunction : clear
 
    //---------------------------------------------------------------------------
    // Function: clone
@@ -260,7 +260,7 @@ class tree #( type T = int ) extends collection#( T );
       tree_type t = new();
       t.root = root;
       return t;
-   endfunction: clone
+   endfunction : collection
 
    //---------------------------------------------------------------------------
    // Function: is_empty
@@ -279,7 +279,7 @@ class tree #( type T = int ) extends collection#( T );
 
    virtual function bit is_empty();
       return root == null;
-   endfunction: is_empty
+   endfunction : is_empty
 
    //---------------------------------------------------------------------------
    // Function: get_iterator
@@ -313,7 +313,7 @@ class tree #( type T = int ) extends collection#( T );
 
    virtual function iterator#( T ) get_iterator();
       return get_breadth_first_iterator();
-   endfunction: get_iterator
+   endfunction : iterator
 
    //---------------------------------------------------------------------------
    // Function: get_breadth_first_iterator
@@ -347,14 +347,14 @@ class tree #( type T = int ) extends collection#( T );
 
    virtual function iterator#( T ) get_breadth_first_iterator();
 
-`ifdef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
+ `ifdef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
       tree_breadth_first_iterator#( T ) it = new();
-`else
+ `else
       tree_breadth_first_iterator#( T ) it = new( this );
-`endif      
+ `endif
 
       return it;
-   endfunction: get_breadth_first_iterator
+   endfunction : iterator
 
    //---------------------------------------------------------------------------
    // Function: get_last_node
@@ -377,7 +377,7 @@ class tree #( type T = int ) extends collection#( T );
 
       while ( it.has_next() ) tn = it.next_node();
       return tn;
-   endfunction: get_last_node
+   endfunction : get_last_node
 
    //--------------------------------------------------------------------------
    // Function: update_locations
@@ -391,7 +391,7 @@ class tree #( type T = int ) extends collection#( T );
       iterator#(T) it = get_iterator();
 
       while ( it.has_next() ) void'( it.next() ); // iterating updates the locations
-   endfunction: update_locations
+   endfunction : update_locations
 
    //---------------------------------------------------------------------------
    // Function: get_location_name
@@ -438,9 +438,9 @@ class tree #( type T = int ) extends collection#( T );
 
       // update_locations(); // expensive
       return { "[", queue#(int)::to_string( tn.location, .separator( "," ), .fmtr( fmtr ) ), "]" };
-   endfunction: get_location_name
+   endfunction : get_location_name
 
-endclass: tree
+endclass : tree
 
 `endif //  `ifndef CL_TREE_SVH
 

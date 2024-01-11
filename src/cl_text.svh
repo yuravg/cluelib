@@ -12,10 +12,10 @@
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,7 +26,7 @@
 // ==============================================================================
 
 `ifndef CL_TEXT_SVH
-`define CL_TEXT_SVH
+ `define CL_TEXT_SVH
 
 //------------------------------------------------------------------------------
 // Class: text
@@ -78,7 +78,7 @@ virtual class text;
    // Argument:
    //   s - A string to be capitalized.
    //
-   // Returns: 
+   // Returns:
    //   A copy of *s* with the first character uppercased and the remainder
    //   lowercased.
    //
@@ -94,7 +94,7 @@ virtual class text;
       string tail = trim( s, .left( 1 ) );
 
       return { head.toupper(), tail.tolower() };
-   endfunction: capitalize
+   endfunction : capitalize
 
    //---------------------------------------------------------------------------
    // Function: center
@@ -127,29 +127,29 @@ virtual class text;
    //   <ljust>, <rjust>
    //---------------------------------------------------------------------------
 
-   static function string center( string s, 
-				  int  width,
-				  byte fill_char = " ",
-				  bit  trim_ends = 0 );
+   static function string center( string s,
+                                  int  width,
+                                  byte fill_char = " ",
+                                  bit  trim_ends = 0 );
       int slen = s.len();
       int left_padding;
       int right_padding;
-      
+
       if ( width < slen && trim_ends == 0 ) width = slen; // extend the width
       left_padding  = ( width - slen ) / 2;
       right_padding = width - left_padding - slen;
 
       center = s;
-      if ( left_padding >= 0 ) 
-	repeat( left_padding ) center = { string'( fill_char ), center };
+      if ( left_padding >= 0 )
+        repeat( left_padding ) center = { string'( fill_char ), center };
       else
-	center = trim( center, .left( -left_padding ) );
-	
+        center = trim( center, .left( -left_padding ) );
+
       if ( right_padding >= 0 )
-	repeat( right_padding ) center = { center, string'( fill_char ) };
+        repeat( right_padding ) center = { center, string'( fill_char ) };
       else
-	center = trim( center, .right( -right_padding ) );
-   endfunction: center
+        center = trim( center, .right( -right_padding ) );
+   endfunction : center
 
    //---------------------------------------------------------------------------
    // Function: change
@@ -158,8 +158,8 @@ virtual class text;
    //
    // Arguments:
    //   s         - A string to be changed.
-   //   sub       - A substring. 
-   //   start_pos - (OPTIONAL) Specifies the left-most position in *s* to be 
+   //   sub       - A substring.
+   //   start_pos - (OPTIONAL) Specifies the left-most position in *s* to be
    //               replaced. See <Common Arguments>.
    //   end_pos   - (OPTIONAL) Specifies the right-most position in *s* to be
    //               replaced. See <Common Arguments>.
@@ -178,15 +178,15 @@ virtual class text;
    //   <replace>
    //---------------------------------------------------------------------------
 
-   static function string change( string s, 
-				  string sub,
-				  int 	 start_pos = 0,
-				  int 	 end_pos = -1 );
+   static function string change( string s,
+                                  string sub,
+                                  int     start_pos = 0,
+                                  int     end_pos = -1 );
       string old_str = slice( s, start_pos, end_pos );
 
       if ( old_str == "" ) return s;
       else                 return replace( s, old_str, sub, .count( 1 ) );
-   endfunction: change
+   endfunction : change
 
    //---------------------------------------------------------------------------
    // Function: chomp
@@ -212,15 +212,15 @@ virtual class text;
    //---------------------------------------------------------------------------
 
    static function string chomp( string s );
-      if ( ends_with( s, { "\n" } ) ) 
-	return s.substr( 0, s.len() - 2 );
+      if ( ends_with( s, { "\n" } ) )
+        return s.substr( 0, s.len() - 2 );
       else
-	return s;
-   endfunction: chomp
+        return s;
+   endfunction : chomp
 
    //---------------------------------------------------------------------------
    // Function: chop
-   //   (STATIC) Returns the last character of the given string. 
+   //   (STATIC) Returns the last character of the given string.
    //
    // Arguments:
    //   s - An input string.
@@ -238,7 +238,7 @@ virtual class text;
 
    static function byte chop( string s );
       return s[ s.len() - 1 ];
-   endfunction: chop
+   endfunction : chop
 
    //---------------------------------------------------------------------------
    // Function: colorize
@@ -264,12 +264,12 @@ virtual class text;
    //---------------------------------------------------------------------------
 
    static function string colorize( string s,
-				    fg_color_e fg = FG_BLACK,
-				    bg_color_e bg = BG_WHITE,
-				    bit bold = 0,
-				    bit underline = 0,
-				    bit blink = 0,
-				    bit reverse = 0 );
+                                    fg_color_e fg = FG_BLACK,
+                                    bg_color_e bg = BG_WHITE,
+                                    bit bold = 0,
+                                    bit underline = 0,
+                                    bit blink = 0,
+                                    bit reverse = 0 );
       string       color = "\033[";
       string reset_color = "\033[0m";
 
@@ -279,7 +279,7 @@ virtual class text;
       if ( reverse   ) color = { color, "7;" };
       color = { color, $sformatf( "%0d;%0dm", fg, bg ) };
       return { color, s, reset_color };
-   endfunction: colorize
+   endfunction : colorize
 
    //---------------------------------------------------------------------------
    // Function: contains
@@ -310,16 +310,16 @@ virtual class text;
    // | //                              -9
    //
    // See Also:
-   //   <contains_str>, <count>, <ends_with>, <find_any>, <index>, <only>, 
+   //   <contains_str>, <count>, <ends_with>, <find_any>, <index>, <only>,
    //   <rfind_any>, <rindex>, <starts_with>
    //---------------------------------------------------------------------------
 
-   static function bit contains( string s, 
-				 string sub,
-				 int start_pos = 0,
-				 int end_pos   = -1 );
+   static function bit contains( string s,
+                                 string sub,
+                                 int start_pos = 0,
+                                 int end_pos   = -1 );
       return index( s, sub, start_pos, end_pos ) != -1;
-   endfunction: contains
+   endfunction : contains
 
    //---------------------------------------------------------------------------
    // Function: contains_str
@@ -352,17 +352,17 @@ virtual class text;
    // | //                                  -9
    //
    // See Also:
-   //   <contains>, <count>, <ends_with>, <find_any>, <index>, <only>, 
+   //   <contains>, <count>, <ends_with>, <find_any>, <index>, <only>,
    //   <rfind_any>, <rindex>, <starts_with>
    //---------------------------------------------------------------------------
 
-   static function string contains_str( string s, 
-					string sub,
-					int    start_pos = 0,
-					int    end_pos = -1 );
+   static function string contains_str( string s,
+                                        string sub,
+                                        int    start_pos = 0,
+                                        int    end_pos = -1 );
       if ( contains( s, sub, start_pos, end_pos ) ) return sub;
       else return "";
-   endfunction: contains_str
+   endfunction : contains_str
 
    //---------------------------------------------------------------------------
    // Function: count
@@ -394,24 +394,24 @@ virtual class text;
    // | //                           -9
    //
    // See Also:
-   //   <contains>, <contains_str>, <ends_with>, <find_any>, <index>, <only>, 
+   //   <contains>, <contains_str>, <ends_with>, <find_any>, <index>, <only>,
    //   <rfind_any>, <rindex>, <starts_with>
    //---------------------------------------------------------------------------
 
    static function int unsigned count( string s,
-				       string sub,
-				       int    start_pos = 0,
-				       int    end_pos   = -1 );
+                                       string sub,
+                                       int    start_pos = 0,
+                                       int    end_pos   = -1 );
       int pos;
-      
+
       count = 0;
       pos = index( s, sub, start_pos, end_pos );
       while( pos != -1 ) begin
-	 count++;
-	 start_pos = pos + sub.len();
-	 pos = index( s, sub, start_pos, end_pos );
+         count++;
+         start_pos = pos + sub.len();
+         pos = index( s, sub, start_pos, end_pos );
       end
-   endfunction: count
+   endfunction : count
 
    //---------------------------------------------------------------------------
    // Function: delete
@@ -438,10 +438,10 @@ virtual class text;
    //---------------------------------------------------------------------------
 
    static function string delete( string s,
-				  string sub,
-				  int 	 count = -1 );
+                                  string sub,
+                                  int     count = -1 );
       return replace( s, sub, "", count );
-   endfunction: delete
+   endfunction : delete
 
    //---------------------------------------------------------------------------
    // Function: ends_with
@@ -458,7 +458,7 @@ virtual class text;
    //               See <Common Arguments>.
    //
    // Returns:
-   //   If *s* ends with one of the specified *suffixes*, 1 is returned. 
+   //   If *s* ends with one of the specified *suffixes*, 1 is returned.
    //   Otherwise, 0 is returned.
    //
    // Example:
@@ -474,29 +474,29 @@ virtual class text;
    // | //                               -9
    //
    // See Also:
-   //   <contains>, <contains_str>, <count>, <find_any>, <index>, <only>, 
+   //   <contains>, <contains_str>, <count>, <find_any>, <index>, <only>,
    //   <rfind_any>, <rindex>, <starts_with>
    //---------------------------------------------------------------------------
 
    static function bit ends_with( string s,
-				  string_q suffixes,
-				  int start_pos = 0,
-				  int end_pos = -1 );
+                                  string_q suffixes,
+                                  int start_pos = 0,
+                                  int end_pos = -1 );
       int slen = s.len();
 
       if ( slen == 0 ) return 0;
       util::normalize( slen, start_pos, end_pos );
 
       foreach ( suffixes[i] ) begin
-	 int blen = suffixes[i].len();
-	 int begin_pos = end_pos - blen + 1;
+         int blen = suffixes[i].len();
+         int begin_pos = end_pos - blen + 1;
 
-	 if ( blen == 0 ) continue;
-	 if ( begin_pos < start_pos ) continue;
-	 if ( s.substr( begin_pos, end_pos ) == suffixes[i] ) return 1;
+         if ( blen == 0 ) continue;
+         if ( begin_pos < start_pos ) continue;
+         if ( s.substr( begin_pos, end_pos ) == suffixes[i] ) return 1;
       end
       return 0;
-   endfunction: ends_with
+   endfunction : ends_with
 
    //---------------------------------------------------------------------------
    // Function: find_any
@@ -530,36 +530,36 @@ virtual class text;
    // | //                              -9
    //
    // See Also:
-   //   <contains>, <contains_str>, <count>, <ends_with>, <index>, <only>, 
+   //   <contains>, <contains_str>, <count>, <ends_with>, <index>, <only>,
    //   <rfind_any>, <rindex>, <starts_with>
    //-----------------------------------------------------------------------
 
    static function int find_any( string s,
-				 string_q subs,
-				 int start_pos = 0,
-				 int end_pos = -1 );
+                                 string_q subs,
+                                 int start_pos = 0,
+                                 int end_pos = -1 );
       int found_pos[$];
-      
+
       foreach ( subs[i] ) begin
-	 int pos = index( s, subs[i], start_pos, end_pos );
-	 
-	 if ( pos != -1 ) found_pos.push_back( pos );
+         int pos = index( s, subs[i], start_pos, end_pos );
+
+         if ( pos != -1 ) found_pos.push_back( pos );
       end
 
       if ( found_pos.size() == 0 ) begin
-	 return -1;
+         return -1;
       end else begin
-	 int q[$] = found_pos.min;
+         int q[$] = found_pos.min;
 
-	 return q[0];
+         return q[0];
       end
-   endfunction: find_any
+   endfunction : find_any
 
    //---------------------------------------------------------------------------
    // Function: hash
    //   (STATIC) Returns the hash value of the given string. The hash value is
    //   calculated by:
-   //   (see hash.png) 
+   //   (see hash.png)
    //   where N is the length of the given string.
    //
    // Argument:
@@ -575,8 +575,8 @@ virtual class text;
    static function int hash( string s );
       hash = 0;
       for ( int i = 0; i < s.len(); i++ ) hash = hash * 31 + s[i];
-   endfunction: hash
-   
+   endfunction : hash
+
    //---------------------------------------------------------------------------
    // Function: index
    //   (STATIC) Returns the index of the first occurrence of the specified
@@ -584,7 +584,7 @@ virtual class text;
    //
    // Arguments:
    //   s         - An input string.
-   //   sub       - A substring to search. 
+   //   sub       - A substring to search.
    //               An empty substring ("") matches no input string.
    //   start_pos - (OPTIONAL) Specifies the position in *s* to begin the
    //               search. See <Common Arguments>.
@@ -599,7 +599,7 @@ virtual class text;
    // | assert( text::index( "a primary library", "ary" )                  ==  6 );
    // | assert( text::index( "a primary library", "ary", .start_pos( 3 ) ) ==  6 );
    // | //                       |----------->|
-   // | //                       3  
+   // | //                       3
    // | assert( text::index( "a primary library", "ary", .end_pos(  7 ) )  == -1 );
    // | //                    |----->|
    // | //                           7
@@ -608,34 +608,34 @@ virtual class text;
    // | //                           -9
    //
    // See Also:
-   //   <contains>, <contains_str>, <count>, <ends_with>, <find_any>, <only>, 
+   //   <contains>, <contains_str>, <count>, <ends_with>, <find_any>, <only>,
    //   <rfind_any>, <rindex>, <starts_with>
    //---------------------------------------------------------------------------
 
    static function int index( string s,
-			      string sub,
-			      int    start_pos = 0,
-			      int    end_pos = -1 );
+                              string sub,
+                              int    start_pos = 0,
+                              int    end_pos = -1 );
       int slen = s.len();
       int blen = sub.len();
 
       if ( slen == 0 || blen == 0 ) return -1;
       util::normalize( slen, start_pos, end_pos );
 
-`ifdef CL_USE_DPI_C
+ `ifdef CL_USE_DPI_C
       begin
-	 int i = c_find( s, sub, start_pos );
-	 if ( i >= 0 && i + blen - 1 <= end_pos ) return i;
+         int i = c_find( s, sub, start_pos );
+         if ( i >= 0 && i + blen - 1 <= end_pos ) return i;
       end
-`else
+ `else
       for ( int i = start_pos; i <= end_pos - blen + 1; i++ ) begin
-	 if ( s.substr( i, i + blen - 1 ) == sub )
-	   return i;
+         if ( s.substr( i, i + blen - 1 ) == sub )
+           return i;
       end
-`endif
-      
+ `endif
+
       return -1;
-   endfunction: index
+   endfunction : index
 
    //---------------------------------------------------------------------------
    // Function: insert
@@ -662,15 +662,15 @@ virtual class text;
    //---------------------------------------------------------------------------
 
    static function string insert( string s,
-				  string sub,
-				  int 	 start_pos = 0 );
+                                  string sub,
+                                  int     start_pos = 0 );
       int end_pos = -1;
-      
+
       util::normalize( s.len(), start_pos, end_pos );
-      return { s.substr( 0, start_pos - 1 ), 
-	       sub, 
-	       s.substr( start_pos, end_pos ) };
-   endfunction: insert
+      return { s.substr( 0, start_pos - 1 ),
+               sub,
+               s.substr( start_pos, end_pos ) };
+   endfunction : insert
 
    //---------------------------------------------------------------------------
    // Function: is_alpha
@@ -695,12 +695,12 @@ virtual class text;
    static function bit is_alpha( string s );
       if ( s.len() == 0 ) return 0;
       foreach ( s[i] ) begin
-	 if ( ! ( s[i] >= "a" && s[i] <= "z" ||
-		  s[i] >= "A" && s[i] <= "Z" ) )
-	   return 0;
+         if ( ! ( s[i] >= "a" && s[i] <= "z" ||
+                  s[i] >= "A" && s[i] <= "Z" ) )
+           return 0;
       end
       return 1;
-   endfunction: is_alpha
+   endfunction : is_alpha
 
    //---------------------------------------------------------------------------
    // Function: is_digit
@@ -725,11 +725,11 @@ virtual class text;
    static function bit is_digit( string s );
       if ( s.len() == 0 ) return 0;
       foreach ( s[i] ) begin
-	 if ( ! ( s[i] >= "0" && s[i] <= "9" ) )
-	   return 0;
+         if ( ! ( s[i] >= "0" && s[i] <= "9" ) )
+           return 0;
       end
       return 1;
-   endfunction: is_digit
+   endfunction : is_digit
 
    //---------------------------------------------------------------------------
    // Function: is_lower
@@ -755,15 +755,15 @@ virtual class text;
    static function bit is_lower( string s );
       if ( s.len() == 0 ) return 0;
       foreach ( s[i] ) begin
-	 if ( s[i] >= "A" && s[i] <= "Z" ) return 0; // uppercase is found
+         if ( s[i] >= "A" && s[i] <= "Z" ) return 0; // uppercase is found
       end
       return 1;
-   endfunction: is_lower
+   endfunction : is_lower
 
    //---------------------------------------------------------------------------
    // Function: is_printable
    //   (STATIC) Returns 1 if all characters in the given string are printable.
-   //   Printable characters are the ones whose ASCII code are between 'h20 
+   //   Printable characters are the ones whose ASCII code are between 'h20
    //   (" ") and 'h7F ("~").
    //
    // Argument:
@@ -784,11 +784,11 @@ virtual class text;
    static function bit is_printable( string s );
       if ( s.len() == 0 ) return 1; // unlike other is_* functions, returns 1
       foreach ( s[i] ) begin
-	 if ( ! ( s[i] >= 'h20 && s[i] <= 'h7E ) ) // <space> to ~
-	   return 0;
+         if ( ! ( s[i] >= 'h20 && s[i] <= 'h7E ) ) // <space> to ~
+           return 0;
       end
       return 1;
-   endfunction: is_printable
+   endfunction : is_printable
 
    //---------------------------------------------------------------------------
    // Function: is_single_bit_type
@@ -808,7 +808,7 @@ virtual class text;
 
    static function bit is_single_bit_type( string s );
       return ( s == "bit" || s == "logic" || s == "reg" );
-   endfunction: is_single_bit_type
+   endfunction : is_single_bit_type
 
    //---------------------------------------------------------------------------
    // Function: is_space
@@ -834,11 +834,11 @@ virtual class text;
    static function bit is_space( string s );
       if ( s.len() == 0 ) return 0;
       foreach ( s[i] ) begin
-	 if ( ! ( s[i] == " " || s[i] == "\t" || s[i] == "\n" ) )
-	   return 0;
+         if ( ! ( s[i] == " " || s[i] == "\t" || s[i] == "\n" ) )
+           return 0;
       end
       return 1;
-   endfunction: is_space
+   endfunction : is_space
 
    //---------------------------------------------------------------------------
    // Function: is_upper
@@ -864,11 +864,11 @@ virtual class text;
    static function bit is_upper( string s );
       if ( s.len() == 0 ) return 0;
       foreach ( s[i] ) begin
-//	 if ( ! ( s[i] >= "A" && s[i] <= "Z" ) ) return 0;
-	 if ( s[i] >= "a" && s[i] <= "z" ) return 0;
+         //  if ( ! ( s[i] >= "A" && s[i] <= "Z" ) ) return 0;
+         if ( s[i] >= "a" && s[i] <= "z" ) return 0;
       end
       return 1;
-   endfunction: is_upper
+   endfunction : is_upper
 
    //---------------------------------------------------------------------------
    // Function: join_str
@@ -882,7 +882,7 @@ virtual class text;
    //               empty string ("").
    //
    // Returns:
-   //   A string by concatenating the strings in *strings*, separated by 
+   //   A string by concatenating the strings in *strings*, separated by
    //   *separator*.
    //
    // Example:
@@ -891,15 +891,15 @@ virtual class text;
    //---------------------------------------------------------------------------
 
    static function string join_str( string_q strings,
-				    string   separator = "" );
+                                    string   separator = "" );
       int last_i = strings.size() - 1;
-      
+
       join_str = "";
       foreach ( strings[i] ) begin
-	 join_str = { join_str, strings[i] };
-	 if ( i < last_i ) join_str = { join_str, separator };
+         join_str = { join_str, strings[i] };
+         if ( i < last_i ) join_str = { join_str, separator };
       end
-   endfunction: join_str
+   endfunction : join_str
 
    //---------------------------------------------------------------------------
    // Function: lc_first
@@ -909,7 +909,7 @@ virtual class text;
    // Argument:
    //   s - An input string.
    //
-   // Returns: 
+   // Returns:
    //   A copy of *s* with the first character lowercased and the remainder
    //   unchanged.
    //
@@ -925,7 +925,7 @@ virtual class text;
       string tail = s.substr( 1, s.len() - 1 );
 
       return { head.tolower(), tail };
-   endfunction: lc_first
+   endfunction : lc_first
 
    //---------------------------------------------------------------------------
    // Function: ljust
@@ -958,22 +958,22 @@ virtual class text;
    //   <center>, <rjust>
    //---------------------------------------------------------------------------
 
-   static function string ljust( string s, 
-				 int  width,
-				 byte fill_char = " ",
-				 bit  trim_right = 0 );
+   static function string ljust( string s,
+                                 int  width,
+                                 byte fill_char = " ",
+                                 bit  trim_right = 0 );
       int slen = s.len();
       int padding;
-      
+
       if ( width < slen && trim_right == 0 ) width = slen; // extend the width
       padding = width - slen;
 
       ljust = s;
       if ( padding >= 0 )
-	repeat( padding ) ljust = { ljust, string'( fill_char ) };
+        repeat( padding ) ljust = { ljust, string'( fill_char ) };
       else
-	ljust = trim( ljust, .right( -padding ) );
-   endfunction: ljust
+        ljust = trim( ljust, .right( -padding ) );
+   endfunction : ljust
 
    //---------------------------------------------------------------------------
    // Function: lstrip
@@ -1002,15 +1002,15 @@ virtual class text;
    //---------------------------------------------------------------------------
 
    static function string lstrip( string s,
-				  string chars = " \t\n" );
+                                  string chars = " \t\n" );
       int slen = s.len();
 
       foreach ( s[i] ) begin
-	 if ( ! text::contains( chars, string'( s[i] ) ) ) 
-	   return s.substr( i, slen - 1 );
+         if ( ! text::contains( chars, string'( s[i] ) ) )
+           return s.substr( i, slen - 1 );
       end
       return "";
-   endfunction: lstrip
+   endfunction : lstrip
 
    //---------------------------------------------------------------------------
    // Function: only
@@ -1036,23 +1036,23 @@ virtual class text;
    //---------------------------------------------------------------------------
 
    static function bit only( string s,
-			     string chars );
+                             string chars );
       if ( s == "" ) return 0;
       foreach ( s[i] ) begin
-	 only = 0;
-	 foreach ( chars[j] ) begin
-	    if ( s[i] == chars[j] ) begin
-	       only = 1;
-	       break;
-	    end
-	 end
-	 if ( only == 0 ) return only;
+         only = 0;
+         foreach ( chars[j] ) begin
+            if ( s[i] == chars[j] ) begin
+               only = 1;
+               break;
+            end
+         end
+         if ( only == 0 ) return only;
       end
       only = 1;
-   endfunction: only
+   endfunction : only
 
    //---------------------------------------------------------------------------
-   // Function: partition 
+   // Function: partition
    //   (STATIC) Searches the first occurrence of the specified separator in the
    //   given string and returns an array of three strings. The returned array
    //   consists of: the string before the separator, the separator itself, and
@@ -1072,7 +1072,7 @@ virtual class text;
    // |
    // | s = '{ "abc", "-", "XYZ" };
    // | assert( text::partition( "abc-XYZ", "-" ) == s );
-   // | 
+   // |
    // | t1 = '{ "", "a", "bcabc" };
    // | t2 = '{ "a", "b", "cabc" };
    // | t3 = '{ "ab", "c", "abc" };
@@ -1087,17 +1087,17 @@ virtual class text;
    //---------------------------------------------------------------------------
 
    static function three_strings partition( string s,
-					    string sep );
+                                            string sep );
       int i = text::index( s, sep );
       int j = i + sep.len();
-	  
+
       if ( i == -1 )
-	partition = '{ s, "", "" };
+        partition = '{ s, "", "" };
       else
-	partition = '{ s.substr( 0, i - 1 ), // if i == 0, returns ""
-		       sep, 
-		       s.substr( j, s.len() - 1 ) };
-   endfunction: partition
+        partition = '{ s.substr( 0, i - 1 ), // if i == 0, returns ""
+                       sep,
+                       s.substr( j, s.len() - 1 ) };
+   endfunction : partition
 
    //---------------------------------------------------------------------------
    // Function: replace
@@ -1125,20 +1125,20 @@ virtual class text;
    //---------------------------------------------------------------------------
 
    static function string replace( string s,
-				   string old_str,
-				   string new_str,
-				   int 	  count = -1 );
+                                   string old_str,
+                                   string new_str,
+                                   int     count = -1 );
       three_strings t;
-      
-      if ( count == 0 ) return s;      
+
+      if ( count == 0 ) return s;
 
       t = text::partition( s, old_str );
       if ( t[1] == "" ) // no more match
-	return t[0];
+        return t[0];
       else
-	return { t[0], new_str, 
-		 replace( t[2], old_str, new_str, count - 1 ) };
-   endfunction: replace
+        return { t[0], new_str,
+                 replace( t[2], old_str, new_str, count - 1 ) };
+   endfunction : replace
 
    //---------------------------------------------------------------------------
    // Function: reverse
@@ -1158,11 +1158,11 @@ virtual class text;
 
    static function string reverse( string s );
       int last_pos = s.len() - 1;
-      
+
       reverse = s;
-      foreach ( s[i] ) 
-	reverse[ last_pos - i ] = s[i];
-   endfunction: reverse
+      foreach ( s[i] )
+        reverse[ last_pos - i ] = s[i];
+   endfunction : reverse
 
    //---------------------------------------------------------------------------
    // Function: rfind_any
@@ -1196,30 +1196,30 @@ virtual class text;
    // | //                               -9
    //
    // See Also:
-   //   <contains>, <contains_str>, <count>, <ends_with>, <find_any>, <index>, 
+   //   <contains>, <contains_str>, <count>, <ends_with>, <find_any>, <index>,
    //   <only>, <rindex>, <starts_with>
    //---------------------------------------------------------------------------
 
    static function int rfind_any( string s,
-				  string_q subs,
-				  int start_pos = 0,
-				  int end_pos = -1 );
+                                  string_q subs,
+                                  int start_pos = 0,
+                                  int end_pos = -1 );
       int found_pos[$];
-      
+
       foreach ( subs[i] ) begin
-	 int pos = rindex( s, subs[i], start_pos, end_pos );
-	 
-	 if ( pos != -1 ) found_pos.push_back( pos );
+         int pos = rindex( s, subs[i], start_pos, end_pos );
+
+         if ( pos != -1 ) found_pos.push_back( pos );
       end
 
       if ( found_pos.size() == 0 ) begin
-	 return -1;
+         return -1;
       end else begin
-	 int q[$] = found_pos.max;
+         int q[$] = found_pos.max;
 
-	 return q[0];
+         return q[0];
       end
-   endfunction: rfind_any
+   endfunction : rfind_any
 
    //---------------------------------------------------------------------------
    // Function: rindex
@@ -1252,25 +1252,25 @@ virtual class text;
    // | //                            -9
    //
    // See Also:
-   //   <contains>, <contains_str>, <count>, <ends_with>, <find_any>, <index>, 
+   //   <contains>, <contains_str>, <count>, <ends_with>, <find_any>, <index>,
    //   <only>, <rfind_any>, <starts_with>
    //---------------------------------------------------------------------------
 
    static function int rindex( string s,
-			       string sub,
-			       int    start_pos = 0,
-			       int    end_pos = -1 );
+                               string sub,
+                               int    start_pos = 0,
+                               int    end_pos = -1 );
       int slen = s.len();
       int blen = sub.len();
-      
+
       if ( slen == 0 || blen == 0 ) return -1;
       util::normalize( slen, start_pos, end_pos );
       for ( int i = end_pos - blen + 1; i >= start_pos; i-- ) begin
-	 if ( s.substr( i, i + blen - 1 ) == sub )
-	   return i;
+         if ( s.substr( i, i + blen - 1 ) == sub )
+           return i;
       end
       return -1;
-   endfunction: rindex
+   endfunction : rindex
 
    //---------------------------------------------------------------------------
    // Function: rjust
@@ -1303,22 +1303,22 @@ virtual class text;
    //   <center>, <ljust>
    //---------------------------------------------------------------------------
 
-   static function string rjust( string s, 
-				 int  width,
-				 byte fill_char = " ",
-				 bit  trim_left = 0 );
+   static function string rjust( string s,
+                                 int  width,
+                                 byte fill_char = " ",
+                                 bit  trim_left = 0 );
       int slen = s.len();
       int padding;
-      
+
       if ( width < slen && trim_left == 0 ) width = slen; // extend the width
       padding = width - slen;
 
       rjust = s;
-      if ( padding >= 0 ) 
-	repeat( padding ) rjust = { string'( fill_char ), rjust };
+      if ( padding >= 0 )
+        repeat( padding ) rjust = { string'( fill_char ), rjust };
       else
-	rjust = trim( rjust, .left( -padding ) );
-   endfunction: rjust
+        rjust = trim( rjust, .left( -padding ) );
+   endfunction : rjust
 
    //---------------------------------------------------------------------------
    // Function: rpartition
@@ -1356,17 +1356,17 @@ virtual class text;
    //---------------------------------------------------------------------------
 
    static function three_strings rpartition( string s,
-					     string sep );
+                                             string sep );
       int i = text::rindex( s, sep );
       int j = i + sep.len();
-	  
+
       if ( i == -1 )
-	rpartition = '{ s, "", "" };
+        rpartition = '{ s, "", "" };
       else
-	rpartition = '{ s.substr( 0, i - 1 ), // if i == 0, returns ""
-			sep, 
-			s.substr( j, s.len() - 1 ) };
-   endfunction: rpartition
+        rpartition = '{ s.substr( 0, i - 1 ), // if i == 0, returns ""
+                        sep,
+                        s.substr( j, s.len() - 1 ) };
+   endfunction : rpartition
 
    //---------------------------------------------------------------------------
    // Function: rsplit
@@ -1374,7 +1374,7 @@ virtual class text;
    //   the specified separator from the right.
    //
    // Arguments:
-   //   s         - An input string. If *s* is empty, an empty queue is 
+   //   s         - An input string. If *s* is empty, an empty queue is
    //               returned.
    //   sep - (OPTIONAL) A separator. If specified, *sep* is used as the
    //         delimiter. The *sep* itself is not returned as an element of the
@@ -1382,7 +1382,7 @@ virtual class text;
    //         tab (*\t*), or a newline (*\n*)) are used. If *sep* is not
    //         specified, the contiguous whitespaces and the trailing whitespaces
    //         are ignored.
-   //   max_split - (OPTIONAL) If specified, at most *max_split* splits are 
+   //   max_split - (OPTIONAL) If specified, at most *max_split* splits are
    //               done from the right and the remaining substring is returned
    //               as the first element of the queue.  If not specified or -1,
    //               there is no limit to the number of splits.
@@ -1418,40 +1418,40 @@ virtual class text;
    //---------------------------------------------------------------------------
 
    static function string_q rsplit( string s,
-				    string sep = "",
-				    int    max_split = -1 );
+                                    string sep = "",
+                                    int    max_split = -1 );
       if ( sep == "" ) begin // use whitespace as a separator
-	 int pos;
-	    
-	 s = rstrip( s );
-	 if ( s == "" ) return {};
-	 if ( max_split == 0 ) return { s };
+         int pos;
 
-	 pos = rfind_any( s, { " ", "\t", "\n" } );
-	 if ( pos == -1 ) begin // no more match
-	    return { s };
-	 end else begin // found whitespace
-	    string head = s.substr( 0, pos );
-	    string tail = s.substr( pos + 1, s.len() - 1 );
-	    string_q  q = rsplit( rstrip( head ), sep, max_split - 1 );
-	    
-	    q.push_back( tail );
-	    return q;
-	 end
+         s = rstrip( s );
+         if ( s == "" ) return {};
+         if ( max_split == 0 ) return { s };
+
+         pos = rfind_any( s, { " ", "\t", "\n" } );
+         if ( pos == -1 ) begin // no more match
+            return { s };
+         end else begin // found whitespace
+            string head = s.substr( 0, pos );
+            string tail = s.substr( pos + 1, s.len() - 1 );
+            string_q  q = rsplit( rstrip( head ), sep, max_split - 1 );
+
+            q.push_back( tail );
+            return q;
+         end
       end else begin
-	 three_strings t = rpartition( s, sep );
+         three_strings t = rpartition( s, sep );
 
-	 if ( max_split == 0 ) return { s };
-	 if ( t[1] == "" ) begin // no more match
-	    return { t[0] };
-	 end else begin // found match
-	    string_q q = rsplit( t[0], sep, max_split - 1 ); // recursive call
+         if ( max_split == 0 ) return { s };
+         if ( t[1] == "" ) begin // no more match
+            return { t[0] };
+         end else begin // found match
+            string_q q = rsplit( t[0], sep, max_split - 1 ); // recursive call
 
-	    q.push_back( t[2] );
-	    return q;
-	 end
+            q.push_back( t[2] );
+            return q;
+         end
       end
-   endfunction: rsplit
+   endfunction : rsplit
 
    //---------------------------------------------------------------------------
    // Function: rstrip
@@ -1480,15 +1480,15 @@ virtual class text;
    //---------------------------------------------------------------------------
 
    static function string rstrip( string s,
-				  string chars = " \t\n" );
+                                  string chars = " \t\n" );
       int slen = s.len();
 
       for ( int i = slen - 1; i >= 0; i-- ) begin
-	 if ( ! text::contains( chars, string'( s[i] ) ) ) 
-	   return s.substr( 0, i );
+         if ( ! text::contains( chars, string'( s[i] ) ) )
+           return s.substr( 0, i );
       end
       return "";
-   endfunction: rstrip
+   endfunction : rstrip
 
    //---------------------------------------------------------------------------
    // Function: slice
@@ -1500,9 +1500,9 @@ virtual class text;
    //   s - An input string.
    //   start_pos - (OPTIONAL) Specifies the position in *s* to begin the
    //               substring. See <Common Arguments>.
-   //   end_pos   - (OPTIONAL) Specifies the position in *s* to end the 
+   //   end_pos   - (OPTIONAL) Specifies the position in *s* to end the
    //               substring. See <Common Arguments>.
-   // 
+   //
    // Returns:
    //   Returns a substring in the specified range.
    //
@@ -1515,11 +1515,11 @@ virtual class text;
    //---------------------------------------------------------------------------
 
    static function string slice( string s,
-				 int start_pos = 0,
-				 int end_pos = - 1 );
+                                 int start_pos = 0,
+                                 int end_pos = - 1 );
       util::normalize( s.len(), start_pos, end_pos );
       return s.substr( start_pos, end_pos );
-   endfunction: slice
+   endfunction : slice
 
    //---------------------------------------------------------------------------
    // Function: slice_len
@@ -1532,7 +1532,7 @@ virtual class text;
    //               substring. See <Common Arguments>.
    //   length    - (OPTIONAL) The number of characters to extract. The default
    //               is the length of *s*.
-   // 
+   //
    // Returns:
    //   Returns a substring in the specified range.
    //
@@ -1545,14 +1545,14 @@ virtual class text;
    //---------------------------------------------------------------------------
 
    static function string slice_len( string s,
-				     int start_pos = 0,
-				     int unsigned length = s.len() );
+                                     int start_pos = 0,
+                                     int unsigned length = s.len() );
       int end_pos = -1; // dummy for normalize()
 
       if ( length == 0 ) return "";
       util::normalize( s.len(), start_pos, end_pos ); // make start_pos positive
       return slice( s, start_pos, start_pos + length - 1 );
-   endfunction: slice_len
+   endfunction : slice_len
 
    //---------------------------------------------------------------------------
    // Function: split
@@ -1568,7 +1568,7 @@ virtual class text;
    //         tab (*\t*), or a newline (*\n*)) are used. If *sep* is not
    //         specified, the leading whitespaces and the contiguous whitespaces
    //         are ignored.
-   //   max_split - (OPTIONAL) If specified, at most *max_split* splits are 
+   //   max_split - (OPTIONAL) If specified, at most *max_split* splits are
    //               done and the remaining substring is returned as the last
    //               element of the queue.  If not specified or -1, there is no
    //               limit to the number of splits.
@@ -1587,7 +1587,7 @@ virtual class text;
    // | assert( text::split( "  abc  pqr  xyz  ", .max_split( 1 ) ) == s2 );
    // | assert( text::split( "  abc  pqr  xyz  ", .max_split( 2 ) ) == s3 );
    // | assert( text::split( "  abc  pqr  xyz  ", .max_split( 3 ) ) == s4 );
-   // | 
+   // |
    // | t1 = '{ "", "abc", "pqr", "xyz", "" };
    // | t2 = '{ "", "abc--pqr--xyz--" };
    // | t3 = '{ "", "abc", "pqr--xyz--" };
@@ -1604,40 +1604,40 @@ virtual class text;
    //---------------------------------------------------------------------------
 
    static function string_q split( string s,
-				   string sep = "",
-				   int 	  max_split = -1 );
+                                   string sep = "",
+                                   int     max_split = -1 );
       if ( sep == "" ) begin // use whitespace as a separator
-	 int pos;
-	    
-	 s = lstrip( s );
-	 if ( s == "" ) return {};
-	 if ( max_split == 0 ) return { s };
+         int pos;
 
-	 pos = find_any( s, { " ", "\t", "\n" } );
-	 if ( pos == -1 ) begin // no more match
-	    return { s };
-	 end else begin // found whitespace
-	    string head = s.substr( 0, pos - 1 );
-	    string tail = s.substr( pos, s.len() - 1 );
-	    string_q  q = split( lstrip( tail ), sep, max_split - 1 );
+         s = lstrip( s );
+         if ( s == "" ) return {};
+         if ( max_split == 0 ) return { s };
 
-	    q.push_front( head );
-	    return q;
-	 end
+         pos = find_any( s, { " ", "\t", "\n" } );
+         if ( pos == -1 ) begin // no more match
+            return { s };
+         end else begin // found whitespace
+            string head = s.substr( 0, pos - 1 );
+            string tail = s.substr( pos, s.len() - 1 );
+            string_q  q = split( lstrip( tail ), sep, max_split - 1 );
+
+            q.push_front( head );
+            return q;
+         end
       end else begin
-	 three_strings t = partition( s, sep );
+         three_strings t = partition( s, sep );
 
-	 if ( max_split == 0 ) return { s };
-	 if ( t[1] == "" ) begin // no more match
-	    return { t[0] };
-	 end else begin // found match
-	    string_q q = split( t[2], sep, max_split - 1 ); // recursive call
+         if ( max_split == 0 ) return { s };
+         if ( t[1] == "" ) begin // no more match
+            return { t[0] };
+         end else begin // found match
+            string_q q = split( t[2], sep, max_split - 1 ); // recursive call
 
-	    q.push_front( t[0] );
-	    return q;
-	 end
+            q.push_front( t[0] );
+            return q;
+         end
       end
-   endfunction: split
+   endfunction : split
 
    //---------------------------------------------------------------------------
    // FunctionX: split_lines
@@ -1658,7 +1658,7 @@ virtual class text;
    // : assert( text::split_lines( ""   ) == '{} );
    // : assert( text::split_lines( "\n" ) == '{} ); // trailing newline characters are dropped
    // : assert( text::split_lines( "\n", .keep_ends( 1 ) ) == '{ "\n" } );
-   // : 
+   // :
    // : assert( text::split_lines( "abc\nXYZ"                  ) == '{ "abc",     "XYZ" } );
    // : assert( text::split_lines( "abc\n\nXYZ"                ) == '{ "abc", "", "XYZ" } );
    // : assert( text::split_lines( "abc\nXYZ", .keep_ends( 1 ) ) == '{ "abc\n",   "XYZ" } );
@@ -1666,46 +1666,46 @@ virtual class text;
    // See AlsoX:
    //   <partition>, <rpartition>, <rsplit>, <split>
    //---------------------------------------------------------------------------
-/*
-   static function string_q split_lines( string s,
-					 bit keep_ends = 0 );
-      int pos;
+   /*
+    static function string_q split_lines( string s,
+    bit keep_ends = 0 );
+    int pos;
 
-      if ( s == "" ) return {};
-      if ( only( s, "\n" ) ) begin
-      	 if ( keep_ends ) return { s };
-      	 else             return {};
+    if ( s == "" ) return {};
+    if ( only( s, "\n" ) ) begin
+    if ( keep_ends ) return { s };
+    else             return {};
       end
 
-      pos = find_any( s, { "\n" } );
-      if ( pos == -1 ) begin // no more newlines
-	 return { s };
+    pos = find_any( s, { "\n" } );
+    if ( pos == -1 ) begin // no more newlines
+    return { s };
       end else begin // found a newline
-	 string head;
-	 int 	slen = s.len();
+    string head;
+    int  slen = s.len();
 
-	 if ( keep_ends ) head = s.substr( 0, pos ); // keep newline
-	 else             head = s.substr( 0, pos - 1 );
+    if ( keep_ends ) head = s.substr( 0, pos ); // keep newline
+    else             head = s.substr( 0, pos - 1 );
 
-	 if ( pos + 1 <= slen - 1 ) begin // tail exists
-	    string tail = s.substr( pos + 1, slen - 1 );
+    if ( pos + 1 <= slen - 1 ) begin // tail exists
+    string tail = s.substr( pos + 1, slen - 1 );
 
-	    if ( only( tail, "\n" ) ) begin
-	       if ( keep_ends )
-		 head = { head, tail }; // concatenate the last newlines
-	       return { head }; // if not keep_ends, drop the last newlines
-	    end else begin
-	       string_q q = split_lines( tail, keep_ends );
+    if ( only( tail, "\n" ) ) begin
+    if ( keep_ends )
+    head = { head, tail }; // concatenate the last newlines
+    return { head }; // if not keep_ends, drop the last newlines
+       end else begin
+    string_q q = split_lines( tail, keep_ends );
 
-	       q.push_front( head );
-	       return q;
-	    end
-	 end else begin // no tail
-	    return { head };
-	 end
+    q.push_front( head );
+    return q;
+       end
+    end else begin // no tail
+    return { head };
+    end
       end
-   endfunction: split_lines
-*/
+   endfunction : split_lines
+    */
    //---------------------------------------------------------------------------
    // Function: starts_with
    //   (STATIC) Returns 1 if the given string starts with one of the specified
@@ -1722,7 +1722,7 @@ virtual class text;
    //               See <Common Arguments>.
    //
    // Returns:
-   //   If *s* starts with one of the specified *prefixes*, 1 is returned. 
+   //   If *s* starts with one of the specified *prefixes*, 1 is returned.
    //   Otherwise, 0 is returned.
    //
    // Example:
@@ -1738,29 +1738,29 @@ virtual class text;
    // | //                                 -9
    //
    // See Also:
-   //   <contains>, <contains_str>, <count>, <ends_with>, <find_any>, <index>, 
+   //   <contains>, <contains_str>, <count>, <ends_with>, <find_any>, <index>,
    //   <only>, <rfind_any>, <rindex>
    //---------------------------------------------------------------------------
 
    static function bit starts_with( string s,
-				   string_q prefixes,
-				   int start_pos = 0,
-				   int end_pos = -1 );
+                                    string_q prefixes,
+                                    int start_pos = 0,
+                                    int end_pos = -1 );
       int slen = s.len();
 
       if ( slen == 0 ) return 0;
       util::normalize( slen, start_pos, end_pos );
 
       foreach ( prefixes[i] ) begin
-	 int blen = prefixes[i].len();
-	 int stop_pos = start_pos + blen - 1;
+         int blen = prefixes[i].len();
+         int stop_pos = start_pos + blen - 1;
 
-	 if ( blen == 0 ) continue;
-	 if ( end_pos < stop_pos ) continue;
-	 if ( s.substr( start_pos, stop_pos ) == prefixes[i] ) return 1;
+         if ( blen == 0 ) continue;
+         if ( end_pos < stop_pos ) continue;
+         if ( s.substr( start_pos, stop_pos ) == prefixes[i] ) return 1;
       end
       return 0;
-   endfunction: starts_with
+   endfunction : starts_with
 
    //---------------------------------------------------------------------------
    // Function: strip
@@ -1790,9 +1790,9 @@ virtual class text;
    //---------------------------------------------------------------------------
 
    static function string strip( string s,
-				 string chars = " \t\n" );
+                                 string chars = " \t\n" );
       return rstrip( lstrip( s, chars ), chars );
-   endfunction: strip
+   endfunction : strip
 
    //---------------------------------------------------------------------------
    // Function: swap_case
@@ -1816,13 +1816,13 @@ virtual class text;
    static function string swap_case( string s );
       swap_case = "";
       foreach ( s[i] ) begin
-	 string t = string'( s[i] );
+         string t = string'( s[i] );
 
-	 if ( is_lower( t ) )      swap_case = { swap_case, t.toupper() };
-	 else if ( is_upper( t ) ) swap_case = { swap_case, t.tolower() };
-	 else	                   swap_case = { swap_case, t };
+         if ( is_lower( t ) )      swap_case = { swap_case, t.toupper() };
+         else if ( is_upper( t ) ) swap_case = { swap_case, t.tolower() };
+         else                    swap_case = { swap_case, t };
       end
-   endfunction: swap_case
+   endfunction : swap_case
 
    //---------------------------------------------------------------------------
    // Function: title_case
@@ -1848,22 +1848,22 @@ virtual class text;
 
       title_case = "";
       foreach ( s[i] ) begin
-	 string t = string'( s[i] );
+         string t = string'( s[i] );
 
-	 if ( is_alpha( t ) ) begin
-	    if ( start ) begin
-	       title_case = { title_case, t.toupper() };
-	       start = 0;
-	    end else begin
-	       title_case = { title_case, t.tolower() };
-	    end
-	 end else begin
-	    title_case = { title_case, t };
-	    start = 1;
-	 end
+         if ( is_alpha( t ) ) begin
+            if ( start ) begin
+               title_case = { title_case, t.toupper() };
+               start = 0;
+            end else begin
+               title_case = { title_case, t.tolower() };
+            end
+         end else begin
+            title_case = { title_case, t };
+            start = 1;
+         end
       end
-   endfunction: title_case
-   
+   endfunction : title_case
+
    //---------------------------------------------------------------------------
    // Function: trim
    //   (STATIC) Returns a copy of the given string with the specified numbers
@@ -1873,11 +1873,11 @@ virtual class text;
    //   s     - A string to be trimmed.
    //   left  - (OPTIONAL) The number of leading characters to remove. The
    //           default is 0.
-   //   right - (OPTIONAL) The number of trailing characters to remove. The 
+   //   right - (OPTIONAL) The number of trailing characters to remove. The
    //           default is 0.
    //
    // Returns:
-   //   A copy of *s* with leading *left* characters and trailing *right* 
+   //   A copy of *s* with leading *left* characters and trailing *right*
    //   characters removed.
    //
    // Example:
@@ -1890,10 +1890,10 @@ virtual class text;
    //---------------------------------------------------------------------------
 
    static function string trim( string s,
-				int unsigned left = 0,
-				int unsigned right = 0 );
+                                int unsigned left = 0,
+                                int unsigned right = 0 );
       return s.substr( left, s.len() - right - 1 );
-   endfunction: trim
+   endfunction : trim
 
    //---------------------------------------------------------------------------
    // Function: uc_first
@@ -1903,7 +1903,7 @@ virtual class text;
    // Argument:
    //   s - An input string.
    //
-   // Returns: 
+   // Returns:
    //   A copy of *s* with the first character uppercased and the remainder
    //   unchanged.
    //
@@ -1919,7 +1919,7 @@ virtual class text;
       string tail = s.substr( 1, s.len() - 1 );
 
       return { head.toupper(), tail };
-   endfunction: uc_first
+   endfunction : uc_first
 
    //---------------------------------------------------------------------------
    // Function: untabify
@@ -1934,9 +1934,9 @@ virtual class text;
    //              The default is 8.
    //
    // Returns:
-   //   A copy of *s* where all tab characters are replaced by one or more 
+   //   A copy of *s* where all tab characters are replaced by one or more
    //   spaces, depending on the tab positions.
-   //   
+   //
    // Example:
    // | assert( text::untabify( "AB\tCDE\tFGHI\tJKLMN" ) == "AB      CDE     FGHI    JKLMN" );
    // |                                    // tab positions: ^       ^       ^       ^
@@ -1947,31 +1947,31 @@ virtual class text;
    //---------------------------------------------------------------------------
 
    static function string untabify( string s,
-				    int unsigned tab_size = 8 );
+                                    int unsigned tab_size = 8 );
       int unsigned column = 0;
       int unsigned spaces;
 
       untabify = "";
       foreach ( s[i] ) begin
-	 if ( s[i] == "\t" ) begin
-	    if ( tab_size > 0 ) begin
-	       spaces = ( ( column / tab_size ) + 1 ) * tab_size - column;
-	       repeat ( spaces ) begin
-		  untabify = { untabify, " " };
-		  column++;
-	       end
-	    end // if tab_size == 0, then simply drop the "\t"
-	 end else if ( s[i] == "\n" /*|| s[i] == "\r"*/ ) begin
-	    untabify = { untabify, s[i] };
-	    column = 0;
-	 end else begin
-	    untabify = { untabify, s[i] };
-	    column++;
-	 end
+         if ( s[i] == "\t" ) begin
+            if ( tab_size > 0 ) begin
+               spaces = ( ( column / tab_size ) + 1 ) * tab_size - column;
+               repeat ( spaces ) begin
+                  untabify = { untabify, " " };
+                  column++;
+               end
+            end // if tab_size == 0, then simply drop the "\t"
+         end else if ( s[i] == "\n" /*|| s[i] == "\r"*/ ) begin
+            untabify = { untabify, s[i] };
+            column = 0;
+         end else begin
+            untabify = { untabify, s[i] };
+            column++;
+         end
       end // foreach ( s[i] )
-   endfunction: untabify
+   endfunction : untabify
 
-endclass: text
+endclass : text
 
 `endif //  `ifndef CL_TEXT_SVH
 

@@ -27,7 +27,7 @@
 //==============================================================================
 
 `ifndef CL_JOURNAL_SVH
-`define CL_JOURNAL_SVH
+ `define CL_JOURNAL_SVH
 
 //------------------------------------------------------------------------------
 // Class: journal
@@ -78,11 +78,11 @@ virtual class journal;
    //---------------------------------------------------------------------------
 
    static function void log( string desc,
-			     string from_unit = "journal",
-			     string to_unit = from_unit );
+                             string from_unit = "journal",
+                             string to_unit = from_unit );
       $fwrite( log_fd, "%s->%s: @%s %s\n",
-	       from_unit, to_unit, com_fmtr.to_string( $time ), desc );
-   endfunction: log
+               from_unit, to_unit, com_fmtr.to_string( $time ), desc );
+   endfunction : log
 
    //---------------------------------------------------------------------------
    // Function: csv
@@ -110,13 +110,13 @@ virtual class journal;
    //---------------------------------------------------------------------------
 
    static function void csv( string desc,
-			     string from_unit = "journal",
-			     string to_unit = from_unit );
+                             string from_unit = "journal",
+                             string to_unit = from_unit );
       $fwrite( csv_fd, "\"%s\",\"%s\",\"@%s %s\"\n",
-	       from_unit, to_unit, com_fmtr.to_string( $time ), desc );
-   endfunction: csv
+               from_unit, to_unit, com_fmtr.to_string( $time ), desc );
+   endfunction : csv
 
-endclass: journal
+endclass : journal
 
 `endif //  `ifndef CL_JOURNAL_SVH
 

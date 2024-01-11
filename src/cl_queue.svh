@@ -12,10 +12,10 @@
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,11 +26,11 @@
 //==============================================================================
 
 `ifndef CL_QUEUE_SVH
-`define CL_QUEUE_SVH
+ `define CL_QUEUE_SVH
 
 //------------------------------------------------------------------------------
 // Class: queue
-//   A parameterized class that manages a queue. 
+//   A parameterized class that manages a queue.
 //
 //
 // Parameters:
@@ -91,7 +91,7 @@ virtual class queue #( type T = bit, int SIZE = 1 );
    //   reverse - (OPTIONAL) If 0, the element at the index 0 of *ua* is
    //             positioned to the index 0 of the queue. If 1, the elements are
    //             positioned in the reverse order. The default is 0.
-   //             
+   //
    // Returns:
    //   A queue converted from *ua*.
    //
@@ -108,10 +108,10 @@ virtual class queue #( type T = bit, int SIZE = 1 );
    //---------------------------------------------------------------------------
 
    static function q_type from_unpacked_array( const ref ua_type ua,
-					       input bit reverse = 0 );
+                                               input bit reverse = 0 );
       common_array#( T, ua_type, q_type )::a_to_q( ua, from_unpacked_array,
-						   reverse );
-   endfunction: from_unpacked_array
+                                                   reverse );
+   endfunction : from_unpacked_array
 
    //---------------------------------------------------------------------------
    // Function: to_unpacked_array
@@ -135,16 +135,16 @@ virtual class queue #( type T = bit, int SIZE = 1 );
    // |
    // | assert( queue#(bit,8)::to_unpacked_array( q                ) == ua0 );
    // | assert( queue#(bit,8)::to_unpacked_array( q, .reverse( 1 ) ) == ua1 );
-   // 
+   //
    // See Also:
    //   <q_to_ua>
    //---------------------------------------------------------------------------
 
    static function ua_type to_unpacked_array( const ref q_type q,
-					      input bit reverse = 0 );
-      common_array#( T, q_type, ua_type )::a_to_a( q, to_unpacked_array, 
-						   reverse );
-   endfunction: to_unpacked_array
+                                              input bit reverse = 0 );
+      common_array#( T, q_type, ua_type )::a_to_a( q, to_unpacked_array,
+                                                   reverse );
+   endfunction : to_unpacked_array
 
    //---------------------------------------------------------------------------
    // Function: from_dynamic_array
@@ -173,11 +173,11 @@ virtual class queue #( type T = bit, int SIZE = 1 );
    //---------------------------------------------------------------------------
 
    static function q_type from_dynamic_array( const ref da_type da,
-					      input bit reverse = 0 );
-      common_array#( T, da_type, q_type )::a_to_q( da, from_dynamic_array, 
-						   reverse );
-   endfunction: from_dynamic_array
-   
+                                              input bit reverse = 0 );
+      common_array#( T, da_type, q_type )::a_to_q( da, from_dynamic_array,
+                                                   reverse );
+   endfunction : from_dynamic_array
+
    //---------------------------------------------------------------------------
    // Function: to_dynamic_array
    //   (STATIC) Converts a queue of type *T* to a dynamic array of the same
@@ -206,12 +206,12 @@ virtual class queue #( type T = bit, int SIZE = 1 );
    //---------------------------------------------------------------------------
 
    static function da_type to_dynamic_array( const ref q_type q,
-					     input bit reverse = 0 );
+                                             input bit reverse = 0 );
       to_dynamic_array = new[ q.size() ];
-      common_array#( T, q_type, da_type )::a_to_a( q, to_dynamic_array, 
-						   reverse );
-   endfunction: to_dynamic_array
-   
+      common_array#( T, q_type, da_type )::a_to_a( q, to_dynamic_array,
+                                                   reverse );
+   endfunction : to_dynamic_array
+
    //---------------------------------------------------------------------------
    // Function: ua_to_q
    //   (STATIC) Converts an unpacked array of type *T* to a queue of the same
@@ -240,16 +240,16 @@ virtual class queue #( type T = bit, int SIZE = 1 );
    // | q.delete();
    // | queue#(bit,8)::ua_to_q( ua, q, .reverse( 1 ) );
    // | assert( q == q1 );
-   // 
+   //
    // See Also:
    //   <from_unpacked_array>
    //---------------------------------------------------------------------------
 
    static function void ua_to_q( const ref ua_type ua,
-				 ref q_type q,
-				 input bit reverse = 0 );
+                                 ref q_type q,
+                                 input bit reverse = 0 );
       common_array#( T, ua_type, q_type )::a_to_q( ua, q, reverse );
-   endfunction: ua_to_q
+   endfunction : ua_to_q
 
    //---------------------------------------------------------------------------
    // Function: q_to_ua
@@ -287,11 +287,11 @@ virtual class queue #( type T = bit, int SIZE = 1 );
    //---------------------------------------------------------------------------
 
    static function void q_to_ua( const ref q_type q,
-				 ref ua_type ua,
-				 input bit reverse = 0 );
+                                 ref ua_type ua,
+                                 input bit reverse = 0 );
       common_array#( T, q_type, ua_type )::a_to_a( q, ua, reverse );
-   endfunction: q_to_ua
-   
+   endfunction : q_to_ua
+
    //---------------------------------------------------------------------------
    // Function: da_to_q
    //   (STATIC) Converts a dynamic array of type *T* to a queue of the same
@@ -320,17 +320,17 @@ virtual class queue #( type T = bit, int SIZE = 1 );
    // | q.delete();
    // | queue#(bit)::da_to_q( da, q, .reverse( 1 ) );
    // | assert( q == q1 );
-   // 
+   //
    // See Also:
    //   <from_dynamic_array>
    //---------------------------------------------------------------------------
 
    static function void da_to_q( const ref da_type da,
-				 ref q_type q,
-				 input bit reverse = 0 );
+                                 ref q_type q,
+                                 input bit reverse = 0 );
       common_array#( T, da_type, q_type )::a_to_q( da, q, reverse );
-   endfunction: da_to_q
-   
+   endfunction : da_to_q
+
    //---------------------------------------------------------------------------
    // Function: q_to_da
    //   (STATIC) Converts a queue of type *T* to a dynamic array of the same
@@ -364,10 +364,10 @@ virtual class queue #( type T = bit, int SIZE = 1 );
    //---------------------------------------------------------------------------
 
    static function void q_to_da( const ref q_type q,
-				 ref da_type da,
-				 input bit reverse = 0 );
+                                 ref da_type da,
+                                 input bit reverse = 0 );
       common_array#( T, q_type, da_type )::a_to_a( q, da, reverse );
-   endfunction: q_to_da
+   endfunction : q_to_da
 
    //---------------------------------------------------------------------------
    // Function: init
@@ -392,7 +392,7 @@ virtual class queue #( type T = bit, int SIZE = 1 );
 
    static function void init( ref q_type q, input T val );
       common_array#( T, q_type )::init( q, val );
-   endfunction: init
+   endfunction : init
 
    //---------------------------------------------------------------------------
    // Function: reverse
@@ -414,7 +414,7 @@ virtual class queue #( type T = bit, int SIZE = 1 );
 
    static function void reverse( ref q_type q );
       common_array#( T, q_type )::reverse( q );
-   endfunction: reverse
+   endfunction : reverse
 
    //---------------------------------------------------------------------------
    // Function: split
@@ -452,16 +452,16 @@ virtual class queue #( type T = bit, int SIZE = 1 );
    //---------------------------------------------------------------------------
 
    static function void split( q_type q,
-			       ref q_type q0,
-			       ref q_type q1,
-			       input bit pad = 0 );
+                               ref q_type q0,
+                               ref q_type q1,
+                               input bit pad = 0 );
       T dummy;
       int q_size = q.size();
 
       for ( int i = 0; i < q.size(); i += 2 ) q0.push_back( q[i] );
       for ( int i = 1; i < q.size(); i += 2 ) q1.push_back( q[i] );
       if ( q_size % 2 == 1 && pad ) q1.push_back( dummy );
-   endfunction: split      
+   endfunction : split
 
    //---------------------------------------------------------------------------
    // Function: merge
@@ -498,38 +498,38 @@ virtual class queue #( type T = bit, int SIZE = 1 );
    //---------------------------------------------------------------------------
 
    static function q_type merge( q_type q0,
-				 q_type q1,
-				 bit truncate = 0 );
+                                 q_type q1,
+                                 bit truncate = 0 );
       int q0_size = q0.size();
       int q1_size = q1.size();
       q_type q;
 
       if ( q0_size == q1_size ) begin
-	 for ( int i = 0; i < q0_size; i++ ) begin
-	    q.push_back( q0[i] );
-	    q.push_back( q1[i] );
-	 end
+         for ( int i = 0; i < q0_size; i++ ) begin
+            q.push_back( q0[i] );
+            q.push_back( q1[i] );
+         end
       end else if ( q0_size < q1_size ) begin
-	 for ( int i = 0; i < q0_size; i++ ) begin
-	    q.push_back( q0[i] );
-	    q.push_back( q1[i] );
-	 end
-	 if ( ! truncate ) begin
-	    for ( int i = q0_size; i < q1_size; i++ )
-	      q.push_back( q1[i] );
-	 end
+         for ( int i = 0; i < q0_size; i++ ) begin
+            q.push_back( q0[i] );
+            q.push_back( q1[i] );
+         end
+         if ( ! truncate ) begin
+            for ( int i = q0_size; i < q1_size; i++ )
+              q.push_back( q1[i] );
+         end
       end else begin // q0_size > q1_size
-	 for ( int i = 0; i < q1_size; i++ ) begin
-	    q.push_back( q0[i] );
-	    q.push_back( q1[i] );
-	 end
-	 if ( ! truncate ) begin
-	    for ( int i = q1_size; i < q0_size; i++ )
-	      q.push_back( q0[i] );
-	 end
+         for ( int i = 0; i < q1_size; i++ ) begin
+            q.push_back( q0[i] );
+            q.push_back( q1[i] );
+         end
+         if ( ! truncate ) begin
+            for ( int i = q1_size; i < q0_size; i++ )
+              q.push_back( q0[i] );
+         end
       end // else: !if( q0_size < q1_size )
       return q;
-   endfunction: merge
+   endfunction : merge
 
    //---------------------------------------------------------------------------
    // Function: concat
@@ -555,11 +555,11 @@ virtual class queue #( type T = bit, int SIZE = 1 );
    //---------------------------------------------------------------------------
 
    static function q_type concat( q_type q0,
-				  q_type q1 );
+                                  q_type q1 );
       q_type q = q0; // assign element by element
       for ( int i = 0; i < q1.size(); i++ ) q.push_back( q1[i] );
       return q;
-   endfunction: concat
+   endfunction : concat
 
    //---------------------------------------------------------------------------
    // Function: extract
@@ -584,11 +584,11 @@ virtual class queue #( type T = bit, int SIZE = 1 );
    //---------------------------------------------------------------------------
 
    static function q_type extract( q_type q,
-				   int from_index = 0,
-				   int to_index   = -1 );
+                                   int from_index = 0,
+                                   int to_index   = -1 );
       util::normalize( q.size(), from_index, to_index );
       extract = q[ from_index : to_index ];
-   endfunction: extract
+   endfunction : extract
 
    //---------------------------------------------------------------------------
    // Function: append
@@ -613,7 +613,7 @@ virtual class queue #( type T = bit, int SIZE = 1 );
    static function q_type append( q_type q, T e );
       append = q; // assign element by element
       append.push_back( e );
-   endfunction: append
+   endfunction : append
 
    //---------------------------------------------------------------------------
    // Function: compare
@@ -645,21 +645,21 @@ virtual class queue #( type T = bit, int SIZE = 1 );
    // | //                  |<------>|
    // | //                  2        5
    // | assert( queue#(bit)::compare( q1, q2 ) == 0 );
-   // | assert( queue#(bit)::compare( q1, q2, 
-   // |         .from_index1( 2 ), .to_index1( 5 ), 
+   // | assert( queue#(bit)::compare( q1, q2,
+   // |         .from_index1( 2 ), .to_index1( 5 ),
    // |         .from_index2( 2 ), .to_index2( 5 ) ) == 1 );
    //---------------------------------------------------------------------------
 
    static function bit compare( const ref q_type q1,
-				const ref q_type q2,
-				input int from_index1 = 0, 
-				int to_index1   = -1,
-				int from_index2 = 0, 
-				int to_index2   = -1,
-				comparator#(T) cmp = null );
+                                const ref q_type q2,
+                                input int from_index1 = 0,
+                                int to_index1   = -1,
+                                int from_index2 = 0,
+                                int to_index2   = -1,
+                                comparator#(T) cmp = null );
       return common_array#( T, q_type, q_type )::
-	compare( q1, q2, from_index1, to_index1, from_index2, to_index2, cmp );
-   endfunction: compare
+        compare( q1, q2, from_index1, to_index1, from_index2, to_index2, cmp );
+   endfunction : compare
 
    //---------------------------------------------------------------------------
    // Function: clone
@@ -679,7 +679,7 @@ virtual class queue #( type T = bit, int SIZE = 1 );
 
    static function q_type clone( q_type q );
       clone = q; // assign element by element
-   endfunction: clone
+   endfunction : clone
 
    //---------------------------------------------------------------------------
    // Function: to_string
@@ -708,15 +708,15 @@ virtual class queue #( type T = bit, int SIZE = 1 );
    //---------------------------------------------------------------------------
 
    static function string to_string( const ref q_type q,
-				     input string separator = " ",
-				     int from_index = 0,
-				     int to_index = -1,
-				     formatter#(T) fmtr = null );
+                                     input string separator = " ",
+                                     int from_index = 0,
+                                     int to_index = -1,
+                                     formatter#(T) fmtr = null );
       return common_array#(T, q_type )::
-	to_string( q, separator, from_index, to_index, fmtr );
-   endfunction: to_string
+        to_string( q, separator, from_index, to_index, fmtr );
+   endfunction : to_string
 
-endclass: queue
+endclass : queue
 
 `endif //  `ifndef CL_QUEUE_SVH
 

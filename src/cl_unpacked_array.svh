@@ -12,10 +12,10 @@
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,7 +26,7 @@
 //==============================================================================
 
 `ifndef CL_UNPACKED_ARRAY_SVH
-`define CL_UNPACKED_ARRAY_SVH
+ `define CL_UNPACKED_ARRAY_SVH
 
 //------------------------------------------------------------------------------
 // Class: unpacked_array
@@ -109,11 +109,11 @@ virtual class unpacked_array #( type T = bit, int SIZE = 1 );
    //---------------------------------------------------------------------------
 
    static function ua_type from_dynamic_array( const ref da_type da,
-					       input bit reverse = 0 );
-      common_array#( T, da_type, ua_type )::a_to_a( da, from_dynamic_array, 
-						    reverse );
-   endfunction: from_dynamic_array
-   
+                                               input bit reverse = 0 );
+      common_array#( T, da_type, ua_type )::a_to_a( da, from_dynamic_array,
+                                                    reverse );
+   endfunction : from_dynamic_array
+
    //---------------------------------------------------------------------------
    // Function: to_dynamic_array
    //   (STATIC) Converts an unpacked array of type *T* to a dynamic array of
@@ -136,18 +136,18 @@ virtual class unpacked_array #( type T = bit, int SIZE = 1 );
    // |
    // | assert( unpacked_array#(bit,8)::to_dynamic_array( ua                ) == da0 );
    // | assert( unpacked_array#(bit,8)::to_dynamic_array( ua, .reverse( 1 ) ) == da1 );
-   // 
+   //
    // See Also:
    //   <ua_to_da>
    //---------------------------------------------------------------------------
 
    static function da_type to_dynamic_array( const ref ua_type ua,
-					     input bit reverse = 0 );
+                                             input bit reverse = 0 );
       to_dynamic_array = new[ $size( ua ) ];
-      common_array#( T, ua_type, da_type )::a_to_a( ua, to_dynamic_array, 
-						    reverse );
-   endfunction: to_dynamic_array
-   
+      common_array#( T, ua_type, da_type )::a_to_a( ua, to_dynamic_array,
+                                                    reverse );
+   endfunction : to_dynamic_array
+
    //---------------------------------------------------------------------------
    // Function: from_queue
    //   (STATIC) Converts a queue of type *T* to an unpacked array of the same
@@ -178,10 +178,10 @@ virtual class unpacked_array #( type T = bit, int SIZE = 1 );
    //---------------------------------------------------------------------------
 
    static function ua_type from_queue( const ref q_type q,
-				       input bit reverse = 0 );
+                                       input bit reverse = 0 );
       common_array#( T, q_type, ua_type )::a_to_a( q, from_queue, reverse );
-   endfunction: from_queue
-   
+   endfunction : from_queue
+
    //---------------------------------------------------------------------------
    // Function: to_queue
    //   (STATIC) Converts an unpacked array of type *T* to a queue of the same
@@ -203,16 +203,16 @@ virtual class unpacked_array #( type T = bit, int SIZE = 1 );
    // |
    // | assert( unpacked_array#(bit,8)::to_queue( ua                ) == q0 );
    // | assert( unpacked_array#(bit,8)::to_queue( ua, .reverse( 1 ) ) == q1 );
-   // 
+   //
    // See Also:
    //   <ua_to_q>
    //---------------------------------------------------------------------------
 
    static function q_type to_queue( const ref ua_type ua,
-				    input bit reverse = 0 );
+                                    input bit reverse = 0 );
       common_array#( T, ua_type, q_type )::a_to_q( ua, to_queue, reverse );
-   endfunction: to_queue
-   
+   endfunction : to_queue
+
    //---------------------------------------------------------------------------
    // Function: da_to_ua
    //   (STATIC) Converts a dynamic array of type *T* to an unpacked array of
@@ -250,11 +250,11 @@ virtual class unpacked_array #( type T = bit, int SIZE = 1 );
    //---------------------------------------------------------------------------
 
    static function void da_to_ua( const ref da_type da,
-				  ref ua_type ua,
-				  input bit reverse = 0 );
+                                  ref ua_type ua,
+                                  input bit reverse = 0 );
       common_array#( T, da_type, ua_type )::a_to_a( da, ua, reverse );
-   endfunction: da_to_ua
-   
+   endfunction : da_to_ua
+
    //---------------------------------------------------------------------------
    // Function: ua_to_da
    //   (STATIC) Converts an unpacked array of type *T* to a dynamic array of
@@ -285,17 +285,17 @@ virtual class unpacked_array #( type T = bit, int SIZE = 1 );
    // |
    // | unpacked_array#(bit,8)::ua_to_da( ua, da, .reverse( 1 ) );
    // | assert( da == da1 );
-   // 
+   //
    // See Also:
    //   <to_dynamic_array>
    //---------------------------------------------------------------------------
 
    static function void ua_to_da( const ref ua_type ua,
-				  ref da_type da,
-				  input bit reverse = 0 );
+                                  ref da_type da,
+                                  input bit reverse = 0 );
       common_array#( T, ua_type, da_type )::a_to_a( ua, da, reverse );
-   endfunction: ua_to_da
-   
+   endfunction : ua_to_da
+
    //---------------------------------------------------------------------------
    // Function: q_to_ua
    //   (STATIC) Converts a queue of type *T* to an unpacked array of the same
@@ -332,11 +332,11 @@ virtual class unpacked_array #( type T = bit, int SIZE = 1 );
    //---------------------------------------------------------------------------
 
    static function void q_to_ua( const ref q_type q,
-				 ref ua_type ua,
-				 input bit reverse = 0 );
+                                 ref ua_type ua,
+                                 input bit reverse = 0 );
       common_array#( T, q_type, ua_type )::a_to_a( q, ua, reverse );
-   endfunction: q_to_ua
-   
+   endfunction : q_to_ua
+
    //---------------------------------------------------------------------------
    // Function: ua_to_q
    //   (STATIC) Converts an unpacked array of type *T* to a queue of the same
@@ -365,17 +365,17 @@ virtual class unpacked_array #( type T = bit, int SIZE = 1 );
    // | q.delete();
    // | unpacked_array#(bit,8)::ua_to_q( ua, q, .reverse( 1 ) );
    // | assert( q == q1 );
-   // 
+   //
    // See Also:
    //   <to_queue>
    //---------------------------------------------------------------------------
 
    static function void ua_to_q( const ref ua_type ua,
-				 ref q_type q,
-				 input bit reverse = 0 );
+                                 ref q_type q,
+                                 input bit reverse = 0 );
       common_array#( T, ua_type, q_type )::a_to_q( ua, q, reverse );
-   endfunction: ua_to_q
-   
+   endfunction : ua_to_q
+
    //---------------------------------------------------------------------------
    // Function: init
    //   (STATIC) Initializes the each element of the given unpacked array to the
@@ -398,7 +398,7 @@ virtual class unpacked_array #( type T = bit, int SIZE = 1 );
 
    static function void init( ref ua_type ua, input T val );
       common_array#( T, ua_type )::init( ua, val );
-   endfunction: init
+   endfunction : init
 
    //---------------------------------------------------------------------------
    // Function: reverse
@@ -420,7 +420,7 @@ virtual class unpacked_array #( type T = bit, int SIZE = 1 );
 
    static function void reverse( ref ua_type ua );
       common_array#( T, ua_type )::reverse( ua );
-   endfunction: reverse
+   endfunction : reverse
 
    //---------------------------------------------------------------------------
    // Function: compare
@@ -453,21 +453,21 @@ virtual class unpacked_array #( type T = bit, int SIZE = 1 );
    // | //                    |<------>|
    // | //                    2        5
    // | assert( unpacked_array#(bit,8)::compare( ua1, ua2 ) == 0 );
-   // | assert( unpacked_array#(bit,8)::compare( ua1, ua2, 
-   // |         .from_index1( 2 ), .to_index1( 5 ), 
+   // | assert( unpacked_array#(bit,8)::compare( ua1, ua2,
+   // |         .from_index1( 2 ), .to_index1( 5 ),
    // |         .from_index2( 2 ), .to_index2( 5 ) ) == 1 );
    //---------------------------------------------------------------------------
 
    static function bit compare( const ref ua_type ua1,
-				const ref ua_type ua2,
-				input int from_index1 = 0, 
-				      int to_index1   = -1,
-				      int from_index2 = 0, 
-				      int to_index2   = -1,
-				comparator#(T) cmp = null );
+                                const ref ua_type ua2,
+                                input int from_index1 = 0,
+                                int to_index1   = -1,
+                                int from_index2 = 0,
+                                int to_index2   = -1,
+                                comparator#(T) cmp = null );
       return common_array#( T, ua_type, ua_type )::
-	compare( ua1, ua2, from_index1, to_index1, from_index2, to_index2, cmp );
-   endfunction: compare
+        compare( ua1, ua2, from_index1, to_index1, from_index2, to_index2, cmp );
+   endfunction : compare
 
    //---------------------------------------------------------------------------
    // Function: to_string
@@ -496,14 +496,14 @@ virtual class unpacked_array #( type T = bit, int SIZE = 1 );
    //---------------------------------------------------------------------------
 
    static function string to_string( const ref ua_type ua,
-				     input string separator = " ",
-				     int from_index = 0,
-				     int to_index = -1,
-				     formatter#(T) fmtr = null );
+                                     input string separator = " ",
+                                     int from_index = 0,
+                                     int to_index = -1,
+                                     formatter#(T) fmtr = null );
       return common_array#(T, ua_type )::
-	to_string( ua, separator, from_index, to_index, fmtr );
-   endfunction: to_string
-endclass: unpacked_array
+        to_string( ua, separator, from_index, to_index, fmtr );
+   endfunction : to_string
+endclass : unpacked_array
 
 `endif //  `ifndef CL_UNPACKED_ARRAY_SVH
 

@@ -27,7 +27,7 @@
 //==============================================================================
 
 `ifndef CL_FORMATTER_SVH
-`define CL_FORMATTER_SVH
+ `define CL_FORMATTER_SVH
 
 //------------------------------------------------------------------------------
 // Class: formatter
@@ -55,7 +55,7 @@ class formatter #( type T = int );
    //---------------------------------------------------------------------------
 
    protected function new();
-   endfunction: new
+   endfunction : new
 
    //---------------------------------------------------------------------------
    // Function: get_instance
@@ -68,7 +68,7 @@ class formatter #( type T = int );
    static function this_type get_instance();
       if ( inst == null ) inst = new();
       return inst;
-   endfunction: get_instance
+   endfunction : get_instance
 
    //---------------------------------------------------------------------------
    // Function: to_string
@@ -84,9 +84,9 @@ class formatter #( type T = int );
 
    virtual function string to_string( T o );
       return "obj";
-   endfunction: to_string
+   endfunction : to_string
 
-endclass: formatter
+endclass : formatter
 
 `endif //  `ifndef CL_FORMATTER_SVH
 

@@ -27,7 +27,7 @@
 //==============================================================================
 
 `ifndef CL_TREE_NODE_SVH
-`define CL_TREE_NODE_SVH
+ `define CL_TREE_NODE_SVH
 
 //------------------------------------------------------------------------------
 // Class: tree_node
@@ -48,7 +48,7 @@ class tree_node #( type T = int );
    //---------------------------------------------------------------------------
 
    typedef tree_node#(T) tree_node_type;
-   
+
    // Group: Properties
 
    //---------------------------------------------------------------------------
@@ -71,14 +71,14 @@ class tree_node #( type T = int );
    //---------------------------------------------------------------------------
 
    tree_node_type parent;
-   
+
    //---------------------------------------------------------------------------
    // Property: children
    //   The child nodes this tree node has.
    //---------------------------------------------------------------------------
 
    tree_node_type children[$];
-   
+
    //---------------------------------------------------------------------------
    // Property: relatives
    //   The tree nodes this tree node is related to. Usage of this property is
@@ -86,7 +86,7 @@ class tree_node #( type T = int );
    //---------------------------------------------------------------------------
 
    tree_node_type relatives[$];
-   
+
    //---------------------------------------------------------------------------
    // Property: location
    //   The queue indicating the location of this tree node in a <tree>. Every
@@ -108,7 +108,7 @@ class tree_node #( type T = int );
    //        |                       +-- [0,1,1,1]
    //        |                       |
    //        |                       +-- [0,1,1,2]
-   //        +-- [0,2]                   
+   //        +-- [0,2]
    //   (end example)
    //
    // See Also:
@@ -133,8 +133,8 @@ class tree_node #( type T = int );
 
    function new( T elem );
       this.elem = elem;
-//    location.push_back( 0 );
-   endfunction: new
+      //    location.push_back( 0 );
+   endfunction : new
 
    //---------------------------------------------------------------------------
    // Function: add
@@ -170,8 +170,8 @@ class tree_node #( type T = int );
    virtual function tree_node_type add( T e );
       tree_node_type tn = new( e );
       return graft( tn );
-   endfunction: add
-   
+   endfunction : add
+
    //---------------------------------------------------------------------------
    // Function: graft
    //   (VIRTUAL) Grafts the given tree node (and its children) as a new child.
@@ -207,10 +207,10 @@ class tree_node #( type T = int );
    virtual function tree_node_type graft( tree_node_type tn );
       children.push_back( tn );
       tn.parent = this;
-//    tn.location = { location, get_num_children() - 1 };
+      //    tn.location = { location, get_num_children() - 1 };
       return tn;
-   endfunction: graft
-   
+   endfunction : graft
+
    //---------------------------------------------------------------------------
    // Function: prune
    //   (VIRTUAL) Removes the specified child (and its descendants).
@@ -246,8 +246,8 @@ class tree_node #( type T = int );
 
       children.delete( index );
       return this;
-   endfunction: prune
-   
+   endfunction : prune
+
    //---------------------------------------------------------------------------
    // Function: get_num_children
    //   (VIRTUAL) Returns the number of (immediate) children of this tree node.
@@ -274,7 +274,7 @@ class tree_node #( type T = int );
 
    virtual function int get_num_children();
       return children.size();
-   endfunction: get_num_children
+   endfunction : get_num_children
 
    //---------------------------------------------------------------------------
    // Function: has_child
@@ -302,13 +302,13 @@ class tree_node #( type T = int );
 
    virtual function bit has_child();
       return get_num_children() > 0;
-   endfunction: has_child
+   endfunction : has_child
 
    // TBD...
    // is_leaf()
    // is_root()
-   
-endclass: tree_node
+
+endclass : tree_node
 
 `endif //  `ifndef CL_TREE_NODE_SVH
 

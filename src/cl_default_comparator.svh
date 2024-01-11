@@ -12,10 +12,10 @@
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,7 +26,7 @@
 //==============================================================================
 
 `ifndef CL_DEFAULT_COMPARATOR_SVH
-`define CL_DEFAULT_COMPARATOR_SVH
+ `define CL_DEFAULT_COMPARATOR_SVH
 
 //------------------------------------------------------------------------------
 // Class: default_comparator
@@ -53,7 +53,7 @@ class default_comparator#( type T = int ) extends comparator#(T);
 
    virtual function bit lt( T x, T y );
       return x < y;
-   endfunction: lt
+   endfunction : lt
 
    //---------------------------------------------------------------------------
    // Function: gt
@@ -70,9 +70,9 @@ class default_comparator#( type T = int ) extends comparator#(T);
 
    virtual function bit gt( T x, T y );
       return x > y;
-   endfunction: gt
+   endfunction : gt
 
-endclass: default_comparator
+endclass : default_comparator
 
 `endif //  `ifndef CL_DEFAULT_COMPARATOR_SVH
 

@@ -12,10 +12,10 @@
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -24,9 +24,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 //==============================================================================
-  
+
 `ifndef CL_DATA_STREAM_SVH
-`define CL_DATA_STREAM_SVH
+ `define CL_DATA_STREAM_SVH
 
 //------------------------------------------------------------------------------
 // Class: data_stream
@@ -41,7 +41,7 @@
 //            used only if *scramble* function is used. The default is 2.
 //------------------------------------------------------------------------------
 
-virtual class data_stream #( type T = bit, int WIDTH = 1, int DEGREE = 2 ) 
+virtual class data_stream #( type T = bit, int WIDTH = 1, int DEGREE = 2 )
    extends dynamic_array #( T[WIDTH-1:0] );
 
    //---------------------------------------------------------------------------
@@ -120,25 +120,25 @@ virtual class data_stream #( type T = bit, int WIDTH = 1, int DEGREE = 2 )
    //---------------------------------------------------------------------------
 
    static function bs_type to_bit_stream( ds_type ds,
-					  bit msb_first = 1,
-					  int from_index = 0,
-					  int to_index = -1 );
+                                          bit msb_first = 1,
+                                          int from_index = 0,
+                                          int to_index = -1 );
       bs_type bs;
-      
+
       util::normalize( ds.size(), from_index, to_index );
       bs = new[ ( to_index - from_index + 1 ) * WIDTH ];
 
       for ( int i = from_index; i <= to_index; i++ ) begin
-	 if ( msb_first ) begin
-	    for ( int j = 0; j < WIDTH; j++ )
-	      bs[ i * WIDTH + j ] = ds[i][ WIDTH - 1 - j ];
-	 end else begin
-	    for ( int j = 0; j < WIDTH; j++ )
-	      bs[ i * WIDTH + j ] = ds[i][j];
-	 end
+         if ( msb_first ) begin
+            for ( int j = 0; j < WIDTH; j++ )
+              bs[ i * WIDTH + j ] = ds[i][ WIDTH - 1 - j ];
+         end else begin
+            for ( int j = 0; j < WIDTH; j++ )
+              bs[ i * WIDTH + j ] = ds[i][j];
+         end
       end
       return bs;
-   endfunction: to_bit_stream
+   endfunction : to_bit_stream
 
    //---------------------------------------------------------------------------
    // Function: make_divisible
@@ -162,25 +162,25 @@ virtual class data_stream #( type T = bit, int WIDTH = 1, int DEGREE = 2 )
    //---------------------------------------------------------------------------
 
    static function ds_type make_divisible( ds_type ds,
-					   int divisible_by = 1,
-					   pa_type padding = 0 );
+                                           int divisible_by = 1,
+                                           pa_type padding = 0 );
       assert( divisible_by > 0 ) begin
-	 if ( ds.size() % divisible_by == 0 ) begin // already divisible
-	    return ds;
-	 end else begin
-	    int ds_size = ds.size();
-	    int num_padding = divisible_by - ( ds_size % divisible_by );
-	    ds_type padded_ds = new[ ds_size + num_padding ]( ds );
+         if ( ds.size() % divisible_by == 0 ) begin // already divisible
+            return ds;
+         end else begin
+            int ds_size = ds.size();
+            int num_padding = divisible_by - ( ds_size % divisible_by );
+            ds_type padded_ds = new[ ds_size + num_padding ]( ds );
 
-	    for ( int i = 0; i < num_padding; i++ )
-	      padded_ds[ ds_size + i ] = padding;
-	    return padded_ds;
-	 end
+            for ( int i = 0; i < num_padding; i++ )
+              padded_ds[ ds_size + i ] = padding;
+            return padded_ds;
+         end
       end else begin
-	 $fatal( 2, "divisible_by=%0d is not positive", divisible_by );
-	 return ds;
+         $fatal( 2, "divisible_by=%0d is not positive", divisible_by );
+         return ds;
       end
-   endfunction: make_divisible
+   endfunction : make_divisible
 
    //---------------------------------------------------------------------------
    // Function: sequential
@@ -212,9 +212,9 @@ virtual class data_stream #( type T = bit, int WIDTH = 1, int DEGREE = 2 )
    //---------------------------------------------------------------------------
 
    static function ds_type sequential( int unsigned length,
-				       pa_type init_value = 0,
-				       pa_type step = 1,
-				       bit randomize_init_value = 0 );
+                                       pa_type init_value = 0,
+                                       pa_type step = 1,
+                                       bit randomize_init_value = 0 );
       pa_type next_value;
       ds_type ds;
 
@@ -222,17 +222,17 @@ virtual class data_stream #( type T = bit, int WIDTH = 1, int DEGREE = 2 )
       // See IEEE 1800-2012 Section 20.15.1 for more info.
 
       if ( randomize_init_value )
-	next_value = { ( ( WIDTH - 1 ) / 32 + 1 ) { $random } } % ( 1 << WIDTH );
+        next_value = { ( ( WIDTH - 1 ) / 32 + 1 ) { $random } } % ( 1 << WIDTH );
       else
-	next_value = init_value;
+        next_value = init_value;
 
       ds = new[ length ];
       foreach ( ds[i] ) begin
-	 ds[i] = next_value;
-	 next_value += step;
+         ds[i] = next_value;
+         next_value += step;
       end
       return ds;
-   endfunction: sequential
+   endfunction : sequential
 
    //---------------------------------------------------------------------------
    // Function: constant
@@ -255,11 +255,11 @@ virtual class data_stream #( type T = bit, int WIDTH = 1, int DEGREE = 2 )
    //---------------------------------------------------------------------------
 
    static function ds_type constant( int unsigned length,
-				     pa_type value = 0,
-				     bit randomize_value = 0 );
-      return data_stream::sequential( length, value, .step( 0 ), 
-				      .randomize_init_value( randomize_value ) );
-   endfunction: constant
+                                     pa_type value = 0,
+                                     bit randomize_value = 0 );
+      return data_stream::sequential( length, value, .step( 0 ),
+                                      .randomize_init_value( randomize_value ) );
+   endfunction : constant
 
    //---------------------------------------------------------------------------
    // Function: random
@@ -281,9 +281,9 @@ virtual class data_stream #( type T = bit, int WIDTH = 1, int DEGREE = 2 )
    static function ds_type random( int unsigned length );
       ds_type ds = new[ length ];
       foreach ( ds[i] )
-	ds[i] = { ( ( WIDTH - 1 ) / 32 + 1 ) { $random } } % ( 1 << WIDTH );
+        ds[i] = { ( ( WIDTH - 1 ) / 32 + 1 ) { $random } } % ( 1 << WIDTH );
       return ds;
-   endfunction: random
+   endfunction : random
 
    //---------------------------------------------------------------------------
    // Function: scramble
@@ -316,26 +316,26 @@ virtual class data_stream #( type T = bit, int WIDTH = 1, int DEGREE = 2 )
    //---------------------------------------------------------------------------
 
    static function ds_type scramble( ds_type ds,
-				     scrambler#(T,DEGREE) scrblr,
-				     ref lfsr_type lfsr,
-				     input bit msb_first = 1 );
+                                     scrambler#(T,DEGREE) scrblr,
+                                     ref lfsr_type lfsr,
+                                     input bit msb_first = 1 );
       scramble = new[ ds.size() ];
       foreach ( ds[i] ) begin
-	 pa_type pa = ds[i];
-	 T bitstream[];
-	 T scrambled[];
+         pa_type pa = ds[i];
+         T bitstream[];
+         T scrambled[];
 
-	 bitstream = packed_array#(T,WIDTH)::to_dynamic_array( pa, msb_first );
-	 scrambled = scrblr.scramble( bitstream, lfsr );
-	 scramble[i] = packed_array#(T,WIDTH)::from_dynamic_array( scrambled,
-								   msb_first );
+         bitstream = packed_array#(T,WIDTH)::to_dynamic_array( pa, msb_first );
+         scrambled = scrblr.scramble( bitstream, lfsr );
+         scramble[i] = packed_array#(T,WIDTH)::from_dynamic_array( scrambled,
+                                                                   msb_first );
       end
-   endfunction: scramble
+   endfunction : scramble
 
    //---------------------------------------------------------------------------
    // Function: to_string
    //    (STATIC) Converts a data stream to the form of a string.
-   // 
+   //
    // Arguments:
    //   ds              - An input data stream.
    //   left_to_right   - (OPTIONAL) If 1, the item at index 0 of the data
@@ -344,19 +344,19 @@ virtual class data_stream #( type T = bit, int WIDTH = 1, int DEGREE = 2 )
    //                     on the right of the output string. The default is 1.
    //   group           - (OPTIONAL) The number of items put together in a
    //                     group. If 0, no groups are created. The default is 0.
-   //   group_separator - (OPTIONAL) A string to separate two groups if 
+   //   group_separator - (OPTIONAL) A string to separate two groups if
    //                     *group* is not 0. The default is a single space
    //                     (" ").
-   //   num_head        - (OPTIONAL) The number of first items in the data 
+   //   num_head        - (OPTIONAL) The number of first items in the data
    //                     stream converted to a string. If specified, *ds[0]* to
    //                     *ds[num_head-1]* are converted. If not specified (or
    //                     -1), all items in the data stream are converted.
-   //   num_tail        - (OPTIONAL) The number of last items in the data 
+   //   num_tail        - (OPTIONAL) The number of last items in the data
    //                     stream converted to a string. If specified,
    //                     *ds[ds.size()-num_tail]* to *ds[ds.size()-1]* are
    //                     converted. If not specified (or -1), all items in the
    //                     data stream are converted.
-   //   abbrev          - (OPTIONAL) A string to indicate the abbreviation of 
+   //   abbrev          - (OPTIONAL) A string to indicate the abbreviation of
    //                     the items in the data stream. The *abbrev* is used
    //                     only if all items are not converted to a string. The
    //                     default is three periods followed by a space ("... ").
@@ -365,44 +365,44 @@ virtual class data_stream #( type T = bit, int WIDTH = 1, int DEGREE = 2 )
    //   A string representing *ds*.
    //
    // Example:
-   // 
+   //
    // | bit[15:0] ds16[] = new[7]( '{ 16'h0123, 16'h4567, 16'h89ab, 16'hcdef, 16'h0000, 16'h0001, 16'h1000 } );
-   // | assert( data_stream#(bit,16)::to_string( ds16 ) 
+   // | assert( data_stream#(bit,16)::to_string( ds16 )
    // |   == "0123456789abcdef000000011000" );
-   // | assert( data_stream#(bit,16)::to_string( ds16, .left_to_right( 0 ) ) 
+   // | assert( data_stream#(bit,16)::to_string( ds16, .left_to_right( 0 ) )
    // |   == "100000010000cdef89ab45670123" );
-   // | assert( data_stream#(bit,16)::to_string( ds16, .group( 1 ) ) 
+   // | assert( data_stream#(bit,16)::to_string( ds16, .group( 1 ) )
    // |   == "0123 4567 89ab cdef 0000 0001 1000" );
-   // | assert( data_stream#(bit,16)::to_string( ds16, .group( 2 ) ) 
+   // | assert( data_stream#(bit,16)::to_string( ds16, .group( 2 ) )
    // |   == "01234567 89abcdef 00000001 1000" );
-   // | assert( data_stream#(bit,16)::to_string( ds16, .group( 1 ), .left_to_right( 0 ) ) 
+   // | assert( data_stream#(bit,16)::to_string( ds16, .group( 1 ), .left_to_right( 0 ) )
    // |   == "1000 0001 0000 cdef 89ab 4567 0123" );
-   // | assert( data_stream#(bit,16)::to_string( ds16, .group( 2 ), .left_to_right( 0 ) ) 
+   // | assert( data_stream#(bit,16)::to_string( ds16, .group( 2 ), .left_to_right( 0 ) )
    // |   == "10000001 0000cdef 89ab4567 0123" );
-   // | assert( data_stream#(bit,16)::to_string( ds16, .group( 1 ), .num_head( 2 ), .num_tail( 0 ) ) 
+   // | assert( data_stream#(bit,16)::to_string( ds16, .group( 1 ), .num_head( 2 ), .num_tail( 0 ) )
    // |   == "0123 4567 ... " );
-   // | assert( data_stream#(bit,16)::to_string( ds16, .group( 1 ), .num_head( 0 ), .num_tail( 2 ) ) 
+   // | assert( data_stream#(bit,16)::to_string( ds16, .group( 1 ), .num_head( 0 ), .num_tail( 2 ) )
    // |   == "... 0001 1000" );
-   // | assert( data_stream#(bit,16)::to_string( ds16, .group( 1 ), .num_head( 2 ), .num_tail( 2 ) ) 
+   // | assert( data_stream#(bit,16)::to_string( ds16, .group( 1 ), .num_head( 2 ), .num_tail( 2 ) )
    // |   == "0123 4567 ... 0001 1000" );
    //---------------------------------------------------------------------------
 
    static function string to_string( ds_type ds,
-				     bit left_to_right = 1,
-				     int unsigned group = 0,
-				     string group_separator = " ",
-				     int num_head = -1,
-				     int num_tail = -1,
-				     string abbrev = "... " );
+                                     bit left_to_right = 1,
+                                     int unsigned group = 0,
+                                     string group_separator = " ",
+                                     int num_head = -1,
+                                     int num_tail = -1,
+                                     string abbrev = "... " );
       bit enables[];
       int len = ds.size();
 
       enables = new[ len ];
       for ( int i = 0; i < len; i++ ) enables[i] = 1'b1; // enables all
       return to_string_with_en( ds, enables, "-", left_to_right,
-				group, group_separator, num_head, 
-				num_tail, abbrev );
-   endfunction: to_string
+                                group, group_separator, num_head,
+                                num_tail, abbrev );
+   endfunction : to_string
 
    //---------------------------------------------------------------------------
    // Function: to_string_with_en
@@ -417,7 +417,7 @@ virtual class data_stream #( type T = bit, int WIDTH = 1, int DEGREE = 2 )
    //             *ds*, the excess data enables are ignored. If the size of
    //             *enables* is smaller than the size of *ds*, the data without
    //             enables are treated as disabled.
-   //   disabled_char   - (OPTIONAL) The character representing disabled data. 
+   //   disabled_char   - (OPTIONAL) The character representing disabled data.
    //                     The default character is a dash ("-").
    //   left_to_right   - (OPTIONAL) If 1, the item at index 0 of the dynamic
    //                     array is placed on the left of the output string. If
@@ -425,14 +425,14 @@ virtual class data_stream #( type T = bit, int WIDTH = 1, int DEGREE = 2 )
    //                     on the right of the output string. The default is 1.
    //   group           - (OPTIONAL) The number of items put together in a
    //                     group. If 0, no groups are created. The default is 0.
-   //   group_separator - (OPTIONAL) A string to separate two groups if 
+   //   group_separator - (OPTIONAL) A string to separate two groups if
    //                     *group* is not 0. The default is a single space
    //                     (" ").
-   //   num_head        - (OPTIONAL) The number of first items in the data 
+   //   num_head        - (OPTIONAL) The number of first items in the data
    //                     stream converted to a string. If specified, *ds[0]* to
    //                     *ds[num_head-1]* are converted. If not specified (or
    //                     -1), all items in the data stream are converted.
-   //   num_tail        - (OPTIONAL) The number of last items in the data 
+   //   num_tail        - (OPTIONAL) The number of last items in the data
    //                     stream converted to a string. If specified,
    //                     *ds[ds.size()-num_tail]* to *ds[ds.size()-1]* are
    //                     converted. If not specified (or -1), all items in the
@@ -448,94 +448,94 @@ virtual class data_stream #( type T = bit, int WIDTH = 1, int DEGREE = 2 )
    // Example:
    // | bit[7:0] ds8[] = new[10]( '{ 8'h10, 8'h11, 8'h12, 8'h13, 8'h14, 8'h15, 8'h16, 8'h17, 8'h18, 8'h19 } );
    // | bit      en[]  = new[10]( '{ 1'b1,  1'b0,  1'b1,  1'b0,  1'b1,  1'b0,  1'b1,  1'b0,  1'b1,  1'b0  } );
-   // | assert( data_stream#(bit,8)::to_string_with_en( ds8, en ) 
+   // | assert( data_stream#(bit,8)::to_string_with_en( ds8, en )
    // |   == "10--12--14--16--18--" );
-   // | assert( data_stream#(bit,8)::to_string_with_en( ds8, en, .group(1) ) 
+   // | assert( data_stream#(bit,8)::to_string_with_en( ds8, en, .group(1) )
    // |   == "10 -- 12 -- 14 -- 16 -- 18 --" );
-   // | assert( data_stream#(bit,8)::to_string_with_en( ds8, en, .group(2) ) 
+   // | assert( data_stream#(bit,8)::to_string_with_en( ds8, en, .group(2) )
    // |   == "10-- 12-- 14-- 16-- 18--" );
-   // | assert( data_stream#(bit,8)::to_string_with_en( ds8, en, .group(8) ) 
+   // | assert( data_stream#(bit,8)::to_string_with_en( ds8, en, .group(8) )
    // |   == "10--12--14--16-- 18--" );
-   // | assert( data_stream#(bit,8)::to_string_with_en( ds8, en, .group(1), .group_separator("|") ) 
+   // | assert( data_stream#(bit,8)::to_string_with_en( ds8, en, .group(1), .group_separator("|") )
    // |   == "10|--|12|--|14|--|16|--|18|--" );
-   // | assert( data_stream#(bit,8)::to_string_with_en( ds8, en, .group(1), .num_head(2), .num_tail(2) ) 
+   // | assert( data_stream#(bit,8)::to_string_with_en( ds8, en, .group(1), .num_head(2), .num_tail(2) )
    // |   == "10 -- ...18 --" );
-   // | assert( data_stream#(bit,8)::to_string_with_en( ds8, en, .group(1), .disabled_char("*") ) 
+   // | assert( data_stream#(bit,8)::to_string_with_en( ds8, en, .group(1), .disabled_char("*") )
    // |   == "10 ** 12 ** 14 ** 16 ** 18 **" );
    //---------------------------------------------------------------------------
 
    static function string to_string_with_en( ds_type ds,
-					     bit enables[],
-					     byte disabled_char = "-",
-					     bit left_to_right = 1,
-					     int unsigned group = 0,
-					     string group_separator = " ",
-					     int num_head = -1,
-					     int num_tail = -1,
-					     string abbrev = "..." );
+                                             bit enables[],
+                                             byte disabled_char = "-",
+                                             bit left_to_right = 1,
+                                             int unsigned group = 0,
+                                             string group_separator = " ",
+                                             int num_head = -1,
+                                             int num_tail = -1,
+                                             string abbrev = "..." );
       string s = "";
       int    num_data = ds.size();
       int    max_index = num_data - 1;
       bit    is_abbrev;
       bit    en[];
 
-      if ( num_head == -1 || 
-	   num_tail == -1 || 
-	   num_head + num_tail >= num_data ) begin
-	 num_head  = num_data;
-	 num_tail  = 0;
-	 is_abbrev = 0;
+      if ( num_head == -1 ||
+           num_tail == -1 ||
+           num_head + num_tail >= num_data ) begin
+         num_head  = num_data;
+         num_tail  = 0;
+         is_abbrev = 0;
       end else begin
-	 is_abbrev = 1;
+         is_abbrev = 1;
       end
 
       // match the size of enables to the size of ds
-      
-      en = new[ num_data ]( enables ); 
+
+      en = new[ num_data ]( enables );
 
       if ( left_to_right ) begin // position ds[0] at the left
-	 for ( int i = 0; i < num_head; i++ ) begin
-	    s = { s, format_data( ds[i], en[i], disabled_char ) };
-	    if ( separated(  group, i, max_index, left_to_right ) )
-	      s = { s, group_separator };
-	 end
-	 if ( is_abbrev ) s = { s, abbrev };
-	 for ( int i = num_data - num_tail; i < num_data; i++ ) begin
-	    s = { s, format_data( ds[i], en[i], disabled_char ) };
-	    if ( separated( group, i, max_index, left_to_right ) )
-	      s = { s, group_separator };
-	 end
+         for ( int i = 0; i < num_head; i++ ) begin
+            s = { s, format_data( ds[i], en[i], disabled_char ) };
+            if ( separated(  group, i, max_index, left_to_right ) )
+              s = { s, group_separator };
+         end
+         if ( is_abbrev ) s = { s, abbrev };
+         for ( int i = num_data - num_tail; i < num_data; i++ ) begin
+            s = { s, format_data( ds[i], en[i], disabled_char ) };
+            if ( separated( group, i, max_index, left_to_right ) )
+              s = { s, group_separator };
+         end
       end else begin // position ds[0] at the right
-	 for ( int i = max_index; i >= num_data - num_tail; i-- ) begin
-	    s = { s, format_data( ds[i], en[i], disabled_char ) };
-	    if ( separated( group, i, max_index, left_to_right ) )
-	      s = { s, group_separator };
-	 end
-	 if ( is_abbrev ) s = { s, abbrev };
-	 for ( int i = num_head - 1; i >= 0; i-- ) begin
-	    s = { s, format_data( ds[i], en[i], disabled_char ) };
-	    if ( separated( group, i, max_index, left_to_right ) )
-	      s = { s, group_separator };
-	 end
+         for ( int i = max_index; i >= num_data - num_tail; i-- ) begin
+            s = { s, format_data( ds[i], en[i], disabled_char ) };
+            if ( separated( group, i, max_index, left_to_right ) )
+              s = { s, group_separator };
+         end
+         if ( is_abbrev ) s = { s, abbrev };
+         for ( int i = num_head - 1; i >= 0; i-- ) begin
+            s = { s, format_data( ds[i], en[i], disabled_char ) };
+            if ( separated( group, i, max_index, left_to_right ) )
+              s = { s, group_separator };
+         end
       end
       return s;
-   endfunction: to_string_with_en
+   endfunction : to_string_with_en
 
    //---------------------------------------------------------------------------
    // format_data
    //---------------------------------------------------------------------------
 
    protected static function string format_data( pa_type data,
-						 bit enabled,
-						 byte disabled_char );
+                                                 bit enabled,
+                                                 byte disabled_char );
       if ( enabled ) begin
-	 return $sformatf( "%h", data );
+         return $sformatf( "%h", data );
       end else begin
-	 string s = "";
+         string s = "";
 
-	 repeat ( util::num_hex_digits( WIDTH ) )
-	   s = { s, string'( disabled_char ) };
-	 return s;
+         repeat ( util::num_hex_digits( WIDTH ) )
+           s = { s, string'( disabled_char ) };
+         return s;
       end
    endfunction: format_data
 
@@ -544,19 +544,19 @@ virtual class data_stream #( type T = bit, int WIDTH = 1, int DEGREE = 2 )
    //---------------------------------------------------------------------------
 
    protected static function bit separated( int unsigned group,
-					    int index,
-					    int last_index,
-					    bit left_to_right );
+                                            int index,
+                                            int last_index,
+                                            bit left_to_right );
       int loc_from_left;
 
       if ( left_to_right ) loc_from_left = index;
       else                 loc_from_left = last_index - index;
 
-      return ( group != 0 && loc_from_left != last_index && 
-	       loc_from_left % group == ( group - 1 ) );
+      return ( group != 0 && loc_from_left != last_index &&
+               loc_from_left % group == ( group - 1 ) );
    endfunction: separated
 
-endclass: data_stream
+endclass : data_stream
 
 `endif //  `ifndef CL_DATA_STREAM_SVH
 

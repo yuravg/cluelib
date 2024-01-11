@@ -27,7 +27,7 @@
 //==============================================================================
 
 `ifndef CL_STRING_FORMATTER_SVH
-`define CL_STRING_FORMATTER_SVH
+ `define CL_STRING_FORMATTER_SVH
 
 //------------------------------------------------------------------------------
 // Class: string_formatter
@@ -45,7 +45,7 @@ class string_formatter extends formatter#( string );
    //---------------------------------------------------------------------------
 
    protected function new();
-   endfunction: new
+   endfunction : new
 
    //---------------------------------------------------------------------------
    // Function: get_instance
@@ -58,7 +58,7 @@ class string_formatter extends formatter#( string );
    static function string_formatter get_instance();
       if ( inst == null ) inst = new();
       return inst;
-   endfunction: get_instance
+   endfunction : get_instance
 
    //---------------------------------------------------------------------------
    // Function: to_string
@@ -73,9 +73,9 @@ class string_formatter extends formatter#( string );
 
    virtual function string to_string( T o );
       return o;
-   endfunction: to_string
+   endfunction : to_string
 
-endclass: string_formatter
+endclass : string_formatter
 
 `endif //  `ifndef CL_STRING_FORMATTER_SVH
 

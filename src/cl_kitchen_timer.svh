@@ -27,7 +27,7 @@
 //==============================================================================
 
 `ifndef CL_KITCHEN_TIMER_SVH
-`define CL_KITCHEN_TIMER_SVH
+ `define CL_KITCHEN_TIMER_SVH
 
 //------------------------------------------------------------------------------
 // Class: kitchen_timer
@@ -37,12 +37,12 @@
 
 class kitchen_timer;
    typedef enum { STOPPED, RUNNING, PAUSED } state_e;
-   
+
    local state_e state;
    local time    delay;
-   local time 	 start_time;
-   local time 	 elapsed;
-   local time 	 remaining;
+   local time   start_time;
+   local time   elapsed;
+   local time   remaining;
 
    //---------------------------------------------------------------------------
    // Event: ring
@@ -61,7 +61,7 @@ class kitchen_timer;
 
    function new( time delay = 0 );
       set_delay( delay );
-   endfunction: new
+   endfunction : new
 
    //---------------------------------------------------------------------------
    // Function: set_delay
@@ -81,7 +81,7 @@ class kitchen_timer;
    function void set_delay( time delay );
       this.delay = delay;
       reset();
-   endfunction: set_delay
+   endfunction : set_delay
 
    //---------------------------------------------------------------------------
    // Function: add_delay
@@ -94,15 +94,15 @@ class kitchen_timer;
 
    function void add_delay( time delay );
       if ( is_running() ) begin
-	 pause();
-	 this.delay += delay;
-	 remaining  += delay;
-	 resume();
+         pause();
+         this.delay += delay;
+         remaining  += delay;
+         resume();
       end else begin
-	 this.delay += delay;
-	 remaining  += delay;
+         this.delay += delay;
+         remaining  += delay;
       end
-   endfunction: add_delay
+   endfunction : add_delay
 
    //---------------------------------------------------------------------------
    // Function: set_random_delay
@@ -126,16 +126,16 @@ class kitchen_timer;
    //---------------------------------------------------------------------------
 
    function time set_random_delay( time delay1,
-				   time delay2 );
+                                   time delay2 );
       if ( delay1 == delay2 ) begin
-	 delay = delay1;
+         delay = delay1;
       end else begin
-	 if ( delay1 > delay2 ) putil#(time)::swap( delay1, delay2 );
-	 delay = ( { $urandom, $urandom } ) % ( delay2 - delay1 ) + delay1;
+         if ( delay1 > delay2 ) putil#(time)::swap( delay1, delay2 );
+         delay = ( { $urandom, $urandom } ) % ( delay2 - delay1 ) + delay1;
       end
       reset();
       return delay;
-   endfunction: set_random_delay
+   endfunction : set_random_delay
 
    //---------------------------------------------------------------------------
    // Function: start
@@ -154,26 +154,26 @@ class kitchen_timer;
    function void start();
       if ( is_running() ) return; // already started
       fork // firewall
-	 begin
-	    fork
-	       begin
-		  start_time = $time;
-		  remaining -= elapsed;
-		  assert ( remaining > 0 ) else
-		    $warning( "The kitchen timer triggers immediately." );
-		  #remaining ->ring;
-		  stamp();
-		  state = STOPPED;
-	       end
-	       begin
-		  state = RUNNING;
-		  wait( state != RUNNING ) ;
-	       end
-	    join_any
-	    disable fork;
-	 end
+         begin
+            fork
+               begin
+                  start_time = $time;
+                  remaining -= elapsed;
+                  assert ( remaining > 0 ) else
+                    $warning( "The kitchen timer triggers immediately." );
+                  #remaining ->ring;
+                  stamp();
+                  state = STOPPED;
+               end
+               begin
+                  state = RUNNING;
+                  wait( state != RUNNING ) ;
+               end
+            join_any
+            disable fork;
+         end
       join_none
-   endfunction: start
+   endfunction : start
 
    //---------------------------------------------------------------------------
    // Function: stop
@@ -190,7 +190,7 @@ class kitchen_timer;
    function void stop();
       if ( is_running() ) stamp();
       state = STOPPED;
-   endfunction: stop
+   endfunction : stop
 
    //---------------------------------------------------------------------------
    // Function: pause
@@ -208,10 +208,10 @@ class kitchen_timer;
 
    function void pause();
       if ( is_running() ) begin
-	 stamp();
-	 state = PAUSED;
+         stamp();
+         state = PAUSED;
       end
-   endfunction: pause
+   endfunction : pause
 
    //---------------------------------------------------------------------------
    // Function: resume
@@ -231,7 +231,7 @@ class kitchen_timer;
 
    function void resume();
       if ( is_paused() ) start();
-   endfunction: resume
+   endfunction : resume
 
    //---------------------------------------------------------------------------
    // Function: reset
@@ -242,7 +242,7 @@ class kitchen_timer;
       elapsed   = 0;
       remaining = delay;
       state     = STOPPED;
-   endfunction: reset
+   endfunction : reset
 
    //---------------------------------------------------------------------------
    // Function: get_elapsed
@@ -264,7 +264,7 @@ class kitchen_timer;
    function time get_elapsed();
       if ( is_running() ) stamp();
       return elapsed;
-   endfunction: get_elapsed
+   endfunction : get_elapsed
 
    //---------------------------------------------------------------------------
    // Function: get_remaining
@@ -287,7 +287,7 @@ class kitchen_timer;
    function time get_remaining();
       if ( is_running() ) stamp();
       return remaining - elapsed;
-   endfunction: get_remaining
+   endfunction : get_remaining
 
    //---------------------------------------------------------------------------
    // Function: is_stopped
@@ -308,8 +308,8 @@ class kitchen_timer;
 
    function bit is_stopped();
       return state == STOPPED;
-   endfunction: is_stopped
-   
+   endfunction : is_stopped
+
    //---------------------------------------------------------------------------
    // Function: is_running
    //   Returns 1 if the timer is currently running.
@@ -329,8 +329,8 @@ class kitchen_timer;
 
    function bit is_running();
       return state == RUNNING;
-   endfunction: is_running
-   
+   endfunction : is_running
+
    //---------------------------------------------------------------------------
    // Function: is_paused
    //   Returns 1 if the timer is currently paused.
@@ -351,7 +351,7 @@ class kitchen_timer;
 
    function bit is_paused();
       return state == PAUSED;
-   endfunction: is_paused
+   endfunction : is_paused
 
    //---------------------------------------------------------------------------
    // Function: get_state
@@ -373,13 +373,13 @@ class kitchen_timer;
 
    function state_e get_state();
       return state;
-   endfunction: get_state
+   endfunction : get_state
 
    local function void stamp();
-      elapsed = $time - start_time;
-   endfunction: stamp
-   
-endclass: kitchen_timer
+   elapsed = $time - start_time;
+endfunction : stamp
+
+endclass : kitchen_timer
 
 `endif //  `ifndef CL_KITCHEN_TIMER_SVH
 

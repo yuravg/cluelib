@@ -12,10 +12,10 @@
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,7 +26,7 @@
 //==============================================================================
 
 `ifndef CL_TUPLE_SVH
-`define CL_TUPLE_SVH
+ `define CL_TUPLE_SVH
 
 //------------------------------------------------------------------------------
 // Class: tuple
@@ -44,7 +44,7 @@
 //        *int*.
 //   T5 - (OPTIONAL) The type of the fifth value of a tuple. The default is
 //        *int*.
-//   T6 - (OPTIONAL) The type of the sixth value of a tuple. The default is 
+//   T6 - (OPTIONAL) The type of the sixth value of a tuple. The default is
 //        *int*.
 //   T7 - (OPTIONAL) The type of the seventh value of a tuple. The default is
 //        *int*.
@@ -56,16 +56,16 @@
 //         *int*.
 //------------------------------------------------------------------------------
 
-class tuple#( type T1 = int, 
-	      type T2 = int, 
-	      type T3 = int, 
-	      type T4 = int, 
-	      type T5 = int, 
-	      type T6 = int, 
-	      type T7 = int, 
-	      type T8 = int, 
-	      type T9 = int, 
-	      type T10 = int );
+class tuple#( type T1 = int,
+              type T2 = int,
+              type T3 = int,
+              type T4 = int,
+              type T5 = int,
+              type T6 = int,
+              type T7 = int,
+              type T8 = int,
+              type T9 = int,
+              type T10 = int );
 
    // In order to assign the default values to the "fourth" to the "tenth" of
    // the new(), "int" is used for T4 to T10, instead of using T1 as their
@@ -218,16 +218,16 @@ class tuple#( type T1 = int,
    //---------------------------------------------------------------------------
 
    function new( T1 first,
-		 T2 second,
-		 T3 third,
-		 T4 fourth  = 0, 
-		 T5 fifth   = 0, 
-		 T6 sixth   = 0, 
-		 T7 seventh = 0, 
-		 T8 eighth  = 0, 
-		 T9 ninth   = 0, 
-		 T10 tenth  = 0, 
-		 comparator#(this_type) cmp = null );
+                 T2 second,
+                 T3 third,
+                 T4 fourth  = 0,
+                 T5 fifth   = 0,
+                 T6 sixth   = 0,
+                 T7 seventh = 0,
+                 T8 eighth  = 0,
+                 T9 ninth   = 0,
+                 T10 tenth  = 0,
+                 comparator#(this_type) cmp = null );
       this.first   = first;
       this.second  = second;
       this.third   = third;
@@ -240,7 +240,7 @@ class tuple#( type T1 = int,
       this.tenth   = tenth;
       if ( cmp ) this.cmp = cmp;
       else       this.cmp = tuple_comparator#(this_type)::get_instance();
-   endfunction: new
+   endfunction : new
 
    //---------------------------------------------------------------------------
    // Function: eq
@@ -261,7 +261,7 @@ class tuple#( type T1 = int,
 
    function bit eq( const ref this_type t );
       return cmp.eq( this, t );
-   endfunction: eq
+   endfunction : eq
 
    // Operator overloading is not supported?
    // bind == function bit eq( this_type );
@@ -287,7 +287,7 @@ class tuple#( type T1 = int,
 
    function bit ne( const ref this_type t );
       return cmp.ne( this, t );
-   endfunction: ne
+   endfunction : ne
 
    //---------------------------------------------------------------------------
    // Function: lt
@@ -309,7 +309,7 @@ class tuple#( type T1 = int,
 
    function bit lt( const ref this_type t );
       return cmp.lt( this, t );
-   endfunction: lt
+   endfunction : lt
 
    //---------------------------------------------------------------------------
    // Function: gt
@@ -332,7 +332,7 @@ class tuple#( type T1 = int,
 
    function bit gt( const ref this_type t );
       return cmp.gt( this, t );
-   endfunction: gt
+   endfunction : gt
 
    //---------------------------------------------------------------------------
    // Function: le
@@ -355,7 +355,7 @@ class tuple#( type T1 = int,
 
    function bit le( const ref this_type t );
       return cmp.le( this, t );
-   endfunction: le
+   endfunction : le
 
    //---------------------------------------------------------------------------
    // Function: ge
@@ -378,7 +378,7 @@ class tuple#( type T1 = int,
 
    function bit ge( const ref this_type t );
       return cmp.ge( this, t );
-   endfunction: ge
+   endfunction : ge
 
    //---------------------------------------------------------------------------
    // Function: clone
@@ -394,9 +394,9 @@ class tuple#( type T1 = int,
    //---------------------------------------------------------------------------
 
    function this_type clone();
-      clone = new( first, second, third, fourth, fifth, sixth, seventh, eighth, 
-		   ninth, tenth, cmp );
-   endfunction: clone
+      clone = new( first, second, third, fourth, fifth, sixth, seventh, eighth,
+                   ninth, tenth, cmp );
+   endfunction : clone
 
    //---------------------------------------------------------------------------
    // Function: swap
@@ -468,9 +468,9 @@ class tuple#( type T1 = int,
       e10 = t.tenth;
       t.tenth = this.tenth;
       this.tenth = e10;
-   endfunction: swap
+   endfunction : swap
 
-endclass: tuple
+endclass : tuple
 
 `endif //  `ifndef CL_TUPLE_SVH
 

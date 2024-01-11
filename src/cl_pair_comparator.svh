@@ -12,10 +12,10 @@
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,7 +26,7 @@
 //==============================================================================
 
 `ifndef CL_PAIR_COMPARATOR_SVH
-`define CL_PAIR_COMPARATOR_SVH
+ `define CL_PAIR_COMPARATOR_SVH
 
 typedef class pair;
 
@@ -56,7 +56,7 @@ class pair_comparator#( type T = pair ) extends comparator#(T);
    //---------------------------------------------------------------------------
 
    protected function new();
-   endfunction: new
+   endfunction : new
 
    //---------------------------------------------------------------------------
    // Function: get_instance
@@ -69,7 +69,7 @@ class pair_comparator#( type T = pair ) extends comparator#(T);
    static function this_type get_instance();
       if ( inst == null ) inst = new();
       return inst;
-   endfunction: get_instance
+   endfunction : get_instance
 
    //---------------------------------------------------------------------------
    // Function: eq
@@ -86,7 +86,7 @@ class pair_comparator#( type T = pair ) extends comparator#(T);
 
    virtual function bit eq( T x, T y );
       return x.first == y.first && x.second == y.second;
-   endfunction: eq
+   endfunction : eq
 
    //---------------------------------------------------------------------------
    // Function: lt
@@ -105,9 +105,9 @@ class pair_comparator#( type T = pair ) extends comparator#(T);
       if ( x.first < y.first ) return 1;
       else if ( x.first > y.first ) return 0;
       else return x.second < y.second;
-   endfunction: lt
+   endfunction : lt
 
-endclass: pair_comparator
+endclass : pair_comparator
 
 `endif //  `ifndef CL_PAIR_COMPARATOR_SVH
 

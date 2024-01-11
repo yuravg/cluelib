@@ -27,7 +27,7 @@
 //==============================================================================
 
 `ifndef CL_DEQUE_SVH
-`define CL_DEQUE_SVH
+ `define CL_DEQUE_SVH
 
 //------------------------------------------------------------------------------
 // Class: deque
@@ -38,68 +38,68 @@
 //------------------------------------------------------------------------------
 
 class deque #( type T = int ) extends collection#( T );
-   
-`ifdef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
+
+ `ifdef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
    local T q[$];
-   
+
    class deque_iterator #( type T = int ) extends iterator#( T );
       local int cur_index;
       local int q_size;
 
       function new();
-	 q_size = q.size();
-	 cur_index = 0;
-      endfunction: new
+         q_size = q.size();
+         cur_index = 0;
+      endfunction : new
 
       virtual function bit has_next();
-	 return cur_index < q_size;
-      endfunction: has_next
+         return cur_index < q_size;
+      endfunction : has_next
 
       virtual function T next();
-	 return q[cur_index++];
-      endfunction: next
+         return q[cur_index++];
+      endfunction : next
 
       virtual function void remove();
-	 q.delete( --cur_index );
-	 q_size--;
-      endfunction: remove
+         q.delete( --cur_index );
+         q_size--;
+      endfunction : remove
 
-   endclass: deque_iterator
+   endclass : deque
 
    class deque_descending_iterator #( type T = int ) extends iterator#( T );
       local int cur_index;
       local int q_size;
 
       function new();
-	 q_size = q.size();
-	 cur_index = q_size - 1;
-      endfunction: new
+         q_size = q.size();
+         cur_index = q_size - 1;
+      endfunction : new
 
       virtual function bit has_next();
-	 return cur_index >= 0;
-      endfunction: has_next
+         return cur_index >= 0;
+      endfunction : has_next
 
       virtual function T next();
-	 return q[cur_index--];
-      endfunction: next
+         return q[cur_index--];
+      endfunction : next
 
       virtual function void remove();
-	 q.delete( cur_index + 1 ); // keep the cur_index value
-	 q_size--;
-      endfunction: remove
+         q.delete( cur_index + 1 ); // keep the cur_index value
+         q_size--;
+      endfunction : remove
 
-   endclass: deque_descending_iterator
+   endclass : deque_descending_iterator
 
-`else // !`ifdef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
+ `else // !`ifdef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
    T q[$];
-`endif // !`ifdef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
+ `endif // !`ifdef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
 
    //---------------------------------------------------------------------------
    // Function: new
    //   Creates a new deque.
    //
    // Argument:
-   //   c    - (OPTIONAL) A collection whose elements are to be added to this 
+   //   c    - (OPTIONAL) A collection whose elements are to be added to this
    //          deque.
    //   cmp - (OPTIONAL) A strategy object used to compare the elements of type
    //         *T*. If not specified or *null*, <comparator> *#(T)* is used. The
@@ -113,14 +113,14 @@ class deque #( type T = int ) extends collection#( T );
    //---------------------------------------------------------------------------
 
    function new( collection#(T) c = null,
-		 comparator#(T) cmp = null,
-		 formatter#(T) fmtr = null );
+                 comparator#(T) cmp = null,
+                 formatter#(T) fmtr = null );
       if ( cmp == null ) this.cmp = comparator#(T)::get_instance();
       else               this.cmp = cmp;
       if ( fmtr == null ) this.fmtr = hex_formatter#(T)::get_instance();
       else                this.fmtr = fmtr;
       if ( c ) void'( this.add_all( c ) );
-   endfunction: new
+   endfunction : new
 
    //---------------------------------------------------------------------------
    // Function: add
@@ -141,7 +141,7 @@ class deque #( type T = int ) extends collection#( T );
    virtual function bit add( T e );
       add_last( e );
       return 1;
-   endfunction: add
+   endfunction : add
 
    //---------------------------------------------------------------------------
    // Function: add_first
@@ -161,7 +161,7 @@ class deque #( type T = int ) extends collection#( T );
 
    virtual function void add_first( T e );
       q.push_front( e );
-   endfunction: add_first
+   endfunction : add_first
 
    //---------------------------------------------------------------------------
    // Function: add_last
@@ -181,7 +181,7 @@ class deque #( type T = int ) extends collection#( T );
 
    virtual function void add_last( T e );
       q.push_back( e );
-   endfunction: add_last
+   endfunction : add_last
 
    //---------------------------------------------------------------------------
    // Function: clear
@@ -198,7 +198,7 @@ class deque #( type T = int ) extends collection#( T );
 
    virtual function void clear();
       q.delete();
-   endfunction: clear
+   endfunction : clear
 
    //---------------------------------------------------------------------------
    // Function: clone
@@ -221,7 +221,7 @@ class deque #( type T = int ) extends collection#( T );
       dq.cmp  = cmp;
       dq.fmtr = fmtr;
       return dq;
-   endfunction: clone
+   endfunction : collection
 
    //---------------------------------------------------------------------------
    // Function: contains
@@ -243,10 +243,10 @@ class deque #( type T = int ) extends collection#( T );
 
    virtual function bit contains( T e );
       int qi[$];
-      
+
       qi = q.find_first_index with ( cmp.eq( item, e ) );
       return qi.size() != 0;
-   endfunction: contains
+   endfunction : contains
 
    //---------------------------------------------------------------------------
    // Function: get
@@ -273,7 +273,7 @@ class deque #( type T = int ) extends collection#( T );
 
    virtual function bit get( ref T e );
       return get_first( e );
-   endfunction: get
+   endfunction : get
 
    //---------------------------------------------------------------------------
    // Function: get_first
@@ -299,12 +299,12 @@ class deque #( type T = int ) extends collection#( T );
 
    virtual function bit get_first( ref T e );
       if ( is_empty() ) begin
-	 return 0;
+         return 0;
       end else begin
          e = q.pop_front();
-	 return 1;
+         return 1;
       end
-   endfunction: get_first
+   endfunction : get_first
 
    //---------------------------------------------------------------------------
    // Function: get_last
@@ -330,12 +330,12 @@ class deque #( type T = int ) extends collection#( T );
 
    virtual function bit get_last( ref T e );
       if ( is_empty() ) begin
-	 return 0;
+         return 0;
       end else begin
          e = q.pop_back();
-	 return 1;
+         return 1;
       end
-   endfunction: get_last
+   endfunction : get_last
 
    //---------------------------------------------------------------------------
    // Function: get_iterator
@@ -358,14 +358,14 @@ class deque #( type T = int ) extends collection#( T );
 
    virtual function iterator#( T ) get_iterator();
 
-`ifdef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
+ `ifdef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
       deque_iterator#( T ) it = new();
-`else
+ `else
       deque_iterator#( T ) it = new( this );
-`endif      
+ `endif
 
       return it;
-   endfunction: get_iterator
+   endfunction : iterator
 
    //---------------------------------------------------------------------------
    // Function: get_descending_iterator
@@ -389,14 +389,14 @@ class deque #( type T = int ) extends collection#( T );
 
    virtual function iterator#( T ) get_descending_iterator();
 
-`ifdef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
+ `ifdef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
       deque_descending_iterator#( T ) it = new();
-`else
+ `else
       deque_descending_iterator#( T ) it = new( this );
-`endif      
+ `endif
 
       return it;
-   endfunction: get_descending_iterator
+   endfunction : iterator
 
    //---------------------------------------------------------------------------
    // Function: peek
@@ -424,7 +424,7 @@ class deque #( type T = int ) extends collection#( T );
 
    virtual function bit peek( ref T e );
       return peek_first( e );
-   endfunction: peek
+   endfunction : peek
 
    //---------------------------------------------------------------------------
    // Function: peek_first
@@ -452,12 +452,12 @@ class deque #( type T = int ) extends collection#( T );
 
    virtual function bit peek_first( ref T e );
       if ( is_empty() ) begin
-	 return 0;
+         return 0;
       end else begin
          e = q[0];
-	 return 1;
+         return 1;
       end
-   endfunction: peek_first
+   endfunction : peek_first
 
    //---------------------------------------------------------------------------
    // Function: peek_last
@@ -484,18 +484,18 @@ class deque #( type T = int ) extends collection#( T );
 
    virtual function bit peek_last( ref T e );
       if ( is_empty() ) begin
-	 return 0;
+         return 0;
       end else begin
          e = q[$];
-	 return 1;
+         return 1;
       end
-   endfunction: peek_last
+   endfunction : peek_last
 
    //----------------------------------------------------------------------------
    // Function: pop
    //   (VIRTUAL) Pops an element from the deque as if it is a stack.
    //
-   // Returns: 
+   // Returns:
    //   The head of the deque. If the deque is empty, the value of type *T* read
    //   from a nonexistent queue entry is returned (See IEEE Std 1800-2012 Table
    //   7-1).
@@ -510,7 +510,7 @@ class deque #( type T = int ) extends collection#( T );
 
    virtual function T pop();
       return q.pop_front();
-   endfunction: pop
+   endfunction : pop
 
    //----------------------------------------------------------------------------
    // Function: push
@@ -530,7 +530,7 @@ class deque #( type T = int ) extends collection#( T );
 
    virtual function void push( T e );
       q.push_front( e );
-   endfunction: push
+   endfunction : push
 
    //---------------------------------------------------------------------------
    // Function: remove
@@ -558,7 +558,7 @@ class deque #( type T = int ) extends collection#( T );
 
    virtual function bit remove( T e );
       return remove_first_occurrence( e );
-   endfunction: remove
+   endfunction : remove
 
    //---------------------------------------------------------------------------
    // Function: remove_first
@@ -577,12 +577,12 @@ class deque #( type T = int ) extends collection#( T );
 
    virtual function bit remove_first();
       if ( is_empty() ) begin
-	 return 0;
+         return 0;
       end else begin
-	 void'( q.pop_front() );
-	 return 1;
+         void'( q.pop_front() );
+         return 1;
       end
-   endfunction: remove_first
+   endfunction : remove_first
 
    //---------------------------------------------------------------------------
    // Function: remove_last
@@ -601,12 +601,12 @@ class deque #( type T = int ) extends collection#( T );
 
    virtual function bit remove_last();
       if ( is_empty() ) begin
-	 return 0;
+         return 0;
       end else begin
-	 void'( q.pop_back() );
-	 return 1;
+         void'( q.pop_back() );
+         return 1;
       end
-   endfunction: remove_last
+   endfunction : remove_last
 
    //---------------------------------------------------------------------------
    // Function: remove_first_occurrence
@@ -634,15 +634,15 @@ class deque #( type T = int ) extends collection#( T );
 
    virtual function bit remove_first_occurrence( T e );
       int  qi[$];
-      
+
       qi = q.find_first_index with ( cmp.eq( item, e ) );
       if ( qi.size() == 0 ) begin
-	 return 0;
+         return 0;
       end else begin
-	 q.delete( qi[0] );
-	 return 1;
+         q.delete( qi[0] );
+         return 1;
       end
-   endfunction: remove_first_occurrence
+   endfunction : remove_first_occurrence
 
    //---------------------------------------------------------------------------
    // Function: remove_last_occurrence
@@ -670,15 +670,15 @@ class deque #( type T = int ) extends collection#( T );
 
    virtual function bit remove_last_occurrence( T e );
       int  qi[$];
-      
+
       qi = q.find_last_index with ( cmp.eq( item, e ) );
       if ( qi.size() == 0 ) begin
-	 return 0;
+         return 0;
       end else begin
-	 q.delete( qi[0] );
-	 return 1;
+         q.delete( qi[0] );
+         return 1;
       end
-   endfunction: remove_last_occurrence
+   endfunction : remove_last_occurrence
 
    //---------------------------------------------------------------------------
    // Function: size
@@ -696,8 +696,8 @@ class deque #( type T = int ) extends collection#( T );
 
    virtual function int size();
       return q.size();
-   endfunction: size
-   
+   endfunction : size
+
 endclass: deque
 
 `endif //  `ifndef CL_DEQUE_SVH

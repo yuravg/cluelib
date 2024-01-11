@@ -12,10 +12,10 @@
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,7 +26,7 @@
 //==============================================================================
 
 `ifndef CL_PAIR_SVH
-`define CL_PAIR_SVH
+ `define CL_PAIR_SVH
 
 //------------------------------------------------------------------------------
 // Class: pair
@@ -95,7 +95,7 @@ class pair#( type T1 = int, type T2 = T1 );
       this.second = second;
       if ( cmp ) this.cmp = cmp;
       else       this.cmp = pair_comparator#(this_type)::get_instance();
-   endfunction: new
+   endfunction : new
 
    //---------------------------------------------------------------------------
    // Function: eq
@@ -116,7 +116,7 @@ class pair#( type T1 = int, type T2 = T1 );
 
    function bit eq( const ref this_type p );
       return cmp.eq( this, p );
-   endfunction: eq
+   endfunction : eq
 
    // Operator overloading is not supported?
    // bind == function bit eq( this_type );
@@ -142,7 +142,7 @@ class pair#( type T1 = int, type T2 = T1 );
 
    function bit ne( const ref this_type p );
       return cmp.ne( this, p );
-   endfunction: ne
+   endfunction : ne
 
    //---------------------------------------------------------------------------
    // Function: lt
@@ -163,7 +163,7 @@ class pair#( type T1 = int, type T2 = T1 );
 
    function bit lt( const ref this_type p );
       return cmp.lt( this, p );
-   endfunction: lt
+   endfunction : lt
 
    //---------------------------------------------------------------------------
    // Function: gt
@@ -186,7 +186,7 @@ class pair#( type T1 = int, type T2 = T1 );
 
    function bit gt( const ref this_type p );
       return cmp.gt( this, p );
-   endfunction: gt
+   endfunction : gt
 
    //---------------------------------------------------------------------------
    // Function: le
@@ -209,7 +209,7 @@ class pair#( type T1 = int, type T2 = T1 );
 
    function bit le( const ref this_type p );
       return cmp.le( this, p );
-   endfunction: le
+   endfunction : le
 
    //---------------------------------------------------------------------------
    // Function: ge
@@ -232,7 +232,7 @@ class pair#( type T1 = int, type T2 = T1 );
 
    function bit ge( const ref this_type p );
       return cmp.ge( this, p );
-   endfunction: ge
+   endfunction : ge
 
    //---------------------------------------------------------------------------
    // Function: clone
@@ -249,7 +249,7 @@ class pair#( type T1 = int, type T2 = T1 );
 
    function this_type clone();
       clone = new( first, second, cmp );
-   endfunction: clone
+   endfunction : clone
 
    //---------------------------------------------------------------------------
    // Function: swap
@@ -279,9 +279,9 @@ class pair#( type T1 = int, type T2 = T1 );
       s = p.second;
       p.second = this.second;
       this.second = s;
-   endfunction: swap
+   endfunction : swap
 
-endclass: pair
+endclass : pair
 
 `endif //  `ifndef CL_PAIR_SVH
 

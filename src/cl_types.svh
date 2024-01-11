@@ -12,10 +12,10 @@
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -28,7 +28,7 @@
 // Title: Type Definitions
 
 `ifndef CL_TYPES_SVH
-`define CL_TYPES_SVH
+ `define CL_TYPES_SVH
 
 //------------------------------------------------------------------------------
 // Typedef: string_q
@@ -50,13 +50,13 @@ typedef string three_strings[3];
 //------------------------------------------------------------------------------
 
 typedef enum { FG_BLACK   = 30,
-	       FG_RED     = 31,
-	       FG_GREEN   = 32,
-	       FG_YELLOW  = 33,
-	       FG_BLUE    = 34,
-	       FG_MAGENTA = 35,
-	       FG_CYAN    = 36,
-	       FG_WHITE   = 37 } fg_color_e;
+               FG_RED     = 31,
+               FG_GREEN   = 32,
+               FG_YELLOW  = 33,
+               FG_BLUE    = 34,
+               FG_MAGENTA = 35,
+               FG_CYAN    = 36,
+               FG_WHITE   = 37 } fg_color_e;
 
 //------------------------------------------------------------------------------
 // Typedef: bg_color_e
@@ -64,13 +64,13 @@ typedef enum { FG_BLACK   = 30,
 //------------------------------------------------------------------------------
 
 typedef enum { BG_BLACK   = 40,
-	       BG_RED     = 41,
-	       BG_GREEN   = 42,
-	       BG_YELLOW  = 43,
-	       BG_BLUE    = 44,
-	       BG_MAGENTA = 45,
-	       BG_CYAN    = 46,
-	       BG_WHITE   = 47 } bg_color_e;
+               BG_RED     = 41,
+               BG_GREEN   = 42,
+               BG_YELLOW  = 43,
+               BG_BLUE    = 44,
+               BG_MAGENTA = 45,
+               BG_CYAN    = 46,
+               BG_WHITE   = 47 } bg_color_e;
 
 `endif
 

@@ -27,7 +27,7 @@
 //==============================================================================
 
 `ifndef CL_SET_BASE_SVH
-`define CL_SET_BASE_SVH
+ `define CL_SET_BASE_SVH
 
 //------------------------------------------------------------------------------
 // Class: set_base
@@ -65,15 +65,15 @@ virtual class set_base #( type T = int ) extends collection#( T );
       if ( this == c ) return 1;
       if ( this.size() != c.size() ) return 0;
       return this.contains_all( c );
-   endfunction: equals
-      
+   endfunction : equals
+
    //---------------------------------------------------------------------------
    // Function hash_code
    //---------------------------------------------------------------------------
-/*
-   virtual function int hash_code();
-   endfunction: hash_code
-*/
+   /*
+    virtual function int hash_code();
+   endfunction : hash_code
+    */
    //---------------------------------------------------------------------------
    // Function: remove_all
    //   (VIRTUAL) Removes the elements in the given collection from this set.
@@ -97,23 +97,23 @@ virtual class set_base #( type T = int ) extends collection#( T );
 
    virtual function bit remove_all( collection#(T) c );
       bit  result = 0;
-      
+
       if ( this.size() < c.size() ) begin
-	 iterator#( T ) it = this.get_iterator();
-	 while ( it.has_next() ) begin
-	    if ( c.contains( it.next() ) ) begin
-	       it.remove();
-	       result = 1;
-	    end
-	 end
+         iterator#( T ) it = this.get_iterator();
+         while ( it.has_next() ) begin
+            if ( c.contains( it.next() ) ) begin
+               it.remove();
+               result = 1;
+            end
+         end
       end else begin // 'c' has fewer elements
-	 iterator#( T ) it = c.get_iterator();
-	 while ( it.has_next() ) result |= this.remove( it.next() );
+         iterator#( T ) it = c.get_iterator();
+         while ( it.has_next() ) result |= this.remove( it.next() );
       end // else: !if( this.size() < c.size() )
       return result;
-   endfunction: remove_all
+   endfunction : remove_all
 
-endclass: set_base
+endclass : set_base
 
 `endif //  `ifndef CL_SET_BASE_SVH
 

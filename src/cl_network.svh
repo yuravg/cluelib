@@ -27,7 +27,7 @@
 //==============================================================================
 
 `ifndef CL_NETWORK_SVH
-`define CL_NETWORK_SVH
+ `define CL_NETWORK_SVH
 
 //------------------------------------------------------------------------------
 // Class: network
@@ -82,9 +82,9 @@ virtual class network;
    static function void dump( string desc, int idx = 0 );
       time t = $time;
       $fwrite( fds[idx], "%0d.\n%s\n", t, desc );
-   endfunction: dump
+   endfunction : dump
 
-endclass: network
+endclass : network
 
 `endif //  `ifndef CL_NETWORK_SVH
 

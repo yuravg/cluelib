@@ -27,8 +27,8 @@
 //==============================================================================
 
 `ifndef CL_DEQUE_ITERATOR_SVH
-`define CL_DEQUE_ITERATOR_SVH
-`ifndef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
+ `define CL_DEQUE_ITERATOR_SVH
+ `ifndef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
 
 typedef class deque;
 
@@ -67,7 +67,7 @@ class deque_iterator #( type T = int ) extends iterator#( T );
       this.dq = dq;
       q_size = dq.q.size();
       cur_index = 0;
-   endfunction: new
+   endfunction : new
 
    //--------------------------------------------------------------------------
    // Function: has_next
@@ -79,7 +79,7 @@ class deque_iterator #( type T = int ) extends iterator#( T );
 
    virtual function bit has_next();
       return cur_index < q_size;
-   endfunction: has_next
+   endfunction : has_next
 
    //--------------------------------------------------------------------------
    // Function: next
@@ -91,7 +91,7 @@ class deque_iterator #( type T = int ) extends iterator#( T );
 
    virtual function T next();
       return dq.q[cur_index++];
-   endfunction: next
+   endfunction : next
 
    //--------------------------------------------------------------------------
    // Function: remove
@@ -105,11 +105,11 @@ class deque_iterator #( type T = int ) extends iterator#( T );
    virtual function void remove();
       dq.q.delete( --cur_index ); // delete at the previous index
       q_size--;
-   endfunction: remove
+   endfunction : remove
 
-endclass: deque_iterator
+endclass : deque_iterator
 
-`endif //  `ifndef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
+ `endif //  `ifndef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
 `endif //  `ifndef CL_DEQUE_ITERATOR_SVH
 
 //==============================================================================

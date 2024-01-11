@@ -12,10 +12,10 @@
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,7 +26,7 @@
 //==============================================================================
 
 `ifndef CL_TUPLE_COMPARATOR_SVH
-`define CL_TUPLE_COMPARATOR_SVH
+ `define CL_TUPLE_COMPARATOR_SVH
 
 typedef class tuple;
 
@@ -56,7 +56,7 @@ class tuple_comparator#( type T = tuple ) extends comparator#(T);
    //---------------------------------------------------------------------------
 
    protected function new();
-   endfunction: new
+   endfunction : new
 
    //---------------------------------------------------------------------------
    // Function: get_instance
@@ -69,7 +69,7 @@ class tuple_comparator#( type T = tuple ) extends comparator#(T);
    static function this_type get_instance();
       if ( inst == null ) inst = new();
       return inst;
-   endfunction: get_instance
+   endfunction : get_instance
 
    //---------------------------------------------------------------------------
    // Function: eq
@@ -85,17 +85,17 @@ class tuple_comparator#( type T = tuple ) extends comparator#(T);
    //---------------------------------------------------------------------------
 
    virtual function bit eq( T x, T y );
-      eq = x.first   == y.first   && 
-	   x.second  == y.second  &&
-	   x.third   == y.third   &&
-	   x.fourth  == y.fourth  &&
-	   x.fifth   == y.fifth   &&
-	   x.sixth   == y.sixth   &&
-	   x.seventh == y.seventh &&
-	   x.eighth  == y.eighth  &&
-	   x.ninth   == y.ninth   &&
-	   x.tenth   == y.tenth;
-   endfunction: eq
+      eq = x.first   == y.first   &&
+           x.second  == y.second  &&
+           x.third   == y.third   &&
+           x.fourth  == y.fourth  &&
+           x.fifth   == y.fifth   &&
+           x.sixth   == y.sixth   &&
+           x.seventh == y.seventh &&
+           x.eighth  == y.eighth  &&
+           x.ninth   == y.ninth   &&
+           x.tenth   == y.tenth;
+   endfunction : eq
 
    //---------------------------------------------------------------------------
    // Function: lt
@@ -116,7 +116,7 @@ class tuple_comparator#( type T = tuple ) extends comparator#(T);
       else if ( x.second  < y.second  ) return 1; // x.first   == y.first
       else if ( x.second  > y.second  ) return 0;
       else if ( x.third   < y.third   ) return 1; // x.second  == y.second
-      else if ( x.third   > y.third   ) return 0; 
+      else if ( x.third   > y.third   ) return 0;
       else if ( x.fourth  < y.fourth  ) return 1; // x.third   == y.third
       else if ( x.fourth  > y.fourth  ) return 0;
       else if ( x.fifth   < y.fifth   ) return 1; // x.fourth  == y.fourth
@@ -130,9 +130,9 @@ class tuple_comparator#( type T = tuple ) extends comparator#(T);
       else if ( x.ninth   < y.ninth   ) return 1; // x.eighth  == y.eighth
       else if ( x.ninth   > y.ninth   ) return 0;
       else return x.tenth < y.tenth;              // x.ninth   == y.ninth
-   endfunction: lt
+   endfunction : lt
 
-endclass: tuple_comparator
+endclass : tuple_comparator
 
 `endif //  `ifndef CL_TUPLE_COMPARATOR_SVH
 

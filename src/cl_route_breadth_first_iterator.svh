@@ -27,8 +27,8 @@
 //==============================================================================
 
 `ifndef CL_ROUTE_BREADTH_FIRST_ITERATOR_SVH
-`define CL_ROUTE_BREADTH_FIRST_ITERATOR_SVH
-`ifndef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
+ `define CL_ROUTE_BREADTH_FIRST_ITERATOR_SVH
+ `ifndef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
 
 typedef class route;
 typedef class route_node;
@@ -76,7 +76,7 @@ class route_breadth_first_iterator #( type T = int ) extends iterator#( T );
       if ( r.start ) q.push_back( r.start );
       cur_index = 0;
       visited.delete();
-   endfunction: new
+   endfunction : new
 
    //--------------------------------------------------------------------------
    // Function: has_next
@@ -88,7 +88,7 @@ class route_breadth_first_iterator #( type T = int ) extends iterator#( T );
 
    virtual function bit has_next();
       return cur_index < q.size();
-   endfunction: has_next
+   endfunction : has_next
 
    //--------------------------------------------------------------------------
    // Function: next
@@ -102,7 +102,7 @@ class route_breadth_first_iterator #( type T = int ) extends iterator#( T );
       route_node_type rn = next_node();
 
       return rn.elem;
-   endfunction: next
+   endfunction : next
 
    //--------------------------------------------------------------------------
    // Function: next_node
@@ -116,15 +116,15 @@ class route_breadth_first_iterator #( type T = int ) extends iterator#( T );
       route_node_type rn = q[cur_index];
 
       foreach ( rn.to_nodes[i] ) begin
-	 if ( ! visited.exists( rn.to_nodes[i] ) ) begin
-	    q.push_back( rn.to_nodes[i] );
-	    visited[ rn.to_nodes[i] ] = 1;
-	 end
+         if ( ! visited.exists( rn.to_nodes[i] ) ) begin
+            q.push_back( rn.to_nodes[i] );
+            visited[ rn.to_nodes[i] ] = 1;
+         end
       end
       cur_index++;
 
       return rn;
-   endfunction: next_node
+   endfunction : next_node
 
    //--------------------------------------------------------------------------
    // Function: remove
@@ -137,11 +137,11 @@ class route_breadth_first_iterator #( type T = int ) extends iterator#( T );
 
    virtual function void remove();
       q.delete( --cur_index ); // delete at the previous index
-   endfunction: remove
+   endfunction : remove
 
-endclass: route_breadth_first_iterator
+endclass : route_breadth_first_iterator
 
-`endif //  `ifndef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
+ `endif //  `ifndef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
 `endif //  `ifndef CL_ROUTE_BREADTH_FIRST_ITERATOR_SVH
 
 //==============================================================================

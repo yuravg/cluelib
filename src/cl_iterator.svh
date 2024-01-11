@@ -27,7 +27,7 @@
 //==============================================================================
 
 `ifndef CL_ITERATOR_SVH
-`define CL_ITERATOR_SVH
+ `define CL_ITERATOR_SVH
 
 //------------------------------------------------------------------------------
 // Class: iterator
@@ -58,7 +58,7 @@ virtual class iterator #( type T = int );
 
    pure virtual function void remove();
 
-endclass: iterator
+endclass : iterator
 
 `endif //  `ifndef CL_ITERATOR_SVH
 

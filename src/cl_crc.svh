@@ -27,7 +27,7 @@
 //==============================================================================
 
 `ifndef CL_CRC_SVH
-`define CL_CRC_SVH
+ `define CL_CRC_SVH
 
 //------------------------------------------------------------------------------
 // Class: crc
@@ -79,23 +79,23 @@ virtual class crc #( type T = bit );
    //---------------------------------------------------------------------------
 
    static function T[63:0] crc( bs_type bs,
-				T[63:0] tap,
-				int     degree );
+                                T[63:0] tap,
+                                int     degree );
       T[63:0] x = 0;
       T       y;
 
       foreach ( bs[i] ) begin
-	 y = bs[i] ^ x[degree - 1];
-	 for ( int j = degree - 1; j > 0; j-- )
-	   x[j] = tap[j] ? x[j-1] ^ y : x[j-1];
-	 x[0] = y;
+         y = bs[i] ^ x[degree - 1];
+         for ( int j = degree - 1; j > 0; j-- )
+           x[j] = tap[j] ? x[j-1] ^ y : x[j-1];
+         x[0] = y;
       end
       return x;
-   endfunction: crc
+   endfunction : crc
 
    //-----------------------------------------------------------------------
    // Function: crc1
-   //   (STATIC) Returns a CRC-1 value; also known as a parity bit. 
+   //   (STATIC) Returns a CRC-1 value; also known as a parity bit.
    //   The CRC polynomial is:
    //   (see crc1.png)
    //
@@ -103,7 +103,7 @@ virtual class crc #( type T = bit );
    //   bs - An input bit stream.
    //
    // Returns:
-   //   A CRC-1 value. 
+   //   A CRC-1 value.
    //
    // Example:
    // | bit bs[];     // input order --------------------------------->
@@ -124,13 +124,13 @@ virtual class crc #( type T = bit );
 
       // x + 1
       // 11
-      
+
       return crc( bs, 1'b1 /*not used*/, .degree( 1 ) );
-   endfunction: crc1
+   endfunction : crc1
 
    //-----------------------------------------------------------------------
    // Function: crc4_itu
-   //   (STATIC) Returns a CRC-4-ITU value. 
+   //   (STATIC) Returns a CRC-4-ITU value.
    //   The CRC polynomial is:
    //   (see crc4_itu.png)
    //
@@ -138,7 +138,7 @@ virtual class crc #( type T = bit );
    //   bs - An input bit stream.
    //
    // Returns:
-   //   A CRC-4-ITU value. 
+   //   A CRC-4-ITU value.
    //
    // Example:
    // | bit bs[];     // input order --------------------------------->
@@ -161,12 +161,12 @@ virtual class crc #( type T = bit );
       // 1_0011
 
       return crc( bs, 4'h3, .degree( 4 ) );
-   endfunction: crc4_itu
+   endfunction : crc4_itu
 
    //-----------------------------------------------------------------------
    // Function: crc5_epc
-   //   (STATIC) Returns a CRC-5-EPC value. 
-   //   The CRC polynomial is: 
+   //   (STATIC) Returns a CRC-5-EPC value.
+   //   The CRC polynomial is:
    //   (see crc5_epc.png)
    //
    // Argument:
@@ -196,7 +196,7 @@ virtual class crc #( type T = bit );
       // 10_1001
 
       return crc( bs, 5'h09, .degree( 5 ) );
-   endfunction: crc5_epc
+   endfunction : crc5_epc
 
    //-----------------------------------------------------------------------
    // Function: crc5_itu
@@ -231,7 +231,7 @@ virtual class crc #( type T = bit );
       // 11_0101
 
       return crc( bs, 5'h15, .degree( 5 ) );
-   endfunction: crc5_itu
+   endfunction : crc5_itu
 
    //-----------------------------------------------------------------------
    // Function: crc5_usb
@@ -266,7 +266,7 @@ virtual class crc #( type T = bit );
       // 10_0101
 
       return crc( bs, 5'h05, .degree( 5 ) );
-   endfunction: crc5_usb
+   endfunction : crc5_usb
 
    //-----------------------------------------------------------------------
    // Function: crc6_cdma2000_a
@@ -301,7 +301,7 @@ virtual class crc #( type T = bit );
       // 110_0111
 
       return crc( bs, 6'h27, .degree( 6 ) );
-   endfunction: crc6_cdma2000_a
+   endfunction : crc6_cdma2000_a
 
    //-----------------------------------------------------------------------
    // Function: crc6_cdma2000_b
@@ -311,7 +311,7 @@ virtual class crc #( type T = bit );
    //
    // Argument:
    //   bs - An input bit stream.
-   // 
+   //
    // Returns:
    //   A CRC-6-CDMA2000-B value.
    //
@@ -336,7 +336,7 @@ virtual class crc #( type T = bit );
       // 100_0111
 
       return crc( bs, 6'h07, .degree( 6 ) );
-   endfunction: crc6_cdma2000_b
+   endfunction : crc6_cdma2000_b
 
    //-----------------------------------------------------------------------
    // Function: crc6_itu
@@ -371,7 +371,7 @@ virtual class crc #( type T = bit );
       // 100_0011
 
       return crc( bs, 6'h03, .degree( 6 ) );
-   endfunction: crc6_itu
+   endfunction : crc6_itu
 
    //-----------------------------------------------------------------------
    // Function: crc7
@@ -406,7 +406,7 @@ virtual class crc #( type T = bit );
       // 1000_1001
 
       return crc( bs, 7'h09, .degree( 7 ) );
-   endfunction: crc7
+   endfunction : crc7
 
    //-----------------------------------------------------------------------
    // Function: crc7_mvb
@@ -441,7 +441,7 @@ virtual class crc #( type T = bit );
       // 1110_0101
 
       return crc( bs, 7'h65, .degree( 7 ) );
-   endfunction: crc7_mvb
+   endfunction : crc7_mvb
 
    //-----------------------------------------------------------------------
    // Function: crc8
@@ -476,7 +476,7 @@ virtual class crc #( type T = bit );
       // 1_1101_0101
 
       return crc( bs, 8'hD5, .degree( 8 ) );
-   endfunction: crc8
+   endfunction : crc8
 
    //-----------------------------------------------------------------------
    // Function: crc8_ccitt
@@ -511,7 +511,7 @@ virtual class crc #( type T = bit );
       // 1_0000_0111
 
       return crc( bs, 8'h07, .degree( 8 ) );
-   endfunction: crc8_ccitt
+   endfunction : crc8_ccitt
 
    //-----------------------------------------------------------------------
    // Function: crc8_dallas_maxim
@@ -546,7 +546,7 @@ virtual class crc #( type T = bit );
       // 1_0011_0001
 
       return crc( bs, 8'h31, .degree( 8 ) );
-   endfunction: crc8_dallas_maxim
+   endfunction : crc8_dallas_maxim
 
    //-----------------------------------------------------------------------
    // Function: crc8_sae_j1850
@@ -581,7 +581,7 @@ virtual class crc #( type T = bit );
       // 1_0001_1101
 
       return crc( bs, 8'h1D, .degree( 8 ) );
-   endfunction: crc8_sae_j1850
+   endfunction : crc8_sae_j1850
 
    //-----------------------------------------------------------------------
    // Function: crc8_wcdma
@@ -616,7 +616,7 @@ virtual class crc #( type T = bit );
       // 1_1001_1011
 
       return crc( bs, 8'h9B, .degree( 8 ) );
-   endfunction: crc8_wcdma
+   endfunction : crc8_wcdma
 
    //-----------------------------------------------------------------------
    // Function: crc10
@@ -651,7 +651,7 @@ virtual class crc #( type T = bit );
       // 110_0011_0011
 
       return crc( bs, 10'h233, .degree( 10 ) );
-   endfunction: crc10
+   endfunction : crc10
 
    //-----------------------------------------------------------------------
    // Function: crc10_cdma2000
@@ -686,7 +686,7 @@ virtual class crc #( type T = bit );
       // 111_1101_1001
 
       return crc( bs, 10'h3D9, .degree( 10 ) );
-   endfunction: crc10_cdma2000
+   endfunction : crc10_cdma2000
 
    //-----------------------------------------------------------------------
    // Function: crc11
@@ -719,9 +719,9 @@ virtual class crc #( type T = bit );
 
       // x^11 + x^9 + x^8 + x^7 + x^2 + 1
       // 1011_1000_0101
-      
+
       return crc( bs, 11'h385, .degree( 11 ) );
-   endfunction: crc11
+   endfunction : crc11
 
    //-----------------------------------------------------------------------
    // Function: crc12
@@ -756,7 +756,7 @@ virtual class crc #( type T = bit );
       // 1_1000_0000_1111
 
       return crc( bs, 12'h80F, .degree( 12 ) );
-   endfunction: crc12
+   endfunction : crc12
 
    //-----------------------------------------------------------------------
    // Function: crc12_cdma2000
@@ -791,7 +791,7 @@ virtual class crc #( type T = bit );
       // 1_1111_0001_0011
 
       return crc( bs, 12'hF13, .degree( 12 ) );
-   endfunction: crc12_cdma2000
+   endfunction : crc12_cdma2000
 
    //-----------------------------------------------------------------------
    // Function: crc13_bbc
@@ -826,7 +826,7 @@ virtual class crc #( type T = bit );
       // 11_1100_1111_0101
 
       return crc( bs, 13'h1CF5, .degree( 13 ) );
-   endfunction: crc13_bbc
+   endfunction : crc13_bbc
 
    //-----------------------------------------------------------------------
    // Function: crc15_can
@@ -861,7 +861,7 @@ virtual class crc #( type T = bit );
       // 1100_0101_1001_1001
 
       return crc( bs, 15'h4599, .degree( 15 ) );
-   endfunction: crc15_can
+   endfunction : crc15_can
 
    //-----------------------------------------------------------------------
    // Function: crc15_mpt1327
@@ -896,7 +896,7 @@ virtual class crc #( type T = bit );
       // 1110_1000_0001_0101
 
       return crc( bs, 15'h6815, .degree( 15 ) );
-   endfunction: crc15_mpt1327
+   endfunction : crc15_mpt1327
 
    //-----------------------------------------------------------------------
    // Function: crc16_arinc
@@ -931,7 +931,7 @@ virtual class crc #( type T = bit );
       // 1_1010_0000_0010_1011
 
       return crc( bs, 16'hA02B, .degree( 16 ) );
-   endfunction: crc16_arinc
+   endfunction : crc16_arinc
 
    //-----------------------------------------------------------------------
    // Function: crc16_ccitt
@@ -966,7 +966,7 @@ virtual class crc #( type T = bit );
       // 1_0001_0000_0010_0001
 
       return crc( bs, 16'h1021, .degree( 16 ) );
-   endfunction: crc16_ccitt
+   endfunction : crc16_ccitt
 
    //-----------------------------------------------------------------------
    // Function: crc16_cdma2000
@@ -1001,7 +1001,7 @@ virtual class crc #( type T = bit );
       // 1_1100_1000_0110_0111
 
       return crc( bs, 16'hC867, .degree( 16 ) );
-   endfunction: crc16_cdma2000
+   endfunction : crc16_cdma2000
 
    //-----------------------------------------------------------------------
    // Function: crc16_dect
@@ -1036,7 +1036,7 @@ virtual class crc #( type T = bit );
       // 1_0000_0101_1000_1001
 
       return crc( bs, 16'h0589, .degree( 16 ) );
-   endfunction: crc16_dect
+   endfunction : crc16_dect
 
    //-----------------------------------------------------------------------
    // Function: crc16_t10_dif
@@ -1071,7 +1071,7 @@ virtual class crc #( type T = bit );
       // 1_1000_1011_1011_0111
 
       return crc( bs, 16'h8BB7, .degree( 16 ) );
-   endfunction: crc16_t10_dif
+   endfunction : crc16_t10_dif
 
    //-----------------------------------------------------------------------
    // Function: crc16_dnp
@@ -1106,7 +1106,7 @@ virtual class crc #( type T = bit );
       // 1_0011_1101_0110_0101
 
       return crc( bs, 16'h3D65, .degree( 16 ) );
-   endfunction: crc16_dnp
+   endfunction : crc16_dnp
 
    //-----------------------------------------------------------------------
    // Function: crc16_ibm
@@ -1141,7 +1141,7 @@ virtual class crc #( type T = bit );
       // 1_1000_0000_0000_0101
 
       return crc( bs, 16'h8005, .degree( 16 ) );
-   endfunction: crc16_ibm
+   endfunction : crc16_ibm
 
    //-----------------------------------------------------------------------
    // Function: crc17_can
@@ -1176,7 +1176,7 @@ virtual class crc #( type T = bit );
       // 11_0110_1000_0101_1011
 
       return crc( bs, 17'h1_685B, .degree( 17 ) );
-   endfunction: crc17_can
+   endfunction : crc17_can
 
    //-----------------------------------------------------------------------
    // Function: crc21_can
@@ -1212,7 +1212,7 @@ virtual class crc #( type T = bit );
       // _0010_1000_1001_1001
 
       return crc( bs, 21'h10_2899, .degree( 21 ) );
-   endfunction: crc21_can
+   endfunction : crc21_can
 
    //-----------------------------------------------------------------------
    // Function: crc24
@@ -1243,13 +1243,13 @@ virtual class crc #( type T = bit );
 
    static function T[23:0] crc24( bs_type bs );
 
-      // x^24 + x^22 + x^20 + x^19 + x^18 + x^16 + x^14 + x^13 + x^11 + 
+      // x^24 + x^22 + x^20 + x^19 + x^18 + x^16 + x^14 + x^13 + x^11 +
       // x^10 + x^8 + x^7 + x^6 + x^3 + x + 1
       //          1_0101_1101
       // _0110_1101_1100_1011
 
       return crc( bs, 24'h5D_6DCB, .degree( 24 ) );
-   endfunction: crc24
+   endfunction : crc24
 
    //-----------------------------------------------------------------------
    // Function: crc24_radix_64
@@ -1284,9 +1284,9 @@ virtual class crc #( type T = bit );
       // x^4 + x^3 + x + 1
       //          1_1000_0110
       // _0100_1100_1111_1011
-      
+
       return crc( bs, 24'h86_4CFB, .degree( 24 ) );
-   endfunction: crc24_radix_64
+   endfunction : crc24_radix_64
 
    //-----------------------------------------------------------------------
    // Function: crc30
@@ -1323,7 +1323,7 @@ virtual class crc #( type T = bit );
       // _1011_1001_1100_0111
 
       return crc( bs, 30'h2030_B9C7, .degree( 30 ) );
-   endfunction: crc30
+   endfunction : crc30
 
    //-----------------------------------------------------------------------
    // Function: crc32
@@ -1360,7 +1360,7 @@ virtual class crc #( type T = bit );
       //  _0001_1101_1011_0111
 
       return crc( bs, 32'h04C1_1DB7, .degree( 32 ) );
-   endfunction: crc32
+   endfunction : crc32
 
    //-----------------------------------------------------------------------
    // Function: crc32c
@@ -1391,13 +1391,13 @@ virtual class crc #( type T = bit );
 
    static function T[31:0] crc32c( bs_type bs );
 
-      // x^32 + x^28 + x^27 + x^26 + x^25 + x^23 + x^22 + x^20 + x^19 + 
+      // x^32 + x^28 + x^27 + x^26 + x^25 + x^23 + x^22 + x^20 + x^19 +
       // x^18 + x^14 + x^13 + x^11 + x^10 + x^9 + x^8 + x^6 + 1
       // 1_0001_1110_1101_1100
       //  _0110_1111_0100_0001
 
       return crc( bs, 32'h1EDC_6F41, .degree( 32 ) );
-   endfunction: crc32c
+   endfunction : crc32c
 
    //-----------------------------------------------------------------------
    // Function: crc32k
@@ -1428,13 +1428,13 @@ virtual class crc #( type T = bit );
 
    static function T[31:0] crc32k( bs_type bs );
 
-      // x^32 + x^30 + x^29 + x^28 + x^26 + x^20 + x^19 + x^17 + x^16 + 
+      // x^32 + x^30 + x^29 + x^28 + x^26 + x^20 + x^19 + x^17 + x^16 +
       // x^15 + x^11 + x^10 + x^7 + x^6 + x^4 + x^2 + x + 1
       // 1_0111_0100_0001_1011
       //  _1000_1100_1101_0111
 
       return crc( bs, 32'h741B_8CD7, .degree( 32 ) );
-   endfunction: crc32k
+   endfunction : crc32k
 
    //-----------------------------------------------------------------------
    // Function: crc32q
@@ -1469,9 +1469,9 @@ virtual class crc #( type T = bit );
       // x + 1
       // 1_1000_0001_0100_0001
       //  _0100_0001_1010_1011
-      
+
       return crc( bs, 32'h8141_41AB, .degree( 32 ) );
-   endfunction: crc32q
+   endfunction : crc32q
 
    //-----------------------------------------------------------------------
    // Function: crc40_gsm
@@ -1506,9 +1506,9 @@ virtual class crc #( type T = bit );
       //           1_0000_0000
       //  _0000_0100_1000_0010
       //  _0000_0000_0000_1001
-      
+
       return crc( bs, 40'h00_0482_0009, .degree( 40 ) );
-   endfunction: crc40_gsm
+   endfunction : crc40_gsm
 
    //-----------------------------------------------------------------------
    // Function: crc64_ecma
@@ -1539,17 +1539,17 @@ virtual class crc #( type T = bit );
 
    static function T[63:0] crc64_ecma( bs_type bs );
 
-      // x^64 + x^62 + x^57 + x^55 + x^54 + x^53 + x^52 + x^47 + x^46 + 
-      // x^45 + x^40 + x^39 + x^38 + x^37 + x^35 + x^33 + x^32 + x^31 + 
-      // x^29 + x^27 + x^24 + x^23 + x^22 + x^21 + x^19 + x^17 + x^13 + 
+      // x^64 + x^62 + x^57 + x^55 + x^54 + x^53 + x^52 + x^47 + x^46 +
+      // x^45 + x^40 + x^39 + x^38 + x^37 + x^35 + x^33 + x^32 + x^31 +
+      // x^29 + x^27 + x^24 + x^23 + x^22 + x^21 + x^19 + x^17 + x^13 +
       // x^12 + x^10 + x^9 + x^7 + x^4 + x + 1
       // 1_0100_0010_1111_0000
       //  _1110_0001_1110_1011
       //  _1010_1001_1110_1010
       //  _0011_0110_1001_0011
-      
+
       return crc( bs, 64'h42F0_E1EB_A9EA_3693, .degree( 64 ) );
-   endfunction: crc64_ecma
+   endfunction : crc64_ecma
 
    //-----------------------------------------------------------------------
    // Function: crc64_iso
@@ -1585,11 +1585,11 @@ virtual class crc #( type T = bit );
       //  _0000_0000_0000_0000
       //  _0000_0000_0000_0000
       //  _0000_0000_0001_1011
-      
-      return crc( bs, 64'h0000_0000_0000_001B, .degree( 64 ) );
-   endfunction: crc64_iso
 
-endclass: crc
+      return crc( bs, 64'h0000_0000_0000_001B, .degree( 64 ) );
+   endfunction : crc64_iso
+
+endclass : crc
 
 `endif //  `ifndef CL_CRC_SVH
 

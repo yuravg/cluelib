@@ -27,7 +27,7 @@
 //==============================================================================
 
 `ifndef CL_PUTIL_SVH
-`define CL_PUTIL_SVH
+ `define CL_PUTIL_SVH
 
 //------------------------------------------------------------------------------
 // Class: putil
@@ -64,9 +64,9 @@ virtual class putil #( type T = int );
       tmp = x;
       x = y;
       y = tmp;
-   endfunction: swap
+   endfunction : swap
 
-endclass: putil
+endclass : putil
 
 `endif //  `ifndef CL_PUTIL_SVH
 

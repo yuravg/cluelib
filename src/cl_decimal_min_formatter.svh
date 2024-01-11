@@ -27,7 +27,7 @@
 //==============================================================================
 
 `ifndef CL_DECIMAL_MIN_FORMATTER_SVH
-`define CL_DECIMAL_MIN_FORMATTER_SVH
+ `define CL_DECIMAL_MIN_FORMATTER_SVH
 
 //------------------------------------------------------------------------------
 // Class: decimal_min_formatter
@@ -56,7 +56,7 @@ class decimal_min_formatter #( type T = int ) extends formatter#( T );
    //---------------------------------------------------------------------------
 
    protected function new();
-   endfunction: new
+   endfunction : new
 
    //---------------------------------------------------------------------------
    // Function: get_instance
@@ -69,7 +69,7 @@ class decimal_min_formatter #( type T = int ) extends formatter#( T );
    static function this_type get_instance();
       if ( inst == null ) inst = new();
       return inst;
-   endfunction: get_instance
+   endfunction : get_instance
 
    //---------------------------------------------------------------------------
    // Function: to_string
@@ -85,9 +85,9 @@ class decimal_min_formatter #( type T = int ) extends formatter#( T );
 
    virtual function string to_string( T o );
       return $sformatf( "%0d", o );
-   endfunction: to_string
+   endfunction : to_string
 
-endclass: decimal_min_formatter
+endclass : decimal_min_formatter
 
 `endif //  `ifndef CL_DECIMAL_MIN_FORMATTER_SVH
 

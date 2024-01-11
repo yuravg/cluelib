@@ -27,7 +27,7 @@
 //==============================================================================
 
 `ifndef CL_HEX_MIN_FORMATTER_SVH
-`define CL_HEX_MIN_FORMATTER_SVH
+ `define CL_HEX_MIN_FORMATTER_SVH
 
 //------------------------------------------------------------------------------
 // Class: hex_min_formatter
@@ -55,7 +55,7 @@ class hex_min_formatter #( type T = int ) extends formatter#( T );
    //---------------------------------------------------------------------------
 
    protected function new();
-   endfunction: new
+   endfunction : new
 
    //---------------------------------------------------------------------------
    // Function: get_instance
@@ -68,7 +68,7 @@ class hex_min_formatter #( type T = int ) extends formatter#( T );
    static function this_type get_instance();
       if ( inst == null ) inst = new();
       return inst;
-   endfunction: get_instance
+   endfunction : get_instance
 
    //---------------------------------------------------------------------------
    // Function: to_string
@@ -84,9 +84,9 @@ class hex_min_formatter #( type T = int ) extends formatter#( T );
 
    virtual function string to_string( T o );
       return $sformatf( "%0h", o );
-   endfunction: to_string
+   endfunction : to_string
 
-endclass: hex_min_formatter
+endclass : hex_min_formatter
 
 `endif //  `ifndef CL_HEX_MIN_FORMATTER_SVH
 

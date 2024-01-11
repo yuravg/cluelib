@@ -27,8 +27,8 @@
 //==============================================================================
 
 `ifndef CL_TREE_BREADTH_FIRST_ITERATOR_SVH
-`define CL_TREE_BREADTH_FIRST_ITERATOR_SVH
-`ifndef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
+ `define CL_TREE_BREADTH_FIRST_ITERATOR_SVH
+ `ifndef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
 
 typedef class tree;
 typedef class tree_node;
@@ -74,7 +74,7 @@ class tree_breadth_first_iterator #( type T = int ) extends iterator#( T );
    function new( tree_type t );
       if ( t.root ) q.push_back( t.root );
       cur_index = 0;
-   endfunction: new
+   endfunction : new
 
    //--------------------------------------------------------------------------
    // Function: has_next
@@ -86,7 +86,7 @@ class tree_breadth_first_iterator #( type T = int ) extends iterator#( T );
 
    virtual function bit has_next();
       return cur_index < q.size();
-   endfunction: has_next
+   endfunction : has_next
 
    //--------------------------------------------------------------------------
    // Function: next
@@ -100,7 +100,7 @@ class tree_breadth_first_iterator #( type T = int ) extends iterator#( T );
       tree_node_type tn = next_node();
 
       return tn.elem;
-   endfunction: next
+   endfunction : next
 
    //--------------------------------------------------------------------------
    // Function: next_node
@@ -114,17 +114,17 @@ class tree_breadth_first_iterator #( type T = int ) extends iterator#( T );
       tree_node_type tn = q[cur_index];
 
       if ( cur_index == 0 ) begin
-	 tn.location.delete();
-	 tn.location.push_back( 0 );
+         tn.location.delete();
+         tn.location.push_back( 0 );
       end
       foreach ( tn.children[i] ) begin
-	 tn.children[i].location = { tn.location, i }; // append the child ID
-	 q.push_back( tn.children[i] );
+         tn.children[i].location = { tn.location, i }; // append the child ID
+         q.push_back( tn.children[i] );
       end
       cur_index++;
 
       return tn;
-   endfunction: next_node
+   endfunction : next_node
 
    //--------------------------------------------------------------------------
    // Function: remove
@@ -137,11 +137,11 @@ class tree_breadth_first_iterator #( type T = int ) extends iterator#( T );
 
    virtual function void remove();
       q.delete( --cur_index ); // delete at the previous index
-   endfunction: remove
+   endfunction : remove
 
-endclass: tree_breadth_first_iterator
+endclass : tree_breadth_first_iterator
 
-`endif //  `ifndef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
+ `endif //  `ifndef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
 `endif //  `ifndef CL_TREE_BREADTH_FIRST_ITERATOR_SVH
 
 //==============================================================================

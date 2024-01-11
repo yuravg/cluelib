@@ -27,8 +27,8 @@
 //==============================================================================
 
 `ifndef CL_SET_ITERATOR_SVH
-`define CL_SET_ITERATOR_SVH
-`ifndef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
+ `define CL_SET_ITERATOR_SVH
+ `ifndef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
 
 typedef class set;
 
@@ -74,7 +74,7 @@ class set_iterator #( type T = int ) extends iterator#( T );
       this.s = s;
       aa_size = s.aa.size();
       cnt = 0;
-   endfunction: new
+   endfunction : new
 
    //--------------------------------------------------------------------------
    // Function: has_next
@@ -86,7 +86,7 @@ class set_iterator #( type T = int ) extends iterator#( T );
 
    virtual function bit has_next();
       return cnt < aa_size;
-   endfunction: has_next
+   endfunction : has_next
 
    //--------------------------------------------------------------------------
    // Function: next
@@ -98,13 +98,13 @@ class set_iterator #( type T = int ) extends iterator#( T );
 
    virtual function T next();
       if ( cnt == 0 ) begin
-	 assert( s.aa.first( cur_key ) == 1 ); // first() returns 0, 1, or -1
+         assert( s.aa.first( cur_key ) == 1 ); // first() returns 0, 1, or -1
       end else begin
-	 assert( s.aa.next( cur_key ) == 1 ); // next() returns 0, 1, or -1
+         assert( s.aa.next( cur_key ) == 1 ); // next() returns 0, 1, or -1
       end
       cnt++;
       return cur_key;
-   endfunction: next
+   endfunction : next
 
    //--------------------------------------------------------------------------
    // Function: remove
@@ -114,11 +114,11 @@ class set_iterator #( type T = int ) extends iterator#( T );
 
    virtual function void remove();
       void'( s.aa.delete( cur_key ) );
-   endfunction: remove
+   endfunction : remove
 
-endclass: set_iterator
+endclass : set_iterator
 
-`endif //  `ifndef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
+ `endif //  `ifndef CL_SUPPORT_PARAMETERIZED_NESTED_CLASS
 `endif //  `ifndef CL_SET_ITERATOR_SVH
 
 //==============================================================================

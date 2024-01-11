@@ -12,10 +12,10 @@
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,7 +26,7 @@
 //==============================================================================
 
 `ifndef CL_COMPARATOR_SVH
-`define CL_COMPARATOR_SVH
+ `define CL_COMPARATOR_SVH
 
 //------------------------------------------------------------------------------
 // Class: comparator
@@ -53,7 +53,7 @@ class comparator#( type T = int );
    //---------------------------------------------------------------------------
 
    protected function new();
-   endfunction: new
+   endfunction : new
 
    //---------------------------------------------------------------------------
    // Function: get_instance
@@ -66,7 +66,7 @@ class comparator#( type T = int );
    static function this_type get_instance();
       if ( inst == null ) inst = new();
       return inst;
-   endfunction: get_instance
+   endfunction : get_instance
 
    //---------------------------------------------------------------------------
    // Function: eq
@@ -83,7 +83,7 @@ class comparator#( type T = int );
 
    virtual function bit eq( T x, T y );
       return x == y;
-   endfunction: eq
+   endfunction : eq
 
    // Operator overloading is not supported?
    // bind == function bit eq( T x, T y );
@@ -102,7 +102,7 @@ class comparator#( type T = int );
 
    virtual function bit ne( T x, T y );
       return ! eq( x, y );
-   endfunction: ne
+   endfunction : ne
 
    //---------------------------------------------------------------------------
    // Function: lt
@@ -119,15 +119,15 @@ class comparator#( type T = int );
 
    virtual function bit lt( T x, T y );
 
-`ifdef CL_SUPPORT_FATAL_SEVERITY_TASK
+ `ifdef CL_SUPPORT_FATAL_SEVERITY_TASK
       $fatal( 2, "lt() is not defined for %s", $typename( T ) );
-`else
+ `else
       $display( "lt() is not defined for %s", $typename( T ) );
       $finish( 2 );
-`endif
+ `endif
 
       return 0; // dummy
-   endfunction: lt
+   endfunction : lt
 
    //---------------------------------------------------------------------------
    // Function: gt
@@ -143,7 +143,7 @@ class comparator#( type T = int );
 
    virtual function bit gt( T x, T y );
       return lt( y, x ); // attention (y,x)
-   endfunction: gt
+   endfunction : gt
 
    //---------------------------------------------------------------------------
    // Function: le
@@ -159,7 +159,7 @@ class comparator#( type T = int );
 
    virtual function bit le( T x, T y );
       return ! gt( x, y );
-   endfunction: le
+   endfunction : le
 
    //---------------------------------------------------------------------------
    // Function: ge
@@ -175,9 +175,9 @@ class comparator#( type T = int );
 
    virtual function bit ge( T x, T y );
       return ! lt( x, y );
-   endfunction: ge
+   endfunction : ge
 
-endclass: comparator
+endclass : comparator
 
 `endif //  `ifndef CL_COMPARATOR_SVH
 
